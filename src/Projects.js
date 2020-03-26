@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Button from '@material-ui/core/Button';
+//icons
+import {ChevronDown}  from 'mdi-material-ui';
 
 class About extends Component {
   render() {
@@ -10,9 +16,37 @@ class About extends Component {
           <Typography variant="h4" gutterBottom>
             Projects
           </Typography>
-          <Typography variant="body2" gutterBottom>
-            ...
-          </Typography>
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ChevronDown />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Pacta</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography variant="body2">
+              My startup. Products for and built with the blockchain, using cryptocurrency Bitcoin and decentralized software platform Ethereum.
+              </Typography>
+              <Typography variant="body2">
+                <Button variant="outlined" color="secondary">Go to Pacta.app</Button>
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ChevronDown />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography>Raisin Picker</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography variant="body2">
+              Raisin Picker is a personal knowledge management tool. It features tagging, rating and linking of content nodes. Using Apache Solr, a faceted search enables you to find content quickly. It is based on Drupal content management system and is available as open source.
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
         </Grid>
     );
   }

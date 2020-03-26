@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
+import PropTypes from 'prop-types';
 import "./index.css";
 //material-ui components
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-//icons
-//import Head from 'mdi-material-ui/Head';
-//elements
-//import Drawer from './Drawer';
+// navigation
 import Header from './Header';
 import Footer from './Footer';
+import Settings from './Settings';
+// tabs
+import Start from './Start';
 import About from './About';
-import CV from './CV';
+import Blog from './Blog';
 import Projects from './Projects';
 import Resources from './Resources';
 import Contact from './Contact';
+import SendMessage from './SendMessage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <Typography
       component="div"
@@ -37,7 +37,6 @@ function TabPanel(props) {
     </Typography>
   );
 }
-
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -54,15 +53,7 @@ function a11yProps(index) {
 
 class App extends Component {
   state = {
-    menutoggle: true,
-    isAppInstallable: false,
-    isAppInstalled: false,
-    value: 1,
-    deferredPrompt: () => {}
-  };
-
-  handleDrawerToggle = () => {
-    this.setState({ menutoggle: !this.state.menutoggle });
+    value: 0,
   };
 
   render() {
@@ -90,29 +81,24 @@ class App extends Component {
             onChange={handleChange}
             aria-label="Vertical tabs example"
           >
-            <Tab label="About" {...a11yProps(0)} />
-            <Tab label="CV" {...a11yProps(1)} />
-            <Tab label="Projects" {...a11yProps(2)} />
-            <Tab label="Resources" {...a11yProps(3)} />
-            <Tab label="Contact" {...a11yProps(4)} />
+            <Tab label="Start" {...a11yProps(0)} />
+            <Tab label="About" {...a11yProps(1)} />
+            <Tab label="Blog" {...a11yProps(2)} />
+            <Tab label="Projects" {...a11yProps(3)} />
+            <Tab label="Resources" {...a11yProps(4)} />
+            <Tab label="Contact" {...a11yProps(5)} />
+            <Tab label="Send Message" {...a11yProps(6)} />
           </Tabs>
+          <Settings />
         </Grid>
         <Grid item sm={9}>
-          <TabPanel value={value} index={0}>
-            <About />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <CV />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <Projects />
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <Resources />
-          </TabPanel>
-          <TabPanel value={value} index={4}>
-            <Contact />
-          </TabPanel>
+          <TabPanel value={value} index={0}><Start /></TabPanel>
+          <TabPanel value={value} index={1}><About /></TabPanel>
+          <TabPanel value={value} index={2}><Blog /></TabPanel>
+          <TabPanel value={value} index={3}><Projects /></TabPanel>
+          <TabPanel value={value} index={4}><Resources /></TabPanel>
+          <TabPanel value={value} index={5}><Contact /></TabPanel>
+          <TabPanel value={value} index={6}><SendMessage /></TabPanel>
         </Grid>
         <Footer />
       </Grid>
