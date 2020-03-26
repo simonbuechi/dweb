@@ -1,0 +1,236 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Slab", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(315deg, #e6ee9c, #eceff1);
+  min-height: 100vh;
+}
+
+@keyframes logo-animated {
+  0% {
+    -webkit-transform: rotate(-165deg);
+    transform: rotate(-165deg);
+  }
+  15% {
+    -webkit-transform: rotate(-165deg);
+    transform: rotate(-165deg);
+  }
+  23% {
+    -webkit-transform: rotate(-195deg);
+    transform: rotate(-195deg);
+  }
+  60% {
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
+  }
+  68% {
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+}
+
+@keyframes logo-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+  }
+  40% {
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+  }
+  55% {
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+  }
+  70% {
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+
+/*
+// logo dreht sich, veraltet
+@keyframes logo-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  } 
+  25% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  75% {
+    -webkit-transform: rotate(315deg);
+            transform: rotate(315deg);
+  }
+  90% {
+    -webkit-transform: rotate(350deg);
+            transform: rotate(350deg);
+  }    
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+*/
+
+.fullheight {
+  vertical-align: middle;
+}
+
+@media print {
+  .noprint {
+    display: none;
+  }
+}
+
+@media screen {
+  .printonly {
+    display: none;
+  }
+}
+
+.defaultpadding {
+  padding: 16px 16px 16px 16px;
+}
+.defaultpaddingright {
+  padding-right: 16px !important;
+}
+/*
+.blockies {
+  border-radius: 3px;
+}
+.blockies.user {
+  border-radius: 50%;
+}
+*/
+.blockies {
+  border-radius: 50%;
+}
+.modal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  padding: 16px;
+  text-align: center;
+}
+
+.green {
+  background-color: #7cb342 !important; /* */
+  color: #000 !important;
+}
+.red {
+  background-color: #e53935 !important; /* material-red 600 */
+  color: #fff !important;
+}
+.empty {
+  background-color: transparent !important;
+  color: #263238 !important;
+}
+.votebar:before {
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 1111;
+  width: 2px;
+  height: 20px;
+  background: #37474f;
+  /*    margin-top: -3px; */
+  transform: translateX(-50%);
+}
+
+.appbarbottom {
+  position: fixed;
+  width: 100%;
+  top: auto;
+  bottom: 0px;
+}
+
+.cardMediaProfile {
+  height: 350px;
+}
+
+.dividerExtraMargin {
+  margin: 30px 0 !important;
+}
+
+.chatActiveTab {
+  background: #b0bec5 !important;
+}
+
+/* 
+  Indicate input pattern error
+  https://stackoverflow.com/questions/6456149/html5-how-to-force-input-pattern-validation-on-value-change 
+*/
+input[pattern]:invalid {
+  color: red !important;
+}
+
+.inputAlignRight {
+  text-align: right;
+}
+
+/* https://github.com/mui-org/material-ui/pull/13213 */
+.MuiCardHeader-content {
+  width: 80% !important;
+}
+
+/*
+  Avatar in Headerbar must be smaller, about as big as the other IconButtons
+*/
+.avatarSmall {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+/*
+  styling for default link tags (a)
+*/
+a {
+  text-decoration: none;
+}
+.markdown a,
+.markdown a:visited {
+  text-decoration: underline;
+  color: #78909c;
+}
+.markdown a:active,
+.markdown a:focus,
+.markdown a:hover {
+  color: #263238;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  width: 100%;
+}
+
+
+.bn-onboard-custom, .bn-onboard-modal {
+  font-family: "Roboto Slab" !important;
+}
