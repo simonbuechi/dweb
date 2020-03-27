@@ -3,16 +3,19 @@ import { withTranslation } from "react-i18next";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-class Resources extends Component {
+class Start extends Component {
   render() {
     return (
         <Grid item xs={12} lg={12}>
-          <Typography variant="h4" gutterBottom>
-            Resources
+          <Typography variant="h2" gutterBottom>
+            Start
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            
           </Typography>
         </Grid>
     );
   }
 }
 
-export default withTranslation()(Resources);
+export default withTranslation()(Start);

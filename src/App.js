@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
-import "./index.css";
+import "./style/index.css";
 //material-ui components
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -12,15 +12,15 @@ import Tab from '@material-ui/core/Tab';
 // navigation
 import Header from './Header';
 import Footer from './Footer';
-import Settings from './Settings';
+//import Settings from './Settings';
 // tabs
-import Start from './Start';
-import About from './About';
-import Blog from './Blog';
-import Projects from './Projects';
-import Resources from './Resources';
-import Contact from './Contact';
-import SendMessage from './SendMessage';
+import Start from './pages/Start';
+import About from './pages/About';
+import Blog from './pages/Blog';
+import Projects from './pages/Projects';
+import Resources from './pages/Resources';
+import Contact from './pages/Contact';
+import SendMessage from './pages/SendMessage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,6 +74,7 @@ class App extends Component {
       >
         <Header />
         <Grid item sm={3}>
+          <Box mt={5}>
           <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -89,7 +90,7 @@ class App extends Component {
             <Tab label="Contact" {...a11yProps(5)} />
             <Tab label="Send Message" {...a11yProps(6)} />
           </Tabs>
-          <Settings />
+          </Box>
         </Grid>
         <Grid item sm={9}>
           <TabPanel value={value} index={0}><Start /></TabPanel>

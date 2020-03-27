@@ -13,7 +13,7 @@ class Header extends Component {
         </Grid>
         <Grid item xs={12} sm={9}>
         <Box my={4}>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h1" gutterBottom>
             Simon Büchi
           </Typography>
         </Box>

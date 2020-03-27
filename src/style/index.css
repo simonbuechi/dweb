@@ -4,7 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-	background: linear-gradient(-45deg, #f9fbe7, #eceff1, #fbe9e7, #e0f2f1);
+	background: linear-gradient(-45deg, #ffffff, #cfd8dc, #fff, #eceff1);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }

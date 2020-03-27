@@ -42,7 +42,7 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: [
-      'Open Sans',
+      'Roboto Slab',
       'serif',
     ].join(','),
   },
@@ -59,23 +59,27 @@ const theme = createMuiTheme({
     },
     MuiTypography: {
       h1: {
-        fontFamily: "Playfair Display"
+        fontFamily: "Playfair Display",
+        fontSize: "3rem",
+        backgroundImage: "-webkit-gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
+        backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
+        color: "transparent",
+        "-webkitBackgroundClip": "text",
+        backgroundClip: "text"
       },
       h2: {
-        fontFamily: "Playfair Display"
+        fontFamily: "Playfair Display",
+        fontSize: "2.2rem",
+        backgroundImage: "-webkit-gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
+        backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
+        color: "transparent",
+        "-webkitBackgroundClip": "text",
+        backgroundClip: "text"
       },
       h3: {
-        fontFamily: "Playfair Display"
-      },
-      h4: {
-        fontFamily: "Playfair Display"
-      },      
-      h5: {
-        fontFamily: "Playfair Display"
-      },      
-      h6: {
-        fontFamily: "Playfair Display"
-      }
+        fontFamily: "Playfair Display",
+        fontSize: "1.6rem",
+      }    
     }
   }
 });
