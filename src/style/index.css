@@ -4,9 +4,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-	background: linear-gradient(-45deg, #ffffff, #cfd8dc, #fff, #eceff1);
+	background: linear-gradient(-45deg, #fff, #cfd8dc);
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+/*	animation: gradient 15s ease infinite; */
 }
 
 @keyframes gradient {
@@ -19,6 +19,11 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+img.dialog {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .fullheight {

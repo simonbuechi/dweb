@@ -8,10 +8,10 @@ class Header extends Component {
   render() {
     return (
       <>
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} sm={3} lg={2}>
         &nbsp;
         </Grid>
-        <Grid item xs={12} sm={9}>
+        <Grid item xs={12} sm={9} lg={10}>
         <Box my={4}>
           <Typography variant="h1" gutterBottom>
             Simon Büchi

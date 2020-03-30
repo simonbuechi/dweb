@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
 
 class SendMessage extends Component {
 
   render() {
-
     return (
-        <Grid item xs={12} lg={9} className="defaultpadding">
-          <Typography variant="h4" gutterBottom>
-            Send Message
-          </Typography>    
-           
+      <>
+        <Typography variant="h2" gutterBottom>
+          Send Message
+        </Typography>    
+        <Box my={2}>
           <form noValidate autoComplete="off">
             <TextField 
                 id="subject" 
                 label="Subject" 
                 placeholder="be specific"
-                variant="outlined" 
+                
                 fullWidth 
                 margin="normal"
             />
@@ -30,28 +29,28 @@ class SendMessage extends Component {
                 placeholder="go straight to the point"
                 multiline
                 rows="4"
-                variant="outlined"
+                
                 fullWidth
                 margin="normal"
             />
             <TextField 
                 id="name" 
-                label="name" 
-                variant="outlined" 
+                label="Your name" 
+                
                 fullWidth 
                 margin="normal"
             />
             <TextField 
                 id="email" 
-                label="email" 
-                variant="outlined" 
+                label="Your email" 
+                
                 fullWidth 
                 margin="normal"
             />
             <TextField 
                 id="phone" 
-                label="phone" 
-                variant="outlined" 
+                label="Your phone" 
+                
                 fullWidth 
                 margin="normal"
             />
@@ -59,11 +58,14 @@ class SendMessage extends Component {
                 variant="contained" 
                 color="primary"
             >
-            Set data
+            Send message
             </Button>
-            </form>
-
-        </Grid>
+          </form>
+        </Box>
+        <Typography variant="body2" gutterBottom>
+          &nbsp;
+        </Typography> 
+      </>
     );
   }
 }

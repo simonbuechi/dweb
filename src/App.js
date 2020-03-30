@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import "./style/index.css";
 //material-ui components
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -16,25 +14,23 @@ import Footer from './Footer';
 // tabs
 import Start from './pages/Start';
 import About from './pages/About';
-import Blog from './pages/Blog';
+import Offering from './pages/Offering';
 import Projects from './pages/Projects';
-import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import SendMessage from './pages/SendMessage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
-    <Typography
-      component="div"
+    <div
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
+      {value === index && children}
+    </div>
   );
 }
 
@@ -70,11 +66,11 @@ class App extends Component {
         direction="row"
         justify="center"
         alignItems="flex-start"
-        spacing={2}
+        spacing={3}
       >
         <Header />
-        <Grid item sm={3}>
-          <Box mt={5}>
+        <Grid item xs={12} sm={3} lg={2}>
+         
           <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -84,22 +80,21 @@ class App extends Component {
           >
             <Tab label="Start" {...a11yProps(0)} />
             <Tab label="About" {...a11yProps(1)} />
-            <Tab label="Blog" {...a11yProps(2)} />
+            <Tab label="Offering" {...a11yProps(2)} />
             <Tab label="Projects" {...a11yProps(3)} />
-            <Tab label="Resources" {...a11yProps(4)} />
-            <Tab label="Contact" {...a11yProps(5)} />
-            <Tab label="Send Message" {...a11yProps(6)} />
+            <Tab label="Contact" {...a11yProps(4)} />
+            <Tab label="Send Message" {...a11yProps(5)} />
+            
           </Tabs>
-          </Box>
+         
         </Grid>
-        <Grid item sm={9}>
+        <Grid item xs={12} sm={9} lg={10}>
           <TabPanel value={value} index={0}><Start /></TabPanel>
           <TabPanel value={value} index={1}><About /></TabPanel>
-          <TabPanel value={value} index={2}><Blog /></TabPanel>
+          <TabPanel value={value} index={2}><Offering /></TabPanel>
           <TabPanel value={value} index={3}><Projects /></TabPanel>
-          <TabPanel value={value} index={4}><Resources /></TabPanel>
-          <TabPanel value={value} index={5}><Contact /></TabPanel>
-          <TabPanel value={value} index={6}><SendMessage /></TabPanel>
+          <TabPanel value={value} index={4}><Contact /></TabPanel>
+          <TabPanel value={value} index={5}><SendMessage /></TabPanel>
         </Grid>
         <Footer />
       </Grid>

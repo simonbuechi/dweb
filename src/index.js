@@ -7,12 +7,10 @@ import theme from './style/theme';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
   document.getElementById('root')
 );
 
