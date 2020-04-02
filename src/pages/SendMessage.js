@@ -8,67 +8,63 @@ import Box from "@material-ui/core/Box";
 class SendMessage extends Component {
 
   render() {
+    const { t } = this.props;
+
     return (
       <>
         <Typography variant="h2" gutterBottom>
-          Send Message
+          {t("sendMessage.title")}
         </Typography>    
         <Box my={2}>
           <form noValidate autoComplete="off">
             <TextField 
-                id="subject" 
-                label="Subject" 
-                placeholder="be specific"
-                
-                fullWidth 
-                margin="normal"
+              id="subject" 
+              label={t("sendMessage.subjectLabel")}
+              placeholder={t("sendMessage.subjectPlaceholder")}
+              fullWidth 
+              margin="normal"
             />
             <TextField
-                id="message"
-                label="Message"
-                placeholder="go straight to the point"
-                multiline
-                rows="4"
-                
-                fullWidth
-                margin="normal"
+              id="message"
+              label={t("sendMessage.messageLabel")}
+              placeholder={t("sendMessage.messagePlaceholder")}
+              multiline
+              rows="4"
+              fullWidth
+              margin="normal"
             />
             <TextField 
-                id="name" 
-                label="Your name" 
-                
-                fullWidth 
-                margin="normal"
+              id="name" 
+              label={t("sendMessage.nameLabel")}
+              fullWidth 
+              margin="normal"
             />
             <TextField 
-                id="email" 
-                label="Your email" 
-                
-                fullWidth 
-                margin="normal"
+              id="email" 
+              label={t("sendMessage.emailLabel")}
+              fullWidth 
+              margin="normal"
             />
             <TextField 
-                id="phone" 
-                label="Your phone" 
-                
-                fullWidth 
-                margin="normal"
+              id="phone" 
+              label={t("sendMessage.phoneLabel")}
+              fullWidth 
+              margin="normal"
             />
             <Button 
-                variant="contained" 
-                color="primary"
+              variant="contained" 
+              color="primary"
             >
-            Send message
+            {t("sendMessage.buttonSend")}
             </Button>
           </form>
         </Box>
         <Typography variant="body2" gutterBottom>
-          &nbsp;
+        {t("sendMessage.paragraph1")}
         </Typography> 
       </>
     );
   }
 }
-
 
 export default withTranslation()(SendMessage);

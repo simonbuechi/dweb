@@ -19,9 +19,9 @@ class About extends Component {
   render() {
 
     const myLinks = [
-      {primary: "My books", secondary: "on Goodreads", link: 2, icon: <BookOpenVariant />},
-      {primary: "My movies", secondary: "on IMDB", link: 2, icon: <Filmstrip />},
-      {primary: "My games", secondary: "on IGDB", link: 1, icon: <Gamepad />}
+      {primary: "My books", secondary: "on Goodreads", link: "https://www.goodreads.com/user/show/32950234-simon-b-chi", icon: <BookOpenVariant />},
+      {primary: "My movies", secondary: "on IMDB", link: "http://www.imdb.com/user/ur27356928/", icon: <Filmstrip />},
+      {primary: "My games", secondary: "on IGDB", link: "https://www.igdb.com/users/simonbuechi", icon: <Gamepad />}
     ];
 
     return (
@@ -50,7 +50,7 @@ class About extends Component {
           {myLinks.map((item, index) => (
             <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.primary}>
               <div>
-              <ListItem button>
+              <ListItem button component="a" href={item.link}>
                 <ListItemIcon color="secondary">
                   {item.icon}
                 </ListItemIcon>

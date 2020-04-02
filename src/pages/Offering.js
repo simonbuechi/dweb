@@ -81,7 +81,7 @@ class Offering extends Component {
             My offering
           </Typography>
 
-
+          <Box my={1}>
           <ExpansionPanel variant="outlined" TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
             <ExpansionPanelSummary expandIcon={<ChevronDown />} >
               <Typography>Blockchains</Typography>
@@ -114,6 +114,8 @@ class Offering extends Component {
               </Box>
             </ExpansionPanelDetails>
           </ExpansionPanel>
+          </Box>
+          <Box my={1}>
           <ExpansionPanel variant="outlined" TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
             <ExpansionPanelSummary expandIcon={<ChevronDown />} >
               <Typography>Consulting</Typography>
@@ -146,6 +148,8 @@ class Offering extends Component {
               </Box>
             </ExpansionPanelDetails>
           </ExpansionPanel>
+          </Box>
+          <Box my={1}>
           <ExpansionPanel variant="outlined" TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
             <ExpansionPanelSummary expandIcon={<ChevronDown />} >
               <Typography>Coding</Typography>
@@ -162,7 +166,7 @@ class Offering extends Component {
                     <div>
                       <ListItem button>
                         <ListItemAvatar>
-                          <Avatar src={item.img} />
+                          <Avatar src={item.img} variant="rounded" />
                         </ListItemAvatar>
                         <ListItemText primary={item.text} />
                         <ListItemSecondaryAction>
@@ -178,6 +182,7 @@ class Offering extends Component {
               </Box>
             </ExpansionPanelDetails>
           </ExpansionPanel>
+          </Box>
         </Grid>
     );
   }

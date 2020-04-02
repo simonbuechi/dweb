@@ -10,7 +10,7 @@ import Tab from '@material-ui/core/Tab';
 // navigation
 import Header from './Header';
 import Footer from './Footer';
-//import Settings from './Settings';
+import Settings from './Settings';
 // tabs
 import Start from './pages/Start';
 import About from './pages/About';
@@ -86,7 +86,7 @@ class App extends Component {
             <Tab label="Send Message" {...a11yProps(5)} />
             
           </Tabs>
-         
+          <Settings />
         </Grid>
         <Grid item xs={12} sm={9} lg={10}>
           <TabPanel value={value} index={0}><Start /></TabPanel>

@@ -29,10 +29,10 @@ const theme = createMuiTheme({
       hint: "rgba(0, 0, 0, 0.38)"
     },
     primary: {
-      light: blueGrey[400],
-      main: blueGrey[600],
-      dark: blueGrey[800],
-      contrastText: "#fff"
+      light: lime[400],
+      main: lime[500],
+      dark: lime[800],
+      contrastText: "#000"
     },
     secondary: {
       light: blueGrey[400],
@@ -60,8 +60,8 @@ const theme = createMuiTheme({
     },
     MuiTypography: {
       h1: {
-        fontFamily: "Playfair Display",
-        fontWeight: 500,
+        fontFamily: "Roboto Slab",
+        fontWeight: 300,
         fontSize: "3rem",
         backgroundImage: "-webkit-gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
@@ -70,9 +70,9 @@ const theme = createMuiTheme({
         backgroundClip: "text"
       },
       h2: {
-        fontFamily: "Playfair Display",
+        fontFamily: "Roboto Slab",
         fontSize: "2.2rem",
-        fontWeight: 500,
+        fontWeight: 300,
         backgroundImage: "-webkit-gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         color: "transparent",
@@ -80,17 +80,20 @@ const theme = createMuiTheme({
         backgroundClip: "text"
       },
       h3: {
-        fontFamily: "Playfair Display",
+        fontFamily: "Roboto Slab",
         fontSize: "1rem",
-        fontWeight: 500,
-      }    
+        fontWeight: 300,
+      },
+      colorTextSecondary: {
+        color: lime[700]
+      }
     },
     MuiRating: {
       root: {
-        color: lime[700],
+        color: lime[600],
       },
       iconEmpty: {
-        color: blueGrey[200]
+        color: blueGrey[100]
       }
     },
     MuiPaper: {
@@ -98,7 +101,7 @@ const theme = createMuiTheme({
    //     backgroundColor: "rgba(255,255,255,0.5)"
       },
       outlined: {
-        backgroundColor: "rgba(255,255,255,0.5)"
+        backgroundColor: "rgba(255,255,255,0.2)"
       }
     },
     MuiListItemSecondaryAction: {
@@ -110,6 +113,16 @@ const theme = createMuiTheme({
     MuiExpansionPanelDetails: {
       root: {
         display: 'block'
+      }
+    },
+    MuiListItemIcon: {
+      root: {
+        color: blueGrey[500]
+      }
+    },
+    MuiIconButton: {
+      root: {
+        color: lime[700]
       }
     }
   }

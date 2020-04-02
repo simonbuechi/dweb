@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import i18n from "./i18n/i18n"; 
+//material-ui
 import Box from "@material-ui/core/Box";
-import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-//icons
-import Web from 'mdi-material-ui/Web';
-import Brightness6 from 'mdi-material-ui/Brightness6';
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+//import Brightness6 from 'mdi-material-ui/Brightness6';
 
 class Settings extends Component {
+
+  handleLangChange = name => event => {
+    i18n.changeLanguage(name);
+  };
+
   render() {
+    const { t } = this.props;
+
     return (
-      <Box mt={2}>
-        <Tooltip title="Language">
-          <IconButton aria-label="Language">
-            <Web />
-          </IconButton>
+      <Box mt={2} textAlign="center">
+        <ButtonGroup color="secondary" size="small" >
+          <Tooltip title={t("base.toEnglish")}>
+            <Button onClick={this.handleLangChange("en")}>En</Button>
           </Tooltip>
-          <Tooltip title="Switch theme">
-          <IconButton aria-label="delete">
-              <Brightness6 />
-          </IconButton>
+          <Tooltip title={t("base.toGerman")}>
+            <Button onClick={this.handleLangChange("de")}>De</Button>
           </Tooltip>
+        </ButtonGroup>
         </Box>
     );
   }

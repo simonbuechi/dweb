@@ -1,7 +1,7 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import transDe from "./i18n/de";
-import transEn from "./i18n/en";
+import transDe from "./de";
+import transEn from "./en";
 import { initReactI18next } from "react-i18next";
 
 

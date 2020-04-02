@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 import theme from './style/theme';
+import "./i18n/i18n";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
