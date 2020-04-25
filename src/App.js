@@ -11,12 +11,13 @@ import Tab from '@material-ui/core/Tab';
 import Header from './Header';
 import Footer from './Footer';
 import Settings from './Settings';
+//import Bg from './Bg';
 // tabs
 import Start from './pages/Start';
 import About from './pages/About';
 import Offering from './pages/Offering';
 import Projects from './pages/Projects';
-import Contact from './pages/Contact';
+//import Contact from './pages/Contact';
 import SendMessage from './pages/SendMessage';
 
 function TabPanel(props) {
@@ -70,7 +71,6 @@ class App extends Component {
       >
         <Header />
         <Grid item xs={12} sm={3} lg={2}>
-         
           <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -82,9 +82,7 @@ class App extends Component {
             <Tab label="About" {...a11yProps(1)} />
             <Tab label="Offering" {...a11yProps(2)} />
             <Tab label="Projects" {...a11yProps(3)} />
-            <Tab label="Contact" {...a11yProps(4)} />
-            <Tab label="Send Message" {...a11yProps(5)} />
-            
+            <Tab label="Send Message" {...a11yProps(4)} />
           </Tabs>
           <Settings />
         </Grid>
@@ -93,8 +91,7 @@ class App extends Component {
           <TabPanel value={value} index={1}><About /></TabPanel>
           <TabPanel value={value} index={2}><Offering /></TabPanel>
           <TabPanel value={value} index={3}><Projects /></TabPanel>
-          <TabPanel value={value} index={4}><Contact /></TabPanel>
-          <TabPanel value={value} index={5}><SendMessage /></TabPanel>
+          <TabPanel value={value} index={4}><SendMessage /></TabPanel>
         </Grid>
         <Footer />
       </Grid>

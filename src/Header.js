@@ -10,7 +10,7 @@ class Header extends Component {
     const { t } = this.props;
 
     return (
-      <>
+      <React.Fragment>
       <Grid item xs={12} sm={3} lg={2}>
       &nbsp;
       </Grid>
@@ -21,7 +21,7 @@ class Header extends Component {
         </Typography>
       </Box>
     </Grid>
-    </>
+    </React.Fragment>
     );
   }
 }

@@ -15,7 +15,15 @@
   "start": {
     "title": "Welcome",
     "paragraph1": "",
-    "image": "Simon Büchi Portrait"
+    "image": "Simon Büchi Portrait",
+    "q1": "What is decentralized hosting?",
+    "a1": "",
+    "q2": "What is an Ethereum address?",
+    "a2": "",
+    "q3": "What is a .eth name?",
+    "a3": "",
+    "q4": "So what is simonbuechi.eth?",
+    "a4": "Therefore, I do not require a hosting server, domain name server"
   },
   "about": {
     "title": "About",
@@ -34,6 +42,15 @@
 
   },
   "sendMessage": {
-
+    "title": "Send message",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message",
+    "nameLabel": "Your name", 
+    "emailLabel": "Your email address",
+    "phoneLabel": "Your phone",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "buttonSend": "Send now",
+    "paragraph1": "We treat your data confidentially. This form is submitted through https://getform.io."
   }
 }

@@ -23,6 +23,7 @@ class SendMessage extends Component {
               placeholder={t("sendMessage.subjectPlaceholder")}
               fullWidth 
               margin="normal"
+              variant="outlined"
             />
             <TextField
               id="message"
@@ -32,24 +33,28 @@ class SendMessage extends Component {
               rows="4"
               fullWidth
               margin="normal"
+              variant="outlined"
             />
             <TextField 
               id="name" 
               label={t("sendMessage.nameLabel")}
               fullWidth 
               margin="normal"
+              variant="outlined"
             />
             <TextField 
               id="email" 
               label={t("sendMessage.emailLabel")}
               fullWidth 
               margin="normal"
+              variant="outlined"
             />
             <TextField 
               id="phone" 
               label={t("sendMessage.phoneLabel")}
               fullWidth 
               margin="normal"
+              variant="outlined"
             />
             <Button 
               variant="contained" 

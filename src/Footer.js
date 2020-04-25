@@ -5,12 +5,12 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 //package.json
-import pkg from './package.json';
+import pkg from '../package.json';
 
 class Footer extends Component {
   render() {
     return (
-      <>
+      <React.Fragment>
       <Grid item xs={12} sm={3} lg={2}>
         &nbsp;
       </Grid>
@@ -21,7 +21,7 @@ class Footer extends Component {
           </Typography>
         </Box>
       </Grid>
-      </>
+      </React.Fragment>
     );
   }
 }

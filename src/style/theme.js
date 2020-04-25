@@ -1,8 +1,7 @@
- import { lime } from '@material-ui/core/colors';
+import { lime } from '@material-ui/core/colors';
 import { blueGrey } from "@material-ui/core/colors";
 import { createMuiTheme } from '@material-ui/core/styles';
-// require('@openfonts/merriweather_all');
-
+//import logo from '../assets/logo.svg';
 
 // A custom theme for this app
 const theme = createMuiTheme({
@@ -29,16 +28,16 @@ const theme = createMuiTheme({
       hint: "rgba(0, 0, 0, 0.38)"
     },
     primary: {
-      light: lime[400],
-      main: lime[500],
-      dark: lime[800],
-      contrastText: "#000"
+      light: blueGrey[400],
+      main: blueGrey[600],
+      dark: blueGrey[800],
+      contrastText: "#fff"
     },
     secondary: {
       light: blueGrey[400],
       main: blueGrey[600],
       dark: blueGrey[800],
-      contrastText: "#000"
+      contrastText: "#fff"
     }
   },
   typography: {
@@ -63,7 +62,6 @@ const theme = createMuiTheme({
         fontFamily: "Roboto Slab",
         fontWeight: 300,
         fontSize: "3rem",
-        backgroundImage: "-webkit-gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         color: "transparent",
         "-webkitBackgroundClip": "text",
@@ -71,9 +69,8 @@ const theme = createMuiTheme({
       },
       h2: {
         fontFamily: "Roboto Slab",
-        fontSize: "2.2rem",
+        fontSize: "1.6rem",
         fontWeight: 300,
-        backgroundImage: "-webkit-gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
         color: "transparent",
         "-webkitBackgroundClip": "text",
@@ -83,9 +80,6 @@ const theme = createMuiTheme({
         fontFamily: "Roboto Slab",
         fontSize: "1rem",
         fontWeight: 300,
-      },
-      colorTextSecondary: {
-        color: lime[700]
       }
     },
     MuiRating: {
@@ -120,9 +114,9 @@ const theme = createMuiTheme({
         color: blueGrey[500]
       }
     },
-    MuiIconButton: {
-      root: {
-        color: lime[700]
+    MuiGrid: {
+      "spacing-xs-3": {
+        margin: 0
       }
     }
   }

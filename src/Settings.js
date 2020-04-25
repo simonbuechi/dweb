@@ -21,10 +21,20 @@ class Settings extends Component {
       <Box mt={2} textAlign="center">
         <ButtonGroup color="secondary" size="small" >
           <Tooltip title={t("base.toEnglish")}>
-            <Button onClick={this.handleLangChange("en")}>En</Button>
+            <Button 
+              onClick={this.handleLangChange("en")} 
+              disabled={i18n.language === "en" ? true : false}
+            >
+              En
+            </Button>
           </Tooltip>
           <Tooltip title={t("base.toGerman")}>
-            <Button onClick={this.handleLangChange("de")}>De</Button>
+            <Button 
+              onClick={this.handleLangChange("de")}  
+              disabled={i18n.language === "de" ? true : false}
+            >
+              De
+            </Button>
           </Tooltip>
         </ButtonGroup>
         </Box>
