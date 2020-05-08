@@ -19,19 +19,25 @@ class Projects extends Component {
     const projects = [
       { 
         title: t("projects.pactaTitle"), 
-        description: "My startup. Products for and built with the blockchain, using cryptocurrency Bitcoin and decentralized software platform Ethereum.", 
+        description: t("projects.pactaDescription"), 
         link: "https://pacta.app",
         linkTitle: "Go to Pacta App"
       },
+      { 
+        title: t("projects.pactaVoteTitle"), 
+        description: t("projects.pactaVoteDescription"), 
+        link: "https://pacta.vote",
+        linkTitle: "Go to Pacta Vote App"
+      },
       {
-        title: "Raisin Picker - knowledge management", 
-        description: "Raisin Picker is a personal knowledge management tool. It features tagging, rating and linking of content nodes. Using Apache Solr, a faceted search enables you to find content quickly. It is based on Drupal content management system and is available as open source.", 
+        title: t("projects.raisinpickerTitle"), 
+        description: t("projects.raisinpickerDescription"), 
         link: "https://raisinpicker.github.io",
         linkTitle: "Go to Raisin Picker project"
       },
       {
-        title: "simonbuechi.eth", 
-        description: "My work on this site. It is a create-react-app based site. Feel free to fork this site and build your own.", 
+        title: t("projects.simonbuechiTitle"), 
+        description: t("projects.simonbuechiDescription"), 
         link: "https://github.com/simonbuechi/dweb",
         linkTitle: "Github project"
       },
@@ -47,7 +53,7 @@ class Projects extends Component {
           </Typography>
           {projects.map((item, index) => (
             <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.title}>
-              <Box my={1}>
+              <Box my={2}>
               <ExpansionPanel variant="outlined">
                 <ExpansionPanelSummary
                   expandIcon={<ChevronDown />}

@@ -1,21 +1,31 @@
 {
   "base": {
-    "title": "Simon Büchi Deutsch",
+    "title": "Simon Büchi",
     "language": "Change language",
-    "toEnglish": "Switch to English",
-    "toGerman": "Switch to German",
+    "toEnglish": "Wechsle Sprache auf Englisch",
+    "toGerman": "Wechsle Sprache auf Deutsch",
     "copyright": "© Copyright 2020 Simon Büchi",
     "navStart": "Start",
-    "navAbout": "About",
-    "navOffering": "Offering",
-    "navProjects": "Projects",
-    "navContact": "Contact",
-    "navSendMessage": "Send Message"
+    "navAbout": "Über mich",
+    "navOffering": "Angebot",
+    "navProjects": "Projekte",
+    "navContact": "Kontakt",
+    "navSendMessage": "Nachricht senden"
   },
   "start": {
-    "title": "Welcome",
-    "paragraph1": "",
-    "image": "Simon Büchi Portrait"
+    "title": "Willkommen",
+    "qaTitle": "Fragen",
+    "paragraph1": "Das ist meine persönliche Webseite.",
+    "paragraph2": "This site is about me, Simon Büchi. Swiss national, citizen of the canton of Zurich, resident of the city of Winterthur. Alumnus of Kantonsschule Buelrain and University of St. Gallen. I have been working as business analyst, programmer, business engineer, project manager. I am interested in trends in banking and web devolopment. More than technologies I am fascinated by disruptive business models. I enjoy reading about philosophy, economics, politics, history and technology. I enjoy classical music.",
+    "image": "Simon Büchi Portrait (click to enlarge)",
+    "q1": "What is decentralized hosting?",
+    "a1": "",
+    "q2": "What is an Ethereum address?",
+    "a2": "",
+    "q3": "What is a .eth name?",
+    "a3": "",
+    "q4": "So what is simonbuechi.eth?",
+    "a4": "Therefore, I do not require a hosting server, domain name server"
   },
   "about": {
     "title": "About",

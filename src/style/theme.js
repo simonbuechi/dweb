@@ -95,7 +95,8 @@ const theme = createMuiTheme({
    //     backgroundColor: "rgba(255,255,255,0.5)"
       },
       outlined: {
-        backgroundColor: "rgba(255,255,255,0.2)"
+        backgroundColor: "rgba(255,255,255,0)",
+        borderColor: blueGrey[300]
       }
     },
     MuiListItemSecondaryAction: {

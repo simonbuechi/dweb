@@ -16,9 +16,14 @@ class SendMessage extends Component {
           {t("sendMessage.title")}
         </Typography>    
         <Box my={2}>
-          <form noValidate autoComplete="off">
+          <form 
+            noValidate 
+            autoComplete="off"
+            action="https://formspree.io/mknqwgbz"
+            method="POST"
+          >
             <TextField 
-              id="subject" 
+              name="subject" 
               label={t("sendMessage.subjectLabel")}
               placeholder={t("sendMessage.subjectPlaceholder")}
               fullWidth 
@@ -26,7 +31,7 @@ class SendMessage extends Component {
               variant="outlined"
             />
             <TextField
-              id="message"
+              name="message"
               label={t("sendMessage.messageLabel")}
               placeholder={t("sendMessage.messagePlaceholder")}
               multiline
@@ -36,21 +41,22 @@ class SendMessage extends Component {
               variant="outlined"
             />
             <TextField 
-              id="name" 
+              name="name" 
               label={t("sendMessage.nameLabel")}
               fullWidth 
               margin="normal"
               variant="outlined"
             />
             <TextField 
-              id="email" 
+              name="email" 
               label={t("sendMessage.emailLabel")}
               fullWidth 
+              type="email"
               margin="normal"
               variant="outlined"
             />
             <TextField 
-              id="phone" 
+              name="phone" 
               label={t("sendMessage.phoneLabel")}
               fullWidth 
               margin="normal"
@@ -59,6 +65,8 @@ class SendMessage extends Component {
             <Button 
               variant="contained" 
               color="primary"
+              type="submit"
+              value="Send"
             >
             {t("sendMessage.buttonSend")}
             </Button>

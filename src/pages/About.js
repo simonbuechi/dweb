@@ -8,16 +8,18 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Divider from "@material-ui/core/Divider";
-import Paper from "@material-ui/core/Paper";
 import Zoom from "@material-ui/core/Zoom";
+import Button from "@material-ui/core/Button";
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 //icons
-import { Gamepad, Filmstrip, BookOpenVariant }  from 'mdi-material-ui';
-import { Facebook, Twitter, Linkedin, Email, Bitcoin, Ethereum }  from 'mdi-material-ui';
+import { Gamepad, Filmstrip, BookOpenVariant, Facebook, Twitter, Linkedin, Email, Bitcoin, Ethereum, ChevronDown }  from 'mdi-material-ui';
 
 class About extends Component {
 
   render() {
+    const {t} = this.props;
 
     const myContacts = [
       {primary: "Simon on LinkedIn", secondary: "external link", link: 2, icon: <Linkedin />},
@@ -35,6 +37,27 @@ class About extends Component {
       {primary: "My books", secondary: "on Goodreads", link: "https://www.goodreads.com/user/show/32950234-simon-b-chi", icon: <BookOpenVariant />},
       {primary: "My movies", secondary: "on IMDB", link: "http://www.imdb.com/user/ur27356928/", icon: <Filmstrip />},
       {primary: "My games", secondary: "on IGDB", link: "https://www.igdb.com/users/simonbuechi", icon: <Gamepad />}
+    ];
+
+    const questions = [
+      { 
+        title: t("start.q1"), 
+        description: t("start.a1")
+      },
+      { 
+        title: t("start.q2"), 
+        description: t("start.a2")
+      },
+      { 
+        title: t("start.q3"), 
+        description: t("start.a3"),
+        link: "https://pacta.app",
+        linkTitle: "Go to Pacta App"
+      },
+      { 
+        title: t("start.q4"), 
+        description: t("start.a4")
+      }
     ];
 
     return (
@@ -56,7 +79,6 @@ class About extends Component {
         Crypto
       </Typography>  
       <List dense>
-        <Paper variant="outlined">
         {myCryptos.map((item, index) => (
           <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.primary}>
             <div>
@@ -66,19 +88,15 @@ class About extends Component {
               </ListItemIcon>
               <ListItemText primary={item.primary} secondary={item.secondary} />
             </ListItem>
-            <Divider />
+            
             </div>
           </Zoom>
         ))}
-          </Paper>
         </List>
-      </Grid>
-      <Grid item xs={12} lg={6}>
         <Typography variant="h2" gutterBottom>
           Contact
         </Typography>    
         <List dense>
-          <Paper variant="outlined">
           {myContacts.map((item, index) => (
             <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
               <div>
@@ -88,18 +106,16 @@ class About extends Component {
                 </ListItemIcon>
                 <ListItemText primary={item.primary} secondary={item.secondary} />
               </ListItem>
-              <Divider />
+              
               </div>
             </Zoom>
           ))}
-          </Paper>
         </List>
         <Typography variant="h2" gutterBottom>
           More
         </Typography>
         <Box>
           <List dense>
-          <Paper variant="outlined">
           {myLinks.map((item, index) => (
             <Zoom in style={{ transitionDelay: 850 + index * 100 + "ms" }} key={item.primary}>
               <div>
@@ -109,13 +125,41 @@ class About extends Component {
                 </ListItemIcon>
                 <ListItemText primary={item.primary} secondary={item.secondary} />
               </ListItem>
-              <Divider />
               </div>
             </Zoom>
           ))}
-            </Paper>
           </List>
         </Box>
+      </Grid>
+      <Grid item xs={12} lg={6}>
+        <Box my={2}>
+          <Typography variant="h2" gutterBottom>
+            {t("start.qaTitle")}
+          </Typography>
+          {questions.map((item, index) => (
+              <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.title}>
+                <Box my={1}>
+                <ExpansionPanel variant="outlined">
+                  <ExpansionPanelSummary
+                    expandIcon={<ChevronDown />}
+                  >
+                    <Typography>{item.title}</Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
+                    <Box>
+                      <Typography variant="body2" gutterBottom>{item.description}</Typography>
+                      {item.link && (
+                      <Typography variant="body2" gutterBottom>
+                        <Button variant="contained" color="primary" href={item.link}>{item.linkTitle}</Button>
+                      </Typography>
+                      )}
+                    </Box>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+                </Box>
+              </Zoom>
+            ))}
+          </Box>
         </Grid>
       </Grid>
     );

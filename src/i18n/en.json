@@ -14,8 +14,9 @@
   },
   "start": {
     "title": "Welcome",
-    "paragraph1": "",
-    "image": "Simon Büchi Portrait",
+    "paragraph1": "This the personal website of Simon Büchi.",
+    "paragraph2": "This site is both hosted traditionally on the domain buechi.name and decentralized using IPFS on simonbuechi.eth.",
+    "image": "Simon Büchi Portrait (click to enlarge)",
     "q1": "What is decentralized hosting?",
     "a1": "",
     "q2": "What is an Ethereum address?",
@@ -36,7 +37,14 @@
   "projects": {
     "title": "Projects",
     "paragraph1": "Click on project to learn more.",
-    "pactaTitle": "Pacta - decentralized organisations"
+    "pactaTitle": "Pacta - decentralized organisations",
+    "pactaDescription": "My startup. Products for and built with the blockchain, using cryptocurrency Bitcoin and decentralized software platform Ethereum.",
+    "pactaVoteTitle": "Pacta Vote",
+    "pactaVoteDescription": "Pacta Vote is a blockchain based voting tool for annual general meetings (AGM) and other types of assemblies. All polling is stored on the Ethereum blockchain.",
+    "raisinpickerTitle": "Raisin Picker - knowledge management",
+    "raisinpickerDescription": "Raisin Picker is a personal knowledge management tool. It features tagging, rating and linking of content nodes. Using Apache Solr, a faceted search enables you to find content quickly. It is based on Drupal content management system and is available as open source.",
+    "simonbuechiTitle": "simonbuechi.eth",
+    "simonbuechiDescription": "My work on this site. It is a create-react-app based site. Feel free to fork this site and build your own"
   },
   "contact": {
 
@@ -51,6 +59,6 @@
     "subjectPlaceholder": "Subject",
     "messagePlaceholder": "Message",
     "buttonSend": "Send now",
-    "paragraph1": "We treat your data confidentially. This form is submitted through https://getform.io."
+    "paragraph1": "We treat your data confidentially. This form is submitted through https://formspree.io/"
   }
 }
