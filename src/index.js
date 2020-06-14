@@ -1,18 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import App from './App';
-import theme from './style/theme';
+import React from "react";
+import ReactDOM from "react-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { BrowserRouter as Router } from "react-router-dom";
+import App from "./App";
+import theme from "./style/theme";
 import "./i18n/i18n";
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
+    <Router basename="/">
       <CssBaseline />
       <App />
-    </ThemeProvider>,
-  document.getElementById('root')
+    </Router>
+  </ThemeProvider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -10,7 +10,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 //icons
-import Launch from 'mdi-material-ui/Launch';
+import Launch from "mdi-material-ui/Launch";
 
 class NavigationLeft extends Component {
   handleDrawerToggle = () => {
@@ -24,7 +24,7 @@ class NavigationLeft extends Component {
       <List>
         <ListItem>
           <Typography variant="h6" color="inherit">
-            {t("base.app.title")}
+            {t("base.title")}
           </Typography>
         </ListItem>
         <ListItem button component={Link} to="/">
@@ -100,16 +100,8 @@ class NavigationLeft extends Component {
           </Drawer>
         </Hidden>
         <Hidden smUp>
-          <SwipeableDrawer
-            variant="temporary"
-            anchor="left"
-            open={!menutoggle}
-            onClose={this.handleDrawerToggle}
-            onOpen={this.handleDrawerToggle}
-          >
-            <div onClick={this.handleDrawerToggle}>
-              {drawer}
-            </div>
+          <SwipeableDrawer variant="temporary" anchor="left" open={!menutoggle} onClose={this.handleDrawerToggle} onOpen={this.handleDrawerToggle}>
+            <div onClick={this.handleDrawerToggle}>{drawer}</div>
           </SwipeableDrawer>
         </Hidden>
       </React.Fragment>
