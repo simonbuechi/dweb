@@ -24,7 +24,7 @@ const profileAddress = "0x254b358a6047a03243971B4814b1AAfdF312EC56";
 const wallSpaceName = "MyFollowing";
 const profileWall = "profileWall";
 
-class Offering extends Component {
+class Wall extends Component {
   state = {
     dialogOpen: false,
     wallPosts: [],
@@ -63,11 +63,10 @@ class Offering extends Component {
     }
   };
 
-  handleClickOpen = () => {
+  handleDialogOpen = () => {
     this.setState({ dialogOpen: true });
   };
-
-  handleClose = () => {
+  handleDialogClose = () => {
     this.setState({ dialogOpen: false });
   };
   unixToDate = (timestamp) => {
@@ -75,22 +74,25 @@ class Offering extends Component {
   };
 
   render() {
-    const { ready, wallPosts, wallAuthors } = this.state;
+    const { ready, wallPosts, wallAuthors, dialogOpen } = this.state;
 
     return (
       <Grid item xs={12} lg={12}>
         <Typography variant="h2" gutterBottom>
-          My Wall
+          {t("wall.title")}
         </Typography>
         <Typography variant="body2" gutterBottom>
-          My Wall
+          {t("wall.description")}
         </Typography>
         <Button variant="outlined" color="primary" href={"https://3box.io/" + profileAddress} startIcon={<OpenInNew />}>
-          Write on my Wall
+          {t("wall.buttonWriteWall")}
         </Button>
+        <Typography variant="body2" gutterBottom>
+          {t("wall.buttonWriteWallNote")}
+        </Typography>
         &nbsp;
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen} startIcon={<Information />}>
-          What is this about?
+        <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<Information />}>
+          {t("wall.dialogButton")}
         </Button>
         {!ready ? (
           <Box my={3}>
@@ -163,16 +165,16 @@ class Offering extends Component {
             </Zoom>
           ))
         )}
-        <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.dialogOpen} maxWidth="xl">
+        <Dialog onClose={this.handleDialogClose} aria-labelledby="simple-dialog-title" open={dialogOpen} maxWidth="xl">
           <DialogContent>
-            How does this wall work? ...
+            {t("wall.dialogTitle")}
             <Button variant="outlined" color="primary" href="https://docs.3box.io/" startIcon={<Numeric3Box />}>
               Learn more about 3box
             </Button>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="secondary" autoFocus>
-              Close
+            <Button onClick={this.handleDialogClose} color="secondary" autoFocus>
+            {t("base.close")}
             </Button>
           </DialogActions>
         </Dialog>
@@ -181,4 +183,4 @@ class Offering extends Component {
   }
 }
 
-export default withTranslation()(Offering);
+export default withTranslation()(Wall);

@@ -10,7 +10,9 @@
     "navOffering": "Offering",
     "navProjects": "Projects",
     "navContact": "Contact",
-    "navSendMessage": "Send Message"
+    "navSendMessage": "Send Message",
+    "close": "Close",
+    "creativecommons": "Creative Commons License"
   },
   "start": {
     "title": "Welcome",
@@ -26,15 +28,24 @@
     "q4": "So what is simonbuechi.eth?",
     "a4": "Therefore, I do not require a hosting server, domain name server",
     "connectTitle": "Connect with me",
-    "engagementsTitle": "Current engagements"
+    "engagementsTitle": "Current engagements",
+    "dialogInfoButton": "Learn more",
+    "dialogInfoBody": "1. Decentralized hosting, 2. Decentralized domain 3. Bringing all together",
+    "dialogInfoTitle": "Decentralized website infos"
   },
   "about": {
     "title": "About",
     "paragraph1": "This site is about me, Simon Büchi. Swiss national, citizen of the canton of Zurich, resident of the city of Winterthur. Alumnus of Kantonsschule Buelrain and University of St. Gallen. I have been working as business analyst, programmer, business engineer, project manager. I am interested in trends in banking and web devolopment. More than technologies I am fascinated by disruptive business models. I enjoy reading about philosophy, economics, politics, history and technology. I enjoy classical music.",
     "titleLinks": "Links"
   },
-  "offering": {
-
+  "wall": {
+    "title": "My Wall",
+    "description": "This ",
+    "buttonWriteWall": "Write on my wall",
+    "buttonWriteWallNote": "Redirects to 3Box. You need to have an Ethereum account in order to leave a message on the wall.",
+    "dialogInfoButton": "Learn more",
+    "dialogInfoBody": "...",
+    "dialogInfoTitle": "Decentralized wall infos"
   },
   "projects": {
     "title": "Projects",
@@ -47,9 +58,6 @@
     "raisinpickerDescription": "Raisin Picker is a personal knowledge management tool. It features tagging, rating and linking of content nodes. Using Apache Solr, a faceted search enables you to find content quickly. It is based on Drupal content management system and is available as open source.",
     "simonbuechiTitle": "simonbuechi.eth",
     "simonbuechiDescription": "My work on this site. It is a create-react-app based site. Feel free to fork this site and build your own"
-  },
-  "contact": {
-
   },
   "sendMessage": {
     "title": "Send message",
