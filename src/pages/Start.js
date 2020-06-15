@@ -19,7 +19,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Tooltip from "@material-ui/core/Tooltip";
 import List from "@material-ui/core/List";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information } from "mdi-material-ui";
+import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons } from "mdi-material-ui";
 //images
 //import portrait from "../assets/simonbuechi-square-medium.jpg";
 //import portraitBw from "../assets/simonbuechi-landscape-bw.jpg";
@@ -75,7 +75,7 @@ class Start extends Component {
             {t("start.paragraph2")}
           </Typography>
           <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
-            What is this about?
+            {t("start.dialogInfoButton")}
           </Button>
 
           <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
@@ -128,28 +128,32 @@ class Start extends Component {
               </Card>
             </Tooltip>
           </Box>
-          <Dialog onClose={this.handleDialogPortraitOpenClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
+          <Dialog onClose={this.handleDialogPortraitClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
             <DialogContent>
               <img src={portraitBig} alt="simon buechi portrait" className="dialog" />
             </DialogContent>
             <DialogActions>
+              <Button rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" color="secondary" startIcon={<CreativeCommons />}>
+                {t("base.creativecommons")}
+              </Button>
+              &nbsp;
               <Button onClick={this.handleDialogPortraitClose} color="secondary" autoFocus>
-                Close
+                {t("base.close")}
               </Button>
             </DialogActions>
           </Dialog>
-          <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo} maxWidth="xl">
+          <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo}>
             <DialogContent>
               <Typography variant="h2" gutterBottom>
-                Some infos
+                {t("start.dialogInfoTitle")}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                Some infos
+                {t("start.dialogInfoBody")}
               </Typography>
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>
-                Close
+                {t("base.close")}
               </Button>
             </DialogActions>
           </Dialog>
