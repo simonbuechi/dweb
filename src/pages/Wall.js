@@ -55,10 +55,6 @@ class Wall extends Component {
           wallAuthors[wallPosts[i].author] = x;
         }
       }
-      //console.log(wallAuthors);
-      //console.log(wallAuthors["did:3:bafyreic5d24y7f3dd4b565ctupaobf45nezbvryhyual2xp64yduhixj7y"].coverPhoto[0].contentUrl["/"]);
-      //console.log(wallAuthors.hasOwnProperty("did:3:bafyreic5d24y7f3dd4b565ctupaobf45nezbvryhyual2xp64yduhixj7y"));
-      //console.log(wallPosts);
       this.setState({ wallAuthors });
     }
   };
@@ -105,14 +101,9 @@ class Wall extends Component {
                 <Card>
                   <CardHeader
                     avatar={
-                      wallAuthors.hasOwnProperty(item.author) ? (
+                      wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("image") ? (
                         <Avatar
-                          src={
-                            wallAuthors[item.author].coverPhoto[0].contentUrl
-                              ? "https://ipfs.infura.io/ipfs/" + wallAuthors[item.author].image[0].contentUrl["/"]
-                              : ""
-                          }
-                          alt={wallAuthors[item.author].name ? wallAuthors[item.author].name : item.author}
+                          src={"https://ipfs.infura.io/ipfs/" + wallAuthors[item.author].image[0].contentUrl["/"]}
                         />
                       ) : (
                         <Avatar>
