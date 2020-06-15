@@ -19,7 +19,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Tooltip from "@material-ui/core/Tooltip";
 import List from "@material-ui/core/List";
 //icons
-import { Facebook, Domain, Linkedin, Email, Numeric3Box } from "mdi-material-ui";
+import { Facebook, Linkedin, Email, Numeric3Box, Information } from "mdi-material-ui";
 //images
 //import portrait from "../assets/simonbuechi-square-medium.jpg";
 //import portraitBw from "../assets/simonbuechi-landscape-bw.jpg";
@@ -27,21 +27,26 @@ import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
 class Start extends Component {
   state = {
-    dialogOpen: false,
-    profile: null,
-    space: null,
+    dialogPortrait: false,
+    dialogInfo: false,
   };
 
-  handleClickOpen = () => {
-    this.setState({ dialogOpen: true });
+  handleDialogPortraitOpen = () => {
+    this.setState({ dialogPortrait: true });
   };
-
-  handleClose = () => {
-    this.setState({ dialogOpen: false });
+  handleDialogPortraitClose = () => {
+    this.setState({ dialogPortrait: false });
+  };
+  handleDialogInfoOpen = () => {
+    this.setState({ dialogInfo: true });
+  };
+  handleDialogInfoClose = () => {
+    this.setState({ dialogInfo: false });
   };
 
   render() {
     const { t } = this.props;
+    const { dialogPortrait, dialogInfo } = this.state;
 
     const myContacts = [
       { primary: "LinkedIn", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Linkedin /> },
@@ -51,10 +56,10 @@ class Start extends Component {
     ];
 
     const myJobs = [
-      { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <Domain /> },
-      { primary: "Pacta", secondary: "Founder", link: "https://pacta.app", icon: <Domain /> },
-      { primary: "Pacta Vote", secondary: "Founder & Developer", link: "https://pacta.vote", icon: <Domain /> },
-      { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com", icon: <Domain /> },
+      { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital" },
+      { primary: "Pacta", secondary: "Founder", link: "https://pacta.app" },
+      { primary: "Pacta Vote", secondary: "Founder & Developer", link: "https://pacta.vote" },
+      { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com" },
     ];
 
     return (
@@ -69,6 +74,10 @@ class Start extends Component {
           <Typography variant="body2" gutterBottom>
             {t("start.paragraph2")}
           </Typography>
+          <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
+            What is this about?
+          </Button>
+
           <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
             <Grid item xs={12} md={6}>
               <Box my={2}>
@@ -99,7 +108,6 @@ class Start extends Component {
                     <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
                       <div>
                         <ListItem button component="a" href={item.link}>
-                          <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
                           <ListItemText primary={item.primary} secondary={item.secondary} />
                         </ListItem>
                       </div>
@@ -114,18 +122,33 @@ class Start extends Component {
           <Box textAlign="center">
             <Tooltip title={t("start.image")}>
               <Card>
-                <CardActionArea onClick={this.handleClickOpen}>
+                <CardActionArea onClick={this.handleDialogPortraitOpen}>
                   <CardMedia component="img" image={portraitBig} />
                 </CardActionArea>
               </Card>
             </Tooltip>
           </Box>
-          <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.dialogOpen} maxWidth="xl">
+          <Dialog onClose={this.handleDialogPortraitOpenClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
             <DialogContent>
               <img src={portraitBig} alt="simon buechi portrait" className="dialog" />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose} color="secondary" autoFocus>
+              <Button onClick={this.handleDialogPortraitClose} color="secondary" autoFocus>
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo} maxWidth="xl">
+            <DialogContent>
+              <Typography variant="h2" gutterBottom>
+                Some infos
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                Some infos
+              </Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>
                 Close
               </Button>
             </DialogActions>

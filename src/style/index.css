@@ -1,156 +1,161 @@
+@font-face {
+  font-family: Basetica;
+  src: url("Basetica-Med.otf") format("opentype");
+}
+
 body {
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	min-height: 100vh;
-	background-image: url(../assets/bg-small.png);
-	background-repeat: repeat;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-image: url(../assets/bg-small.png);
+  background-repeat: repeat;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
 
-	50% {
-		background-position: 100% 50%;
-	}
+  50% {
+    background-position: 100% 50%;
+  }
 
-	100% {
-		background-position: 0% 50%;
-	}
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes gradientSize {
-	0% {
-		background-position: 0% 0%;
-	}
+  0% {
+    background-position: 0% 100%;
+  }
 
-	25% {
-		background-position: 0% 100%;
-	}
+  25% {
+    background-position: 100% 100%;
+  }
 
-	50% {
-		background-position: 100% 100%;
-	}
+  50% {
+    background-position: 0% 100%;
+  }
 
-	75% {
-		background-position: 100% 0%;
-	}
+  75% {
+    background-position: 100% 100%;
+  }
 
-	100% {
-		background-position: 0% 0%;
-	}
+  100% {
+    background-position: 0% 100%;
+  }
 }
 
-
 #root {
-	min-height: 100vh;
-	background: radial-gradient(ellipse, rgba(207, 216, 220, 0.9) 50%, rgba(207, 216, 220, 0.5) 100%);
-	/*	background: radial-gradient(ellipse at bottom right, rgba(236,239,241,0.5) 0%, rgba(176,190,197, 1) 60%); */
-	background-size: 200% 200%;
-	animation: gradientSize 20s infinite;
-
+  min-height: 100vh;
+  background: radial-gradient(ellipse, rgba(207, 216, 220, 1) 50%, rgba(207, 216, 220, 0.5) 100%);
+  /*	background: radial-gradient(ellipse at bottom right, rgba(236,239,241,0.5) 0%, rgba(176,190,197, 1) 60%); */
+  background-size: 200% 200%;
+  animation: gradientSize 20s infinite;
 }
 
 img.dialog {
-	height: 80vh;
+  height: 80vh;
 }
 
 .fullheight {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .defaultpadding {
-	padding: 16px 16px 16px 16px;
+  padding: 16px 16px 16px 16px;
 }
 
 .defaultpaddingright {
-	padding-right: 16px !important;
+  padding-right: 16px !important;
 }
 
-
-
 @keyframes move_wave {
-	0% {
-		transform: translateX(0) translateZ(0) scaleY(1)
-	}
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
 
-	50% {
-		transform: translateX(-25%) translateZ(0) scaleY(0.55)
-	}
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.55);
+  }
 
-	100% {
-		transform: translateX(-50%) translateZ(0) scaleY(1)
-	}
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
 }
 
 .waveWrapper {
-	overflow: hidden;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
-	margin: auto;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
 }
 
 .waveWrapperInner {
-	position: absolute;
-	width: 100%;
-	overflow: hidden;
-	height: 100%;
-	bottom: -1px;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  bottom: -1px;
 }
 
 .bgTop {
-	z-index: -2;
-	opacity: 0.5;
+  z-index: -2;
+  opacity: 0.5;
 }
 
 .bgMiddle {
-	z-index: 10;
-	opacity: 0.75;
+  z-index: 10;
+  opacity: 0.75;
 }
 
 .bgBottom {
-	z-index: 5;
+  z-index: 5;
 }
 
 .wave {
-	position: absolute;
-	left: 0;
-	width: 200%;
-	height: 100%;
-	background-repeat: repeat no-repeat;
-	background-position: 0 bottom;
-	transform-origin: center bottom;
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
 }
 
 .waveTop {
-	background-size: 50% 100px;
+  background-size: 50% 100px;
 }
 
 .waveAnimation .waveTop {
-	animation: move-wave 3s;
-	-webkit-animation: move-wave 3s;
-	-webkit-animation-delay: 1s;
-	animation-delay: 1s;
+  animation: move-wave 3s;
+  -webkit-animation: move-wave 3s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 }
 
 .waveMiddle {
-	background-size: 50% 120px;
+  background-size: 50% 120px;
 }
 
 .waveAnimation .waveMiddle {
-	animation: move_wave 10s linear infinite;
+  animation: move_wave 10s linear infinite;
 }
 
 .waveBottom {
-	background-size: 50% 100px;
+  background-size: 50% 100px;
 }
 
 .waveAnimation .waveBottom {
-	animation: move_wave 15s linear infinite;
+  animation: move_wave 15s linear infinite;
+}
+
+div.tabpanel {
+  background-color: #eceff1;
 }

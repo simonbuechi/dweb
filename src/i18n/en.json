@@ -24,7 +24,9 @@
     "q3": "What is a .eth name?",
     "a3": "",
     "q4": "So what is simonbuechi.eth?",
-    "a4": "Therefore, I do not require a hosting server, domain name server"
+    "a4": "Therefore, I do not require a hosting server, domain name server",
+    "connectTitle": "Connect with me",
+    "engagementsTitle": "Current engagements"
   },
   "about": {
     "title": "About",
@@ -53,7 +55,7 @@
     "title": "Send message",
     "subjectLabel": "Subject",
     "messageLabel": "Message",
-    "nameLabel": "Your name", 
+    "nameLabel": "Your name",
     "emailLabel": "Your email address",
     "phoneLabel": "Your phone",
     "subjectPlaceholder": "Subject",

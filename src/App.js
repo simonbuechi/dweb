@@ -61,7 +61,7 @@ class App extends Component {
             <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example">
               <Tab label="Start" value="/" />
               <Tab label="About" value="/about" />
-              <Tab label="Offering" value="/services" />
+              <Tab label="Services" value="/services" />
               <Tab label="Wall" value="/wall" />
               <Tab label="Projects" value="/projects" />
               <Tab label="Send Message" value="/message" />
@@ -75,7 +75,7 @@ class App extends Component {
             <TabPanel value={value} index="/about">
               <About />
             </TabPanel>
-            <TabPanel value={value} index="/sevices">
+            <TabPanel value={value} index="/services">
               <Offering />
             </TabPanel>
             <TabPanel value={value} index="/projects">
