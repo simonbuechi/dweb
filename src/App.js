@@ -9,9 +9,9 @@ import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 // navigation
-import Header from "./Header";
-import Footer from "./Footer";
-import Settings from "./Settings";
+import Header from "./structure/Header";
+import Footer from "./structure/Footer";
+import Settings from "./structure/Settings";
 //import Bg from './Bg';
 // tabs
 import Start from "./pages/Start";

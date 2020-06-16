@@ -35,20 +35,18 @@ class Wall extends Component {
   componentDidMount = async () => {
     const spaces = await listSpaces(profileAddress);
     if (spaces.includes(wallSpaceName)) {
-      const wallPosts = await getThread(wallSpaceName, profileWall, profileAddress, false, {});
-      this.setState({
-        wallPosts,
+      let wallPosts = await getThread(wallSpaceName, profileWall, profileAddress, false, {});
+      // sort by timestamp
+      wallPosts = wallPosts.sort((a, b) => {
+        a = a.timestamp;
+        b = b.timestamp;
+        return a > b ? -1 : a < b ? 1 : 0;
       });
+      this.setState({ wallPosts });
+      // render wallPosts without profile information
       this.setState({ ready: true });
       let wallAuthors = {};
-      /*
-      wallPosts.forEach(async (item) => {
-        if (!wallAuthors.hasOwnProperty(item.author)) {
-          let x = await getProfile(item.author);
-          wallAuthors[item.author] = x;
-        }
-      });
-      */
+      // get all authors from wallposts and get their profiles
       for (var i = 0; i < wallPosts.length; i++) {
         if (!wallAuthors.hasOwnProperty(wallPosts[i].author)) {
           const x = await getProfile(wallPosts[i].author);
@@ -70,6 +68,7 @@ class Wall extends Component {
   };
 
   render() {
+    const { t } = this.props;
     const { ready, wallPosts, wallAuthors, dialogOpen } = this.state;
 
     return (
@@ -101,15 +100,15 @@ class Wall extends Component {
                 <Card>
                   <CardHeader
                     avatar={
-                      wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("image") ? (
-                        <Avatar
-                          src={"https://ipfs.infura.io/ipfs/" + wallAuthors[item.author].image[0].contentUrl["/"]}
-                        />
-                      ) : (
-                        <Avatar>
-                          <Account />
-                        </Avatar>
-                      )
+                      <Tooltip title={item.author}>
+                        {wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("image") ? (
+                          <Avatar src={"https://ipfs.infura.io/ipfs/" + wallAuthors[item.author].image[0].contentUrl["/"]} />
+                        ) : (
+                          <Avatar>
+                            <Account />
+                          </Avatar>
+                        )}
+                      </Tooltip>
                     }
                     action={
                       <>
@@ -165,7 +164,7 @@ class Wall extends Component {
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleDialogClose} color="secondary" autoFocus>
-            {t("base.close")}
+              {t("base.close")}
             </Button>
           </DialogActions>
         </Dialog>

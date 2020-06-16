@@ -155,7 +155,3 @@ img.dialog {
 .waveAnimation .waveBottom {
   animation: move_wave 15s linear infinite;
 }
-
-div.tabpanel {
-  background-color: #eceff1;
-}

@@ -15,15 +15,33 @@ import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-
 import Tooltip from "@material-ui/core/Tooltip";
 import List from "@material-ui/core/List";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons } from "mdi-material-ui";
+import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter } from "mdi-material-ui";
 //images
-//import portrait from "../assets/simonbuechi-square-medium.jpg";
-//import portraitBw from "../assets/simonbuechi-landscape-bw.jpg";
 import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
+
+const questions = [
+  {
+    title: t("start.q1"),
+    description: t("start.a1"),
+  },
+  {
+    title: t("start.q2"),
+    description: t("start.a2"),
+  },
+  {
+    title: t("start.q3"),
+    description: t("start.a3"),
+    link: "https://pacta.app",
+    linkTitle: "Go to Pacta App",
+  },
+  {
+    title: t("start.q4"),
+    description: t("start.a4"),
+  },
+];
 
 class Start extends Component {
   state = {
@@ -51,6 +69,7 @@ class Start extends Component {
     const myContacts = [
       { primary: "LinkedIn", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Linkedin /> },
       { primary: "Facebook", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Facebook /> },
+      { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Twitter /> },
       { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
       { primary: "Email", secondary: "", link: "mailto:simon.buechi@gmail.com", icon: <Email /> },
     ];

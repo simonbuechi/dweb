@@ -83,6 +83,10 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         fontFamily: "Basetica",
+        textTransform: "none",
+      },
+      containedPrimary: {
+        backgroundImage: "linear-gradient(to right," + blueGrey[700] + " 0%, " + blueGrey[500] + " 51%) ",
       },
     },
     MuiRating: {
