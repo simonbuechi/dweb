@@ -16,7 +16,6 @@ ReactDOM.render(
       <video autoPlay loop playsinline muted id="myVideo">
         <source src={bgvideo} type="video/mp4" />
       </video>
-
       <App />
     </Router>
   </ThemeProvider>,
