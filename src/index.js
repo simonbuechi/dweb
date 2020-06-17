@@ -7,11 +7,16 @@ import App from "./App";
 import theme from "./style/theme";
 import "./i18n/i18n";
 import * as serviceWorker from "./serviceWorker";
+import bgvideo from "./assets/bgvideo.mp4";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router basename="/">
       <CssBaseline />
+      <video autoPlay loop playsinline muted id="myVideo">
+        <source src={bgvideo} type="video/mp4" />
+      </video>
+
       <App />
     </Router>
   </ThemeProvider>,

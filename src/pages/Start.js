@@ -22,27 +22,6 @@ import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, T
 //images
 import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
-const questions = [
-  {
-    title: t("start.q1"),
-    description: t("start.a1"),
-  },
-  {
-    title: t("start.q2"),
-    description: t("start.a2"),
-  },
-  {
-    title: t("start.q3"),
-    description: t("start.a3"),
-    link: "https://pacta.app",
-    linkTitle: "Go to Pacta App",
-  },
-  {
-    title: t("start.q4"),
-    description: t("start.a4"),
-  },
-];
-
 class Start extends Component {
   state = {
     dialogPortrait: false,
@@ -65,6 +44,26 @@ class Start extends Component {
   render() {
     const { t } = this.props;
     const { dialogPortrait, dialogInfo } = this.state;
+    const questions = [
+      {
+        title: t("start.q1"),
+        description: t("start.a1"),
+      },
+      {
+        title: t("start.q2"),
+        description: t("start.a2"),
+      },
+      {
+        title: t("start.q3"),
+        description: t("start.a3"),
+        link: "https://pacta.app",
+        linkTitle: "Go to Pacta App",
+      },
+      {
+        title: t("start.q4"),
+        description: t("start.a4"),
+      },
+    ];
 
     const myContacts = [
       { primary: "LinkedIn", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Linkedin /> },

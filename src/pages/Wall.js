@@ -79,16 +79,16 @@ class Wall extends Component {
         <Typography variant="body2" gutterBottom>
           {t("wall.description")}
         </Typography>
-        <Button variant="outlined" color="primary" href={"https://3box.io/" + profileAddress} startIcon={<OpenInNew />}>
+        <Button variant="contained" color="primary" href={"https://3box.io/" + profileAddress} startIcon={<OpenInNew />}>
           {t("wall.buttonWriteWall")}
         </Button>
-        <Typography variant="body2" gutterBottom>
-          {t("wall.buttonWriteWallNote")}
-        </Typography>
         &nbsp;
         <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<Information />}>
           {t("wall.dialogButton")}
         </Button>
+        <Typography variant="caption" gutterBottom>
+          {t("wall.buttonWriteWallNote")}
+        </Typography>
         {!ready ? (
           <Box my={3}>
             <CircularProgress color="primary" />

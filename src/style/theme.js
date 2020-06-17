@@ -60,7 +60,14 @@ const theme = createMuiTheme({
         fontFamily: "Basetica",
         lineHeight: "1.5",
         fontSize: "3rem",
-        backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
+        backgroundImage:
+          "gradient( linear, left top, right top, color-stop(0, " +
+          blueGrey[900] +
+          "), color-stop(0.3, " +
+          blueGrey[700] +
+          "), color-stop(0.7, " +
+          blueGrey[500] +
+          ") )",
         color: "transparent",
         "-webkitBackgroundClip": "text",
         backgroundClip: "text",
@@ -69,7 +76,14 @@ const theme = createMuiTheme({
         fontFamily: "Basetica",
         fontSize: "1.8rem",
         lineHeight: "1.5",
-        backgroundImage: "gradient( linear, left top, right top, color-stop(0, #263238), color-stop(0.3, #546e7a), color-stop(0.7, #78909c) )",
+        backgroundImage:
+          "gradient( linear, left top, right top, color-stop(0, " +
+          blueGrey[900] +
+          "), color-stop(0.3, " +
+          blueGrey[700] +
+          "), color-stop(0.7, " +
+          blueGrey[500] +
+          ") )",
         color: "transparent",
         "-webkitBackgroundClip": "text",
         backgroundClip: "text",
@@ -99,7 +113,7 @@ const theme = createMuiTheme({
     },
     MuiPaper: {
       root: {
-        //     backgroundColor: "rgba(255,255,255,0.5)"
+        backgroundColor: "rgba(255,255,255,0.5)",
       },
       outlined: {
         backgroundColor: "rgba(255,255,255,0)",
