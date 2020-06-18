@@ -34,13 +34,14 @@ class About extends Component {
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
         <Grid item xs={12} lg={6}>
           <Typography variant="h2" gutterBottom>
-            About me
+            {t("about.aboutMeTitle")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            This site is about me, Simon Büchi. Swiss national, citizen of the canton of Zurich, resident of the city of Winterthur. Alumnus of Kantonsschule
-            Buelrain and University of St. Gallen. I have been working as business analyst, programmer, business engineer, project manager. I am interested in
-            trends in banking and web devolopment. More than technologies I am fascinated by disruptive business models. I enjoy reading about philosophy,
-            economics, politics, history and technology. I enjoy classical music.
+            This site is about me, Simon Büchi. <br />
+            I live in Switzerland. <br />
+            Alumnus of University of St. Gallen (M.A.HSG in Marketing, Services and Communication Management) <br />
+            Worked at Synpulse, Bearingpoint, Zuercher Kantonalbank <br />
+            Cerified in Avaloq, Financial Risk Manager (Part 1), Scrum, Six Sigma<br />
           </Typography>
           <Typography variant="h2" gutterBottom>
             About this site
@@ -92,11 +93,6 @@ class About extends Component {
                 </Zoom>
               ))}
             </List>
-          </Box>
-          <Box my={2}>
-            <Typography variant="h2" gutterBottom>
-              {t("start.qaTitle")}
-            </Typography>
           </Box>
         </Grid>
       </Grid>

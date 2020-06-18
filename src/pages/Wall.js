@@ -19,10 +19,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 //icons
 import { Account, Web, Twitter, Numeric3Box, Github, Email, OpenInNew, Information } from "mdi-material-ui";
-
-const profileAddress = "0x254b358a6047a03243971B4814b1AAfdF312EC56";
-const wallSpaceName = "MyFollowing";
-const profileWall = "profileWall";
+// custom
+import config from "../config.json"
 
 class Wall extends Component {
   state = {
@@ -33,9 +31,9 @@ class Wall extends Component {
   };
 
   componentDidMount = async () => {
-    const spaces = await listSpaces(profileAddress);
-    if (spaces.includes(wallSpaceName)) {
-      let wallPosts = await getThread(wallSpaceName, profileWall, profileAddress, false, {});
+    const spaces = await listSpaces(config.ethereumAddress);
+    if (spaces.includes(config.wallSpaceName)) {
+      let wallPosts = await getThread(config.wallSpaceName, config.wallProfile, config.ethereumAddress, false, {});
       // sort by timestamp
       wallPosts = wallPosts.sort((a, b) => {
         a = a.timestamp;
@@ -79,7 +77,7 @@ class Wall extends Component {
         <Typography variant="body2" gutterBottom>
           {t("wall.description")} ( {t("wall.buttonWriteWallNote")} )
         </Typography>
-        <Button variant="contained" color="primary" href={"https://3box.io/" + profileAddress} startIcon={<OpenInNew />}>
+        <Button variant="contained" color="primary" href={"https://3box.io/" + config.ethereumAddress} startIcon={<OpenInNew />}>
           {t("wall.buttonWriteWall")}
         </Button>
         &nbsp;

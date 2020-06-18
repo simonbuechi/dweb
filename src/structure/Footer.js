@@ -4,11 +4,35 @@ import { withTranslation } from "react-i18next";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Tooltip from "@material-ui/core/Tooltip";
+//icons
+import { Information } from "mdi-material-ui";
 //package.json
 import pkg from "../../package.json";
+import config from "../config.json";
 
 class Footer extends Component {
+  state = {
+    dialogFooter: false
+  };
+  handledialogFooterOpen = () => {
+    this.setState({ dialogFooter: true });
+  };
+  handledialogFooterClose = () => {
+    this.setState({ dialogFooter: false });
+  };
   render() {
+    const {t} = this.props;
+    const {dialogFooter} = this.state;
+
     return (
       <React.Fragment>
         <Grid item xs={12} sm={3} lg={2}>
@@ -17,10 +41,47 @@ class Footer extends Component {
         <Grid item xs={12} sm={9} lg={10}>
           <Box my={6}>
             <Typography variant="body2" gutterBottom>
+              <Tooltip title="Disclaimer">
+            <IconButton onClick={this.handledialogFooterOpen}>
+              <Information />
+            </IconButton>
+            </Tooltip>
               © Copyright {new Date().getFullYear()} Simon Büchi | v{pkg.version}
             </Typography>
           </Box>
         </Grid>
+        <Dialog onClose={this.handledialogFooterClose} aria-labelledby="dialogFooter" open={dialogFooter}>
+            <DialogContent>
+              <Typography variant="h2" gutterBottom>
+                {t("base.dialogFooterTitle")}
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                {t("start.dialogFooterBody")}
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText 
+                    primary={config.ensName}
+                    secondary="ENS name" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText 
+                    primary={config.ethereumAddress}
+                    secondary="Ethereum address" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText 
+                    primary={config.ipfsAddress}
+                    secondary="IPFS address" />
+                </ListItem>
+                </List>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handledialogFooterClose} color="secondary" autoFocus>
+                {t("base.close")}
+              </Button>
+            </DialogActions>
+          </Dialog>
       </React.Fragment>
     );
   }

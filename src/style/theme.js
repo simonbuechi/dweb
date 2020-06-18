@@ -113,7 +113,7 @@ const theme = createMuiTheme({
     },
     MuiPaper: {
       root: {
-        backgroundColor: "rgba(255,255,255,0.5)",
+    //    backgroundColor: "rgba(255,255,255,0.5)",
       },
       outlined: {
         backgroundColor: "rgba(255,255,255,0)",
@@ -122,7 +122,6 @@ const theme = createMuiTheme({
     },
     MuiListItemSecondaryAction: {
       root: {
-        width: 200,
         display: "flex",
       },
     },

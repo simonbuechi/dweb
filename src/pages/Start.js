@@ -44,24 +44,23 @@ class Start extends Component {
   render() {
     const { t } = this.props;
     const { dialogPortrait, dialogInfo } = this.state;
+
     const questions = [
       {
-        title: t("start.q1"),
-        description: t("start.a1"),
+        question: t("start.q1"),
+        answer: t("start.a1"),
       },
       {
-        title: t("start.q2"),
-        description: t("start.a2"),
+        question: t("start.q2"),
+        answer: t("start.a2"),
       },
       {
-        title: t("start.q3"),
-        description: t("start.a3"),
-        link: "https://pacta.app",
-        linkTitle: "Go to Pacta App",
+        question: t("start.q3"),
+        answer: t("start.a3"),
       },
       {
-        title: t("start.q4"),
-        description: t("start.a4"),
+        question: t("start.q4"),
+        answer: t("start.a4"),
       },
     ];
 
@@ -168,6 +167,13 @@ class Start extends Component {
               <Typography variant="body2" gutterBottom>
                 {t("start.dialogInfoBody")}
               </Typography>
+              <List>
+                  {questions.map((item, index) => (
+                    <ListItem>
+                    <ListItemText primary={item.question} secondary={item.answer} />
+                  </ListItem>
+                  ))}
+                </List>
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>

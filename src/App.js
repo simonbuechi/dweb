@@ -19,7 +19,8 @@ import About from "./pages/About";
 import Offering from "./pages/Offering";
 import Projects from "./pages/Projects";
 import Wall from "./pages/Wall";
-import SendMessage from "./pages/SendMessage";
+// import SendMessage from "./pages/SendMessage";
+import Blog from "./pages/Blog";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,9 +63,9 @@ class App extends Component {
               <Tab label="Start" value="/" />
               <Tab label="About" value="/about" />
               <Tab label="Services" value="/services" />
+              <Tab label="Blog" value="/blog" />
               <Tab label="Wall" value="/wall" />
               <Tab label="Projects" value="/projects" />
-              <Tab label="Send Message" value="/message" />
             </Tabs>
             <Settings />
           </Grid>
@@ -78,11 +79,11 @@ class App extends Component {
             <TabPanel value={value} index="/services">
               <Offering />
             </TabPanel>
+            <TabPanel value={value} index="/blog">
+              <Blog />
+            </TabPanel>
             <TabPanel value={value} index="/projects">
               <Projects />
-            </TabPanel>
-            <TabPanel value={value} index="/message">
-              <SendMessage />
             </TabPanel>
             <TabPanel value={value} index="/wall">
               <Wall />

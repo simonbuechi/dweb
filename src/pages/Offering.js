@@ -12,9 +12,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Divider from "@material-ui/core/Divider";
-//import CircularProgress from '@material-ui/core/CircularProgress';
+import Tooltip from '@material-ui/core/Tooltip';
 import Rating from '@material-ui/lab/Rating';
 import Zoom from '@material-ui/core/Zoom';
+import Button from '@material-ui/core/Button';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -31,10 +32,9 @@ import ipfs from '../assets/techicons/ipfs.jpg';
 import web3js from '../assets/techicons/webjs.jpg';
 
 const ratingLabels = {
-  1: 'Beginner',
-  2: 'Average',
-  3: 'Advanced',
-  4: 'Expert',
+  1: 'Basics',
+  2: 'Advanced',
+  3: 'Expert'
 };
 
 class Offering extends Component {
@@ -44,67 +44,64 @@ class Offering extends Component {
   }
 
   componentDidMount() {
-    /*
-    this.tick();
-    const timer = setInterval(this.tick, 20);
-    clearInterval(timer);
-    */
     this.setState({ ready: true});
   }
 
   render() {
-  //  const {progress} = this.state;
 
     const skillsConsulting = [
-      {text: "Project management", img: <AccountGroup />, rating: 4},
-      {text: "Analysis & Engineering", img: <GoogleAnalytics />, rating: 3},
+      {text: "Project management", img: <AccountGroup />, rating: 3},
+      {text: "Teaching & public speaking", img: <AccountGroup />, rating: 2},
+      {text: "Analysis & Engineering", img: <GoogleAnalytics />, rating: 2},
       {text: "Research", img: <FeatureSearch />, rating: 2},
       {text: "Business model development", img: <RulerSquare />, rating: 2},
     ];
     const skillsBlockchains = [
-      {text: "Ethereum", img: <Ethereum />, rating: 4},
-      {text: "Bitcoin", img: <Bitcoin />, rating: 3},
+      {text: "Ethereum", img: <Ethereum />, rating: 3},
+      {text: "Bitcoin", img: <Bitcoin />, rating: 2},
+      {text: "Decentralized autonomous organizations (DAOs)", img: <AccountGroup />, rating: 3},
+      {text: "Multi-signature wallets", img: <AccountGroup />, rating: 2},
+      {text: "Stellar, Tezos", img: <AccountGroup />, rating: 1}
     ];
     const skillsCoding = [
+      {text: "HTML, CSS, JS", img: truffle, rating: 2},
       {text: "Solidity", img: solidity, rating: 2},
       {text: "Drizzle", img: drizzle, rating: 2},
-      {text: "Redux", img: redux, rating: 1},     
-      {text: "React", img: react, rating: 4},
-      {text: "web3js", img: web3js, rating: 4},
+      {text: "Redux", img: redux, rating: 2},     
+      {text: "React", img: react, rating: 3},
+      {text: "web3js", img: web3js, rating: 3},
       {text: "ipfs", img: ipfs, rating: 1},
-      {text: "truffle", img: truffle, rating: 4},
+      {text: "truffle", img: truffle, rating: 2},
     ];
 
     return (
-        <Grid item xs={12} lg={12}>
+      <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
+        <Grid item xs={12} md={12} lg={8}>
           <Typography variant="h2" gutterBottom>
-            My offering
+            My services
           </Typography>
-
           <Box my={1}>
-          <ExpansionPanel variant="outlined" TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
+          <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
             <ExpansionPanelSummary expandIcon={<ChevronDown />} >
-              <Typography>Blockchains</Typography>
+              <Typography>Blockchains & Decentralization</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-                <Typography variant="body2" gutterBottom>
-                ...
-                </Typography>
                 <List>
                 <Divider />
                 {skillsBlockchains.map((item, index) => (
                   <Zoom in={this.state.ready} style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.text}>
                     <div>
-                      <ListItem button>
+                      <ListItem>
                         <ListItemIcon>
                           {item.img} 
                         </ListItemIcon>
                         <ListItemText primary={item.text} />
-                        <ListItemSecondaryAction>
-                          <Rating name="read-only" value={item.rating} max={4} readOnly />
-                          {item.rating !== null && <Box ml={2}>{ratingLabels[item.rating]}</Box>}
-                        </ListItemSecondaryAction>
+                        <Tooltip title={ratingLabels[item.rating]}>
+                          <ListItemSecondaryAction>
+                            <Rating name="read-only" value={item.rating} max={3} readOnly />
+                          </ListItemSecondaryAction>
+                        </Tooltip>
                       </ListItem>
                       <Divider />
                     </div>
@@ -116,29 +113,27 @@ class Offering extends Component {
           </ExpansionPanel>
           </Box>
           <Box my={1}>
-          <ExpansionPanel variant="outlined" TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
+          <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
             <ExpansionPanelSummary expandIcon={<ChevronDown />} >
-              <Typography>Consulting</Typography>
+              <Typography>Consulting & Management</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-              <Typography variant="body2">
-                ...
-              </Typography>
               <List>
                 <Divider />
                 {skillsConsulting.map((item, index) => (
                   <Zoom in={this.state.ready} style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.text}>
                     <div>
-                      <ListItem button>
+                      <ListItem >
                         <ListItemIcon>
                           {item.img} 
                         </ListItemIcon>
                         <ListItemText primary={item.text} />
-                        <ListItemSecondaryAction>
-                          <Rating name="read-only" value={item.rating} max={4} readOnly />
-                          {item.rating !== null && <Box ml={2}>{ratingLabels[item.rating]}</Box>}
-                        </ListItemSecondaryAction>
+                        <Tooltip title={ratingLabels[item.rating]}>
+                          <ListItemSecondaryAction>
+                            <Rating name="read-only" value={item.rating} max={3} readOnly />
+                          </ListItemSecondaryAction>
+                        </Tooltip>
                       </ListItem>
                       <Divider />
                     </div>
@@ -150,29 +145,27 @@ class Offering extends Component {
           </ExpansionPanel>
           </Box>
           <Box my={1}>
-          <ExpansionPanel variant="outlined" TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
+          <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
             <ExpansionPanelSummary expandIcon={<ChevronDown />} >
-              <Typography>Coding</Typography>
+              <Typography>Technologies</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-              <Typography variant="body2">
-                ...
-              </Typography>
               <List>
                 <Divider />
                 {skillsCoding.map((item, index) => (
                   <Zoom in={this.state.ready} style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.text}>
                     <div>
-                      <ListItem button>
+                      <ListItem>
                         <ListItemAvatar>
                           <Avatar src={item.img} variant="rounded" />
                         </ListItemAvatar>
                         <ListItemText primary={item.text} />
-                        <ListItemSecondaryAction>
-                          <Rating name="read-only" value={item.rating} max={4} readOnly />
-                          {item.rating !== null && <Box ml={2}>{ratingLabels[item.rating]}</Box>}
-                        </ListItemSecondaryAction>
+                        <Tooltip title={ratingLabels[item.rating]}>
+                          <ListItemSecondaryAction>
+                            <Rating name="read-only" value={item.rating} max={3} readOnly />
+                          </ListItemSecondaryAction>
+                        </Tooltip>
                       </ListItem>
                       <Divider />
                     </div>
@@ -183,6 +176,40 @@ class Offering extends Component {
             </ExpansionPanelDetails>
           </ExpansionPanel>
           </Box>
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <Typography variant="h2" gutterBottom>
+            Reach out
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            Please reach out to me:
+          </Typography>
+          <Typography variant="body2" gutterBottom>  
+            <Button 
+              variant="contained" 
+              color="primary"
+            >
+              Send an email
+            </Button>
+          </Typography>
+          <Typography variant="body2" gutterBottom> 
+            <Button 
+              variant="contained" 
+              color="primary"
+              href="call:"
+            >
+            Call me
+            </Button>
+          </Typography>
+          <Typography variant="body2" gutterBottom> 
+            <Button 
+              variant="contained" 
+              color="primary"
+            >
+            Write on keybase
+            </Button>
+          </Typography>
+        </Grid>
         </Grid>
     );
   }
