@@ -101,7 +101,7 @@ class Start extends Component {
                 <Typography variant="h2" gutterBottom>
                   {t("start.connectTitle")}
                 </Typography>
-                <List>
+                <List dense>
                   {myContacts.map((item, index) => (
                     <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
                       <div>
@@ -168,12 +168,12 @@ class Start extends Component {
                 {t("start.dialogInfoBody")}
               </Typography>
               <List>
-                  {questions.map((item, index) => (
-                    <ListItem>
+                {questions.map((item, index) => (
+                  <ListItem key={index}>
                     <ListItemText primary={item.question} secondary={item.answer} />
                   </ListItem>
-                  ))}
-                </List>
+                ))}
+              </List>
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>

@@ -12,6 +12,7 @@
     "navContact": "Contact",
     "navSendMessage": "Send Message",
     "close": "Close",
+    "clickToSeeMore": "Click to see more",
     "creativecommons": "Creative Commons License"
   },
   "start": {
@@ -58,6 +59,11 @@
     "raisinpickerDescription": "Raisin Picker is a personal knowledge management tool. It features tagging, rating and linking of content nodes. Using Apache Solr, a faceted search enables you to find content quickly. It is based on Drupal content management system and is available as open source.",
     "simonbuechiTitle": "simonbuechi.eth",
     "simonbuechiDescription": "My work on this site. It is a create-react-app based site. Feel free to fork this site and build your own"
+  },
+  "offering": {
+    "title": "My skills & services",
+    "reachoutTitle": "Contact",
+    "reachoutDescription": "Please reach out to me"
   },
   "sendMessage": {
     "title": "Send message",

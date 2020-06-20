@@ -11,7 +11,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Zoom from "@material-ui/core/Zoom";
 import Button from "@material-ui/core/Button";
 //icons
-import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum } from "mdi-material-ui";
+import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum, Github } from "mdi-material-ui";
 //custom
 import CopyButton from "../structure/CopyButton";
 
@@ -25,6 +25,7 @@ class About extends Component {
     ];
 
     const myLinks = [
+      { primary: "My code", secondary: "on Github", link: "https://github.com/simonbuechi", icon: <Github /> },
       { primary: "My books", secondary: "on Goodreads", link: "https://www.goodreads.com/user/show/32950234-simon-b-chi", icon: <BookOpenVariant /> },
       { primary: "My movies", secondary: "on IMDB", link: "http://www.imdb.com/user/ur27356928/", icon: <Filmstrip /> },
       { primary: "My games", secondary: "on IGDB", link: "https://www.igdb.com/users/simonbuechi", icon: <Gamepad /> },
@@ -41,7 +42,8 @@ class About extends Component {
             I live in Switzerland. <br />
             Alumnus of University of St. Gallen (M.A.HSG in Marketing, Services and Communication Management) <br />
             Worked at Synpulse, Bearingpoint, Zuercher Kantonalbank <br />
-            Cerified in Avaloq, Financial Risk Manager (Part 1), Scrum, Six Sigma<br />
+            Cerified in Avaloq, Financial Risk Manager (Part 1), Scrum, Six Sigma
+            <br />
           </Typography>
           <Typography variant="h2" gutterBottom>
             About this site

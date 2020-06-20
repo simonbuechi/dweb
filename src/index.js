@@ -13,7 +13,7 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router basename="/">
       <CssBaseline />
-      <video autoPlay loop playsinline muted id="myVideo">
+      <video autoPlay loop muted id="myVideo">
         <source src={bgvideo} type="video/mp4" />
       </video>
       <App />
