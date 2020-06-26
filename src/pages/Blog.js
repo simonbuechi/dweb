@@ -1,19 +1,27 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { getThread, listSpaces } from "3box/lib/api";
+import { getThreadByAddress, listSpaces } from "3box/lib/api";
+import Markdown from "react-showdown";
 //material-ui
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Zoom from "@material-ui/core/Zoom";
+import Tooltip from "@material-ui/core/Tooltip";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 //icons
-import { Numeric3Box, OpenInNew, Information } from "mdi-material-ui";
+import { Numeric3Box, OpenInNew, Information, ChevronDown } from "mdi-material-ui";
 //custom
 import config from "../config.json";
+import configShowdown from "../style/configShowdown.json";
+//import { getParsedThread } from "../utils/parseThread";
 
 class Blog extends Component {
   state = {
@@ -25,10 +33,40 @@ class Blog extends Component {
   componentDidMount = async () => {
     const spaces = await listSpaces(config.ethereumAddress);
     if (spaces.includes(config.blogSpaceName)) {
-      const blogPosts = await getThread(config.blogSpaceName, config.blogProfile, config.ethereumAddress, false, {});
-      this.setState({
-        blogPosts,
+      let blogPosts = await getThreadByAddress(config.blogThread);
+      blogPosts = blogPosts.sort((a, b) => {
+        a = a.timestamp;
+        b = b.timestamp;
+        return a > b ? -1 : a < b ? 1 : 0;
       });
+
+      /*
+      for (var i = 0; i < blogPosts.length; i++) {
+        try {
+          const parsedMessage = fm(postThread.message);
+          const author = postThread.author;
+          const tags = parsedMessage.attributes.tags ? parsedMessage.attributes.tags.split(",") : [];
+          return {
+            title: parsedMessage.attributes.title,
+            description: parsedMessage.attributes.description,
+            body: parsedMessage.body,
+            threadData: { ...postThread, author },
+            tags,
+          };
+        } catch (error) {
+          console.error(error);
+          return {
+            title: "Error Parsing message",
+            description: "",
+            body: postThread.message,
+            threadData: { ...postThread, author: "author" },
+            tags: [],
+          };
+        }
+      }
+      */
+
+      this.setState({ blogPosts });
       this.setState({ ready: true });
     }
   };
@@ -44,11 +82,9 @@ class Blog extends Component {
   };
 
   render() {
-    const {t} = this.props;
+    const { t } = this.props;
     const { ready, blogPosts, dialogOpen } = this.state;
 
-    console.log(blogPosts);
-    
     return (
       <Grid item xs={12} lg={12}>
         <Typography variant="h2" gutterBottom>
@@ -71,8 +107,28 @@ class Blog extends Component {
           <Box my={3}>
             <CircularProgress color="primary" />
           </Box>
-        ) : (<></>)}
-          
+        ) : (
+          blogPosts.map((item, index) => (
+            <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.postId}>
+              <Box my={2}>
+                <ExpansionPanel>
+                  <Tooltip title="Click to get details">
+                    <ExpansionPanelSummary expandIcon={<ChevronDown />}>
+                      <Typography>
+                        {item.author} ({this.unixToDate(item.timestamp)})
+                      </Typography>
+                    </ExpansionPanelSummary>
+                  </Tooltip>
+                  <ExpansionPanelDetails>
+                    <Box>
+                      <Markdown dangerouslySetInnerHTML markdown={item.message} options={configShowdown} />
+                    </Box>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              </Box>
+            </Zoom>
+          ))
+        )}
         <Dialog onClose={this.handleDialogClose} aria-labelledby="simple-dialog-title" open={dialogOpen} maxWidth="xl">
           <DialogContent>
             {t("blog.dialogTitle")}
@@ -82,7 +138,7 @@ class Blog extends Component {
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleDialogClose} color="secondary" autoFocus>
-            {t("base.close")}
+              {t("base.close")}
             </Button>
           </DialogActions>
         </Dialog>

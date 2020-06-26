@@ -1,9 +1,10 @@
 {
+  "ethereumAddress": "0x254b358a6047a03243971B4814b1AAfdF312EC56",
+  "bitcoinAddress": "0x254b358a6047a03243971B4814b1AAfdF312EC56",
   "ensName": "simonbuechi.eth",
   "ipfsAddress": "",
-  "ethereumAddress": "0x254b358a6047a03243971B4814b1AAfdF312EC56",
   "wallSpaceName": "MyFollowing",
   "wallProfile": "profileWall",
-  "blogSpaceName": "MyFollowing",
-  "blogProfile": "profileWall"
+  "blogSpaceName": "blog-simonbuechi",
+  "blogThread": "/orbitdb/zdpuAoRqV81GCvCaswxTigDrsGtCuuHiBb1TV7wocTi8phGZL/3box.thread.blog-simonbuechi.blog-posts"
 }

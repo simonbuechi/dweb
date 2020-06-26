@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum, Github } from "mdi-material-ui";
 //custom
 import CopyButton from "../structure/CopyButton";
+import QrCode from "../structure/QrCode";
 
 class About extends Component {
   render() {
@@ -73,6 +74,7 @@ class About extends Component {
                         </Typography>
                       }
                     />
+                    <QrCode text={item.secondary} />
                     <CopyButton text={item.secondary} />
                   </ListItem>
                 </div>

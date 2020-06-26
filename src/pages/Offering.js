@@ -211,7 +211,7 @@ class Offering extends Component {
             </Button>
           </Typography>
           <Typography variant="body2" gutterBottom>
-            <Button variant="contained" color="primary" startIcon={<Key />}>
+            <Button variant="contained" color="primary" href="https://keybase.io/simonbuechi/chat" startIcon={<Key />}>
               Keybase
             </Button>
           </Typography>
