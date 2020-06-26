@@ -83,3 +83,14 @@ img.dialog {
   min-height: 100%;
   z-index: -1;
 }
+
+/* Markdown/Showdown fixes */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
