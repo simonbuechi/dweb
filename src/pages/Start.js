@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 //material-ui
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import Box from "@material-ui/core/Box";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -15,10 +11,9 @@ import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import Tooltip from "@material-ui/core/Tooltip";
 import List from "@material-ui/core/List";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter } from "mdi-material-ui";
+import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter, Face } from "mdi-material-ui";
 //images
 import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
@@ -81,7 +76,7 @@ class Start extends Component {
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={4}>
           <Typography variant="h2" gutterBottom>
             {t("start.title")}
           </Typography>
@@ -91,60 +86,49 @@ class Start extends Component {
           <Typography variant="body2" gutterBottom>
             {t("start.paragraph2")}
           </Typography>
-          <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
-            {t("start.dialogInfoButton")}
-          </Button>
-
-          <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
-            <Grid item xs={12} md={6}>
-              <Box my={2}>
-                <Typography variant="h2" gutterBottom>
-                  {t("start.connectTitle")}
-                </Typography>
-                <List dense>
-                  {myContacts.map((item, index) => (
-                    <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
-                      <div>
-                        <ListItem button component="a" href={item.link}>
-                          <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
-                          <ListItemText primary={item.primary} secondary={item.secondary} />
-                        </ListItem>
-                      </div>
-                    </Zoom>
-                  ))}
-                </List>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box my={2}>
-                <Typography variant="h2" gutterBottom>
-                  {t("start.engagementsTitle")}
-                </Typography>
-                <List dense>
-                  {myJobs.map((item, index) => (
-                    <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
-                      <div>
-                        <ListItem button component="a" href={item.link}>
-                          <ListItemText primary={item.primary} secondary={item.secondary} />
-                        </ListItem>
-                      </div>
-                    </Zoom>
-                  ))}
-                </List>
-              </Box>
-            </Grid>
-          </Grid>
+          <Typography gutterBottom>
+            <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
+              {t("start.dialogInfoButton")}
+            </Button>
+          </Typography>
+          <Typography gutterBottom>
+            <Button variant="outlined" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
+              {t("start.image")}
+            </Button>
+          </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Box textAlign="center">
-            <Tooltip title={t("start.image")}>
-              <Card>
-                <CardActionArea onClick={this.handleDialogPortraitOpen}>
-                  <CardMedia component="img" image={portraitBig} />
-                </CardActionArea>
-              </Card>
-            </Tooltip>
-          </Box>
+          <Typography variant="h2" gutterBottom>
+            {t("start.connectTitle")}
+          </Typography>
+          <List dense>
+            {myContacts.map((item, index) => (
+              <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
+                <div>
+                  <ListItem button component="a" href={item.link}>
+                    <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.primary} secondary={item.secondary} />
+                  </ListItem>
+                </div>
+              </Zoom>
+            ))}
+          </List>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Typography variant="h2" gutterBottom>
+            {t("start.engagementsTitle")}
+          </Typography>
+          <List dense>
+            {myJobs.map((item, index) => (
+              <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
+                <div>
+                  <ListItem button component="a" href={item.link}>
+                    <ListItemText primary={item.primary} secondary={item.secondary} />
+                  </ListItem>
+                </div>
+              </Zoom>
+            ))}
+          </List>
           <Dialog onClose={this.handleDialogPortraitClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
             <DialogContent>
               <img src={portraitBig} alt="simon buechi portrait" className="dialog" />

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { getThreadByAddress, listSpaces } from "3box/lib/api";
+import { getThreadByAddress, listSpaces, getProfile } from "3box/lib/api";
 import Markdown from "react-showdown";
 import fm from "front-matter";
 //material-ui
@@ -20,17 +20,19 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Collapse from "@material-ui/core/Collapse";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
 //icons
-import { Numeric3Box, OpenInNew, InformationOutline, Message, Share, ChevronDown } from "mdi-material-ui";
+import { OpenInNew, InformationOutline, Message, Share, ChevronDown, Account } from "mdi-material-ui";
 //custom
 import config from "../config.json";
 import configShowdown from "../style/configShowdown.json";
-//import { getParsedThread } from "../utils/parseThread";
 
 class Blog extends Component {
   state = {
     dialogOpen: false,
     blogPosts: [],
+    blogAuthors: {},
     ready: false,
     blogExpanded: [],
   };
@@ -51,6 +53,15 @@ class Blog extends Component {
       }
       this.setState({ blogPosts });
       this.setState({ ready: true });
+      //get authors
+      let blogAuthors = {};
+      for (var j = 0; j < blogPosts.length; j++) {
+        if (!blogAuthors.hasOwnProperty(blogPosts[j].author)) {
+          const profile = await getProfile(blogPosts[j].author);
+          blogAuthors[blogPosts[j].author] = profile;
+        }
+      }
+      this.setState({ blogAuthors });
     }
   };
 
@@ -68,19 +79,18 @@ class Blog extends Component {
   unixToDate = (timestamp) => {
     return Intl.DateTimeFormat("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" }).format(new Date(timestamp * 1000));
   };
-
-  parseThread = (postThread, moderatorNames) => {
+  parseThread = (postThread) => {
     try {
       const parsedMessage = fm(postThread.message);
-      const author = moderatorNames ? moderatorNames[postThread.author] : postThread.author;
       const tags = parsedMessage.attributes.tags ? parsedMessage.attributes.tags.split(",") : [];
+      const date = this.unixToDate(postThread.timestamp);
       return {
         title: parsedMessage.attributes.title,
         description: parsedMessage.attributes.description,
         body: parsedMessage.body,
         ...postThread,
-        author,
         tags,
+        date,
       };
     } catch (error) {
       console.error(error);
@@ -91,13 +101,14 @@ class Blog extends Component {
         ...postThread,
         author: "author",
         tags: [],
+        date: "",
       };
     }
   };
 
   render() {
     const { t } = this.props;
-    const { ready, blogPosts, dialogOpen, blogExpanded } = this.state;
+    const { ready, blogPosts, blogAuthors, dialogOpen, blogExpanded } = this.state;
     //console.log(blogExpanded);
     return (
       <Grid item xs={12} lg={12}>
@@ -107,11 +118,11 @@ class Blog extends Component {
         <Typography variant="body2" gutterBottom>
           {t("blog.description")}
         </Typography>
-        <Button variant="outlined" color="primary" href={"https://3box.io/" + config.ethereumAddress} startIcon={<OpenInNew />}>
+        <Button variant="contained" color="secondary" href="/" startIcon={<OpenInNew />} disabled>
           {t("blog.linkMain")}
         </Button>
         &nbsp;
-        <Button variant="outlined" color="primary" href="https://medium.com/simonbuechi" startIcon={<OpenInNew />}>
+        <Button variant="contained" color="secondary" href="https://medium.com/@simonbuechi" startIcon={<OpenInNew />}>
           {t("blog.linkMedium")}
         </Button>
         &nbsp;
@@ -128,11 +139,23 @@ class Blog extends Component {
               <Box my={2}>
                 <Card>
                   <CardActionArea onClick={this.handleExpandClick(index)}>
+                    <CardHeader
+                      avatar={
+                        blogAuthors.hasOwnProperty(item.author) && blogAuthors[item.author].hasOwnProperty("image") ? (
+                          <Avatar src={"https://ipfs.infura.io/ipfs/" + blogAuthors[item.author].image[0].contentUrl["/"]} />
+                        ) : (
+                          <Avatar>
+                            <Account />
+                          </Avatar>
+                        )
+                      }
+                      title={
+                        blogAuthors.hasOwnProperty(item.author) && blogAuthors[item.author].hasOwnProperty("name") ? blogAuthors[item.author].name : item.author
+                      }
+                      subheader={this.unixToDate(item.timestamp)}
+                    />
                     <CardContent>
                       <Typography variant="h2">{item.title}</Typography>
-                      <Typography variant="body2" gutterBottom>
-                        {this.unixToDate(item.timestamp)}
-                      </Typography>
                     </CardContent>
                   </CardActionArea>
                   <CardActions disableSpacing>
@@ -162,7 +185,6 @@ class Blog extends Component {
                       </IconButton>
                     </Tooltip>
                   </CardActions>
-
                   <Collapse in={blogExpanded[index]} timeout="auto" unmountOnExit>
                     <CardContent>
                       <Markdown dangerouslySetInnerHTML markdown={item.body} options={configShowdown} />
@@ -175,9 +197,31 @@ class Blog extends Component {
         )}
         <Dialog onClose={this.handleDialogClose} aria-labelledby="simple-dialog-title" open={dialogOpen} maxWidth="xl">
           <DialogContent>
-            {t("blog.dialogTitle")}
-            <Button variant="outlined" color="primary" href="https://docs.3box.io/" startIcon={<Numeric3Box />}>
-              Learn more about 3box
+            <Typography variant="h2" gutterBottom>
+              {t("blog.dialogTitle")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("blog.dialogBody1")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("blog.dialogBody2")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("blog.dialogBody3")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("blog.dialogBody4")}
+            </Typography>
+            <Button variant="contained" color="secondary" href="/" disabled>
+              {t("blog.dialogBlogLink")}
+            </Button>
+            &nbsp;
+            <Button variant="outlined" color="primary" href="https://docs.3box.io">
+              {t("blog.dialog3BoxLink")}
+            </Button>
+            &nbsp;
+            <Button variant="outlined" color="primary" href="https://orbitdb.org">
+              {t("blog.dialogOrbitLink")}
             </Button>
           </DialogContent>
           <DialogActions>

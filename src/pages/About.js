@@ -15,14 +15,15 @@ import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum, Github } from "
 //custom
 import CopyButton from "../structure/CopyButton";
 import QrCode from "../structure/QrCode";
+import config from "../config.json";
 
 class About extends Component {
   render() {
     const { t } = this.props;
 
     const myCryptos = [
-      { primary: "Ethereum", secondary: "0x254b358a6047a03243971B4814b1AAfdF312EC56", link: 2, icon: <Ethereum /> },
-      { primary: "Bitcoin", secondary: "0x...", link: 2, icon: <Bitcoin /> },
+      { primary: "Ethereum", secondary: config.ethereumAddress, link: 2, icon: <Ethereum /> },
+      { primary: "Bitcoin", secondary: config.bitcoinAddress, link: 2, icon: <Bitcoin /> },
     ];
 
     const myLinks = [
@@ -36,7 +37,7 @@ class About extends Component {
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
         <Grid item xs={12} lg={6}>
           <Typography variant="h2" gutterBottom>
-            {t("about.aboutMeTitle")}
+            {t("about.title")}
           </Typography>
           <Typography variant="body2" gutterBottom>
             This site is about me, Simon Büchi. <br />

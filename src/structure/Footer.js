@@ -9,16 +9,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Tooltip from "@material-ui/core/Tooltip";
 //icons
-import { InformationOutline, Ethereum, Hexagon } from "mdi-material-ui";
+import { InformationOutline } from "mdi-material-ui";
 //package.json
 import pkg from "../../package.json";
-import config from "../config.json";
 
 class Footer extends Component {
   state = {
@@ -57,28 +52,11 @@ class Footer extends Component {
               {t("base.dialogFooterTitle")}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              {t("start.dialogFooterBody")}
+              {t("base.dialogFooterBody")}
             </Typography>
-            <List dense>
-              <ListItem>
-                <ListItemIcon>
-                  <Ethereum />
-                </ListItemIcon>
-                <ListItemText primary={config.ensName} secondary="ENS name" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Ethereum />
-                </ListItemIcon>
-                <ListItemText primary={config.ethereumAddress} secondary="Ethereum address" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Hexagon />
-                </ListItemIcon>
-                <ListItemText primary={config.ipfsAddress} secondary="IPFS address" />
-              </ListItem>
-            </List>
+            <Typography variant="body2" gutterBottom>
+              © Copyright {new Date().getFullYear()} Simon Büchi | v{pkg.version}
+            </Typography>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handledialogFooterClose} color="secondary" autoFocus>

@@ -45,8 +45,9 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiTabs: {
-      root: {
+      vertical: {
         borderRight: `1px solid ${blueGrey[300]}`,
+        marginRight: 32,
       },
     },
     MuiTab: {
@@ -98,6 +99,7 @@ const theme = createMuiTheme({
       root: {
         fontFamily: "Basetica",
         textTransform: "none",
+        marginBottom: 4,
       },
       containedPrimary: {
         backgroundImage: "linear-gradient(to right," + blueGrey[700] + " 0%, " + blueGrey[500] + " 51%) ",
@@ -113,7 +115,7 @@ const theme = createMuiTheme({
     },
     MuiPaper: {
       root: {
-    //    backgroundColor: "rgba(255,255,255,0.5)",
+        //    backgroundColor: "rgba(255,255,255,0.5)",
       },
       outlined: {
         backgroundColor: "rgba(255,255,255,0)",

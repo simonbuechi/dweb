@@ -13,7 +13,9 @@
     "navSendMessage": "Send Message",
     "close": "Close",
     "clickToSeeMore": "Click to see more",
-    "creativecommons": "Creative Commons License"
+    "creativecommons": "Creative Commons License",
+    "dialogFooterTitle": "Legal notice",
+    "dialogFooterBody": "The information provided by Simon Buechi (“we,” “us” or “our”) on https://buechi.name (the “Site”) is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the Site or our mobile application. UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR OUR MOBILE APPLICATION OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK."
   },
   "start": {
     "title": "Welcome",
@@ -35,7 +37,7 @@
     "dialogInfoTitle": "Decentralized website infos"
   },
   "about": {
-    "title": "About",
+    "title": "About me",
     "paragraph1": "This site is about me, Simon Büchi. Swiss national, citizen of the canton of Zurich, resident of the city of Winterthur. Alumnus of Kantonsschule Buelrain and University of St. Gallen. I have been working as business analyst, programmer, business engineer, project manager. I am interested in trends in banking and web devolopment. More than technologies I am fascinated by disruptive business models. I enjoy reading about philosophy, economics, politics, history and technology. I enjoy classical music.",
     "titleLinks": "Links"
   },
@@ -46,7 +48,8 @@
     "buttonWriteWallNote": "Redirects to 3Box. You need to have an Ethereum account in order to leave a message on the wall.",
     "dialogInfoButton": "Learn more",
     "dialogInfoBody": "...",
-    "dialogInfoTitle": "Decentralized wall infos"
+    "dialogInfoTitle": "Decentralized wall infos",
+    "dialogInfo3boxButton": "Learn more about 3Box"
   },
   "projects": {
     "title": "Projects",
@@ -76,5 +79,20 @@
     "messagePlaceholder": "Message",
     "buttonSend": "Send now",
     "paragraph1": "We treat your data confidentially. This form is submitted through https://formspree.io/"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "",
+    "linkMain": "Go to the 'real' Blog",
+    "linkMedium": "Blog on Medium",
+    "dialogButton": "Learn more",
+    "dialogTitle": "A decentralized blog",
+    "dialogBody1": "This blog is built with decentralized technologies.",
+    "dialogBody2": "This blog is built with decentralized technologies.",
+    "dialogBody3": "There is a 'full' version of the blog that enables users to ",
+    "dialogBody4": "This blog is built with decentralized technologies.",
+    "dialogBlogLink": "Go to the 'real' Blog",
+    "dialogOrbitLink": "Learn more about OrbitDB",
+    "dialog3BoxLink": "Learn more about 3Box"
   }
 }

@@ -8,9 +8,10 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  background-image: url(../assets/bg-small.png);
+  /*  min-height: 100vh;
+ background-image: url(../assets/bg-small.png);
   background-repeat: repeat;
+*/
 }
 
 @keyframes gradient {
@@ -73,7 +74,6 @@ img.dialog {
 .defaultpaddingright {
   padding-right: 16px !important;
 }
-
 
 #myVideo {
   position: fixed;

@@ -20,7 +20,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 //icons
 import { Account, Web, Twitter, Numeric3Box, Github, Email, OpenInNew, Information } from "mdi-material-ui";
 // custom
-import config from "../config.json"
+import config from "../config.json";
 
 class Wall extends Component {
   state = {
@@ -82,7 +82,7 @@ class Wall extends Component {
         </Button>
         &nbsp;
         <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<Information />}>
-          {t("wall.dialogButton")}
+          {t("wall.dialogInfoButton")}
         </Button>
         {!ready ? (
           <Box my={3}>
@@ -152,9 +152,9 @@ class Wall extends Component {
         )}
         <Dialog onClose={this.handleDialogClose} aria-labelledby="simple-dialog-title" open={dialogOpen} maxWidth="xl">
           <DialogContent>
-            {t("wall.dialogTitle")}
+            {t("wall.dialogInfoTitle")}
             <Button variant="outlined" color="primary" href="https://docs.3box.io/" startIcon={<Numeric3Box />}>
-              Learn more about 3box
+              {t("wall.dialogInfo3boxButton")}
             </Button>
           </DialogContent>
           <DialogActions>

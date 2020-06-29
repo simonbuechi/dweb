@@ -14,7 +14,7 @@ import { Qrcode } from "mdi-material-ui";
 
 class QrCode extends Component {
   state = {
-    dialogQr: null,
+    dialogQr: false,
   };
 
   handleDialogQrOpen = () => {
