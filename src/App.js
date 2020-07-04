@@ -13,7 +13,6 @@ import Paper from "@material-ui/core/Paper";
 // navigation
 import Header from "./structure/Header";
 import Footer from "./structure/Footer";
-import Settings from "./structure/Settings";
 //import Bg from './Bg';
 // tabs
 import Start from "./pages/Start";
@@ -59,9 +58,6 @@ class App extends Component {
     return (
       <Container maxWidth="lg">
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
-          <Hidden smUp>
-            <Settings />
-          </Hidden>
           <Header />
           <Grid item xs={12} sm={3} lg={2}>
             <Hidden xsDown>
@@ -73,7 +69,6 @@ class App extends Component {
                 <Tab label="Blog" value="/blog" />
                 <Tab label="Wall" value="/wall" />
               </Tabs>
-              <Settings />
             </Hidden>
             <Hidden smUp>
               <Paper>

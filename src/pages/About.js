@@ -40,26 +40,30 @@ class About extends Component {
             {t("about.title")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            This site is about me, Simon Büchi. <br />
-            I live in Switzerland. <br />
-            Alumnus of University of St. Gallen (M.A.HSG in Marketing, Services and Communication Management) <br />
-            Worked at Synpulse, Bearingpoint, Zuercher Kantonalbank <br />
-            Cerified in Avaloq, Financial Risk Manager (Part 1), Scrum, Six Sigma
-            <br />
-          </Typography>
-          <Typography variant="h2" gutterBottom>
-            About this site
+            {t("about.body1")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            This site both serves as a place to find information about me as well as a showcase for decentralized technologies.
+            {t("about.body2")}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {t("about.body3")}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {t("about.body4")}
+          </Typography>
+          <Typography variant="h2" gutterBottom>
+            {t("about.aboutSiteTitle")} 
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {t("about.aboutSiteBody")} 
           </Typography>
           <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb">
-            This site on Github
+            {t("about.linkGithub")} 
           </Button>
         </Grid>
         <Grid item xs={12} lg={6}>
           <Typography variant="h2" gutterBottom>
-            Blockchain
+          {t("about.blockchainTitle")}
           </Typography>
           <List dense>
             {myCryptos.map((item, index) => (
@@ -83,7 +87,7 @@ class About extends Component {
             ))}
           </List>
           <Typography variant="h2" gutterBottom>
-            Some links
+            {t("about.linksTitle")}
           </Typography>
           <Box>
             <List dense>

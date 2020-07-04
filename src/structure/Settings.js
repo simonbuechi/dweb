@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import i18n from "../i18n/i18n";
 //material-ui
-import Box from "@material-ui/core/Box";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -17,7 +16,6 @@ class Settings extends Component {
     const { t } = this.props;
 
     return (
-      <Box mt={2} textAlign="center">
         <ButtonGroup color="secondary" size="small">
           <Tooltip title={i18n.language === "en" ? "" : t("base.toEnglish")}>
             <Button onClick={this.handleLangChange("en")} disabled={i18n.language === "en" ? true : false}>
@@ -30,7 +28,6 @@ class Settings extends Component {
             </Button>
           </Tooltip>
         </ButtonGroup>
-      </Box>
     );
   }
 }

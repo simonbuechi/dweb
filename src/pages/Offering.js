@@ -99,7 +99,7 @@ class Offering extends Component {
           <Box my={2}>
             <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
               <ExpansionPanelSummary expandIcon={<ChevronDown />}>
-                <Typography>Consulting & Management</Typography>
+                <Typography>{t("offering.categoryManagement")}</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Box>
@@ -129,7 +129,7 @@ class Offering extends Component {
           <Box my={2}>
             <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
               <ExpansionPanelSummary expandIcon={<ChevronDown />}>
-                <Typography>Blockchains & Decentralization</Typography>
+                <Typography>{t("offering.categoryBlockchain")}</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Box>
@@ -160,7 +160,7 @@ class Offering extends Component {
           <Box my={2}>
             <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
               <ExpansionPanelSummary expandIcon={<ChevronDown />}>
-                <Typography>Technologies</Typography>
+                <Typography>{t("offering.categoryTechnologies")}</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Box>

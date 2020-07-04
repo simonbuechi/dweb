@@ -42,7 +42,7 @@ class Footer extends Component {
                   <InformationOutline />
                 </IconButton>
               </Tooltip>
-              © Copyright {new Date().getFullYear()} Simon Büchi | v{pkg.version}
+              © Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}
             </Typography>
           </Box>
         </Grid>
@@ -55,7 +55,7 @@ class Footer extends Component {
               {t("base.dialogFooterBody")}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              © Copyright {new Date().getFullYear()} Simon Büchi | v{pkg.version}
+              © Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}
             </Typography>
           </DialogContent>
           <DialogActions>
