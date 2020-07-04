@@ -8,10 +8,9 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*  min-height: 100vh;
- background-image: url(../assets/bg-small.png);
-  background-repeat: repeat;
-*/
+  min-height: 100vh;
+  background: url(../assets/bg.jpg) no-repeat center center fixed;
+  background-size: cover;
 }
 
 @keyframes gradient {
