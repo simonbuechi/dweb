@@ -11,6 +11,36 @@ body {
   min-height: 100vh;
   background: url(../assets/bg.jpg) no-repeat center center fixed;
   background-size: cover;
+
+  /* simple diamond pattern
+  background-color: #ccc;
+  background-image:
+    repeating-linear-gradient(120deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+    linear-gradient(60deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1)),
+    linear-gradient(120deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1));
+  background-size: 70px 120px;
+  */
+
+  /* simple diamond pattern v2
+  background: #cfd8dc;
+  background-image: repeating-linear-gradient(60deg, #cfd8dc, #cfd8dc 6em, transparent 6.1em, transparent 9em, #cfd8dc 9.1em),
+    repeating-linear-gradient(-60deg, #cfd8dc, #cfd8dc 6em, transparent 6.1em, transparent 9em, #cfd8dc 9.1em),
+    repeating-linear-gradient(90deg, #ffffff, #ffffff 3em, transparent 3.1em, transparent 5.2em, #ffffff 5.25em);
+  background-position: 0.48em 0;
+  background-size: 300em;
+  */
+
+  /*
+  background-color: #ffffff;
+  background-image: url("../assets/Ethereum_logo_2014.svg");
+ 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' %3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(176,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23cfd8dc'/%3E%3Cstop offset='1' stop-color='%23eceff1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpattern id='b' width='44' height='44' patternUnits='userSpaceOnUse'%3E%3Ccircle fill='%23ffffff' cx='22' cy='22' r='22'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23a)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23b)' fill-opacity='0.22'/%3E%3C/svg%3E");
+
+  background-attachment: fixed;
+  background-size: cover;
+
+    */
 }
 
 @keyframes gradient {
@@ -92,4 +122,130 @@ h4,
 h5,
 h6 {
   font-weight: normal;
+}
+
+/* Ethereum Spinner */
+
+.eth {
+  position: absolute;
+  left: calc(50% - 10em / 2);
+  top: calc(50% - 4em);
+  width: 10em;
+  height: 10em;
+  font-size: 0.4em;
+}
+.eth .top,
+.eth .bottom {
+  width: 10em;
+  height: 10em;
+  background: rgba(248, 185, 167, 0.91);
+  transform: rotateX(65deg) rotateZ(45deg);
+  transform-style: preserve-3d;
+  position: absolute;
+  animation: rotate 7s linear infinite;
+}
+
+.eth .top .left,
+.eth .bottom .left,
+.eth .top .right,
+.eth .bottom .right,
+.eth .top .up,
+.eth .bottom .up,
+.eth .top .down,
+.eth .bottom .down {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.eth .top .left,
+.eth .bottom .left,
+.eth .top .right,
+.eth .bottom .right {
+  border-left: 5em solid transparent;
+  border-right: 5em solid transparent;
+  border-bottom: 15em solid rgba(253, 216, 190, 0.5);
+  transform-origin: bottom;
+}
+
+.eth .top .up,
+.eth .bottom .up,
+.eth .top .down,
+.eth .bottom .down {
+  transform-origin: bottom right;
+  border-top: 5em solid transparent;
+  border-right: 15em solid rgba(254, 188, 166, 0.4);
+  border-bottom: 5em solid transparent;
+  border-left: none;
+  top: 0em;
+}
+
+.eth .top .left,
+.eth .bottom .left {
+  left: 0;
+  top: -5em;
+  transform: rotateX(-70deg);
+}
+
+.eth .top .right,
+.eth .bottom .right {
+  transform: rotateX(-110deg);
+  left: 0em;
+  top: -15em;
+}
+
+.eth .top .up,
+.eth .bottom .up {
+  transform: rotateY(70deg);
+  left: -5em;
+}
+
+.eth .top .down,
+.eth .bottom .down {
+  transform: rotateY(110deg);
+  left: -15em;
+}
+
+.eth .top {
+  left: 0;
+  top: 0;
+}
+.eth .bottom {
+  left: 0;
+  top: 1.5em;
+  background: rgba(208, 161, 152, 0.79);
+}
+.eth .bottom .left,
+.eth .bottom .right {
+  border-bottom: 15em solid rgba(248, 185, 167, 0.91);
+}
+
+.eth .bottom .up,
+.eth .bottom .down {
+  border-right: 15em solid rgba(248, 200, 167, 0.55);
+}
+
+.eth .bottom .left {
+  transform: rotateX(70deg);
+}
+
+.eth .bottom .right {
+  transform: rotateX(110deg);
+}
+
+.eth .bottom .up {
+  transform: rotateY(-70deg);
+}
+
+.eth .bottom .down {
+  transform: rotateY(-110deg);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(65deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(65deg) rotateZ(360deg);
+  }
 }

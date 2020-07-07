@@ -13,7 +13,7 @@ import Paper from "@material-ui/core/Paper";
 // navigation
 import Header from "./structure/Header";
 import Footer from "./structure/Footer";
-//import Bg from './Bg';
+import EthereumSpinner from "./structure/EthereumSpinner";
 // tabs
 import Start from "./pages/Start";
 import About from "./pages/About";
@@ -59,6 +59,7 @@ class App extends Component {
       <Container maxWidth="lg">
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
           <Header />
+          <EthereumSpinner />
           <Grid item xs={12} sm={3} lg={2}>
             <Hidden xsDown>
               <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example">
