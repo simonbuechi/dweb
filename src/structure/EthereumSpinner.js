@@ -1,9 +1,26 @@
 import React, { Component } from "react";
 
 class EthereumSpinner extends Component {
+  state = {
+    clicked: false,
+  };
+
+  handleClick = () => {
+    console.log("click")
+    if (!this.state.clicked) {
+      this.setState({ clicked: true }, () => {
+        this.timer = setTimeout(() => {
+          this.setState({ clicked: false });
+        }, 500);
+      });
+    }
+  };
+
   render() {
     return (
-      <div className="eth">
+      <div  onClick={this.handleClick}>
+
+      <div className={this.state.clicked ? "eth click" : "eth"}>
         <div className="bottom">
           <div className="left"></div>
           <div className="right"></div>
@@ -16,6 +33,8 @@ class EthereumSpinner extends Component {
           <div className="up"></div>
           <div className="down"></div>
         </div>
+      </div>
+      
       </div>
     );
   }

@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
 //custom
 import Settings from "./Settings";
+import EthereumSpinner from "./EthereumSpinner";
 
 class Header extends Component {
   render() {
@@ -16,7 +17,7 @@ class Header extends Component {
         <Hidden xsDown>
           <Grid item xs={12} sm={3} lg={2}>
           <Box mt={8} textAlign="center">
-          <Settings />
+            <EthereumSpinner />
             </Box>
           </Grid>
           <Grid item xs={12} sm={9} lg={10}>

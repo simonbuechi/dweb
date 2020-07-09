@@ -127,22 +127,31 @@ h6 {
 /* Ethereum Spinner */
 
 .eth {
+  margin: auto;
+  position: relative;
+/*
   position: absolute;
   left: calc(50% - 10em / 2);
   top: calc(50% - 4em);
+*/  
   width: 10em;
   height: 10em;
-  font-size: 0.4em;
+  font-size: 0.22em;
 }
 .eth .top,
 .eth .bottom {
   width: 10em;
   height: 10em;
-  background: rgba(248, 185, 167, 0.91);
+  background: rgba(243, 234, 109, 0.91);
   transform: rotateX(65deg) rotateZ(45deg);
   transform-style: preserve-3d;
   position: absolute;
   animation: rotate 7s linear infinite;
+}
+
+.eth.click .top,
+.eth.click .bottom {
+  animation: rotate 1s linear infinite;
 }
 
 .eth .top .left,
@@ -164,7 +173,7 @@ h6 {
 .eth .bottom .right {
   border-left: 5em solid transparent;
   border-right: 5em solid transparent;
-  border-bottom: 15em solid rgba(253, 216, 190, 0.5);
+  border-bottom: 15em solid rgba(252, 171, 171, 0.5);
   transform-origin: bottom;
 }
 
@@ -174,7 +183,7 @@ h6 {
 .eth .bottom .down {
   transform-origin: bottom right;
   border-top: 5em solid transparent;
-  border-right: 15em solid rgba(254, 188, 166, 0.4);
+  border-right: 15em solid rgba(209, 252, 171, 0.5);
   border-bottom: 5em solid transparent;
   border-left: none;
   top: 0em;
@@ -213,16 +222,16 @@ h6 {
 .eth .bottom {
   left: 0;
   top: 1.5em;
-  background: rgba(208, 161, 152, 0.79);
+  background: rgba(152, 192, 208, 0.79);
 }
 .eth .bottom .left,
 .eth .bottom .right {
-  border-bottom: 15em solid rgba(248, 185, 167, 0.91);
+  border-bottom: 15em solid rgba(167, 209, 248, 0.91);
 }
 
 .eth .bottom .up,
 .eth .bottom .down {
-  border-right: 15em solid rgba(248, 200, 167, 0.55);
+  border-right: 15em solid rgba(171, 252, 237, 0.5);
 }
 
 .eth .bottom .left {
