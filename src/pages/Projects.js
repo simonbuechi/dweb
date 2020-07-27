@@ -11,6 +11,8 @@ import Box from "@material-ui/core/Box";
 import Zoom from "@material-ui/core/Zoom";
 //icons
 import { ChevronDown } from "mdi-material-ui";
+// custom
+import Contact from "../structure/Contact";
 
 class Projects extends Component {
   render() {
@@ -20,30 +22,31 @@ class Projects extends Component {
         title: t("projects.pactaTitle"),
         description: t("projects.pactaDescription"),
         link: "https://pacta.app",
-        linkTitle: "Go to Pacta App",
+        linkTitle: t("projects.pactaLink"),
       },
       {
         title: t("projects.pactaVoteTitle"),
         description: t("projects.pactaVoteDescription"),
         link: "https://pacta.vote",
-        linkTitle: "Go to Pacta Vote App",
+        linkTitle: t("projects.pactaVoteLink"),
       },
       {
         title: t("projects.raisinpickerTitle"),
         description: t("projects.raisinpickerDescription"),
         link: "https://raisinpicker.github.io",
-        linkTitle: "Go to Raisin Picker project",
+        linkTitle: t("projects.raisinpickerLink"),
       },
       {
         title: t("projects.simonbuechiTitle"),
         description: t("projects.simonbuechiDescription"),
         link: "https://github.com/simonbuechi/dweb",
-        linkTitle: "Github project",
+        linkTitle: t("projects.simonbuechiLink"),
       },
     ];
 
     return (
-      <Grid item xs={12} lg={12}>
+      <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
+      <Grid item xs={12} md={8}>
         <Typography variant="h2" gutterBottom>
           {t("projects.title")}
         </Typography>
@@ -75,6 +78,10 @@ class Projects extends Component {
             </Box>
           </Zoom>
         ))}
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Contact />
+      </Grid>
       </Grid>
     );
   }

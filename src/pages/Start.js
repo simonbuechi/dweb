@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import List from "@material-ui/core/List";
+import Box from "@material-ui/core/Box";
 //icons
 import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter, Face } from "mdi-material-ui";
 //images
@@ -80,12 +81,15 @@ class Start extends Component {
           <Typography variant="h2" gutterBottom>
             {t("start.title")}
           </Typography>
+          <Box my={3}>
           <Typography variant="body2" gutterBottom>
             {t("start.paragraph1")}
           </Typography>
           <Typography variant="body2" gutterBottom>
             {t("start.paragraph2")}
           </Typography>
+          </Box>
+          <Box my={3}>
           <Typography gutterBottom>
             <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
               {t("start.dialogInfoButton")}
@@ -96,6 +100,7 @@ class Start extends Component {
               {t("start.image")}
             </Button>
           </Typography>
+          </Box>
         </Grid>
         <Grid item xs={12} md={4}>
           <Typography variant="h2" gutterBottom>

@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Hidden from "@material-ui/core/Hidden";
-import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 // navigation
 import Header from "./structure/Header";
 import Footer from "./structure/Footer";
@@ -48,6 +48,7 @@ class App extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const { value } = this.state;
 
     const handleChange = (event, value) => {
@@ -58,31 +59,20 @@ class App extends Component {
     return (
       <Container maxWidth="lg">
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
-          <Header />
-          
+          <Header value={value} handleChange={handleChange} />
           <Grid item xs={12} sm={3} lg={2}>
             <Hidden xsDown>
               <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example">
-                <Tab label="Start" value="/" />
-                <Tab label="About" value="/about" />
-                <Tab label="Services" value="/services" />
-                <Tab label="Projects" value="/projects" />
-                <Tab label="Blog" value="/blog" />
-                <Tab label="Wall" value="/wall" />
+                <Tab label={t("base.navStart")} value="/" />
+                <Tab label={t("base.navAbout")} value="/about" />
+                <Tab label={t("base.navOffering")} value="/services" />
+                <Tab label={t("base.navProjects")} value="/projects" />
+                <Tab label={t("base.navBlog")} value="/blog" />
+                <Tab label={t("base.navWall")} value="/wall" />
               </Tabs>
-              <Settings />
-            </Hidden>
-            <Hidden smUp>
-              <Paper>
-                <Tabs value={value} onChange={handleChange} scrollButtons="auto" indicatorColor="primary" textColor="primary" variant="scrollable">
-                  <Tab label="Start" value="/" />
-                  <Tab label="About" value="/about" />
-                  <Tab label="Services" value="/services" />
-                  <Tab label="Projects" value="/projects" />
-                  <Tab label="Blog" value="/blog" />
-                  <Tab label="Wall" value="/wall" />
-                </Tabs>
-              </Paper>
+              <Box textAlign="center" mr={4} mt={2}>
+                <Settings />
+              </Box>
             </Hidden>
           </Grid>
           <Grid item xs={12} sm={9} lg={10}>

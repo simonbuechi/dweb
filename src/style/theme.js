@@ -1,4 +1,3 @@
-import { lime } from "@material-ui/core/colors";
 import { blueGrey } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core/styles";
 //import logo from '../assets/logo.svg';
@@ -58,6 +57,7 @@ const theme = createMuiTheme({
     },
     MuiTypography: {
       h1: {
+        display: "inline",
         fontFamily: "Basetica",
         lineHeight: "1.5",
         fontSize: "3rem",
@@ -94,6 +94,9 @@ const theme = createMuiTheme({
         fontSize: "1rem",
         fontWeight: 300,
       },
+      body1: {
+        fontSize: "0.875rem",
+      }
     },
     MuiButton: {
       root: {
@@ -107,7 +110,7 @@ const theme = createMuiTheme({
     },
     MuiRating: {
       root: {
-        color: lime[600],
+        color: blueGrey[600],
       },
       iconEmpty: {
         color: blueGrey[100],

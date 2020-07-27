@@ -15,7 +15,6 @@ import Divider from "@material-ui/core/Divider";
 import Tooltip from "@material-ui/core/Tooltip";
 import Rating from "@material-ui/lab/Rating";
 import Zoom from "@material-ui/core/Zoom";
-import Button from "@material-ui/core/Button";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -31,9 +30,6 @@ import {
   SignatureFreehand,
   LanguageHtml5,
   Teach,
-  Whatsapp,
-  Email,
-  Key,
 } from "mdi-material-ui";
 //icons & images
 import drizzle from "../assets/techicons/drizzle.jpg";
@@ -44,6 +40,8 @@ import react from "../assets/techicons/react.jpg";
 import truffle from "../assets/techicons/truffle.jpg";
 import ipfs from "../assets/techicons/ipfs.jpg";
 import web3js from "../assets/techicons/webjs.jpg";
+// custom
+import Contact from "../structure/Contact";
 
 const ratingLabels = {
   1: "Basics",
@@ -89,7 +87,7 @@ class Offering extends Component {
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-        <Grid item xs={12} md={12} lg={8}>
+        <Grid item xs={12} md={8}>
           <Typography variant="h2" gutterBottom>
             {t("offering.title")}
           </Typography>
@@ -193,28 +191,8 @@ class Offering extends Component {
             </ExpansionPanel>
           </Box>
         </Grid>
-        <Grid item xs={12} lg={4}>
-          <Typography variant="h2" gutterBottom>
-            {t("offering.reachoutTitle")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("offering.reachoutDescription")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            <Button variant="contained" color="primary" href="mailto:simon.buechi@gmail.com" startIcon={<Email />}>
-              Email
-            </Button>
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            <Button variant="contained" color="primary" href="https://wa.me/41787401627" startIcon={<Whatsapp />}>
-              Whatsapp
-            </Button>
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            <Button variant="contained" color="primary" href="https://keybase.io/simonbuechi/chat" startIcon={<Key />}>
-              Keybase
-            </Button>
-          </Typography>
+        <Grid item xs={12} md={4}>
+          <Contact />
         </Grid>
       </Grid>
     );

@@ -27,41 +27,45 @@ class About extends Component {
     ];
 
     const myLinks = [
-      { primary: "My code", secondary: "on Github", link: "https://github.com/simonbuechi", icon: <Github /> },
-      { primary: "My books", secondary: "on Goodreads", link: "https://www.goodreads.com/user/show/32950234-simon-b-chi", icon: <BookOpenVariant /> },
-      { primary: "My movies", secondary: "on IMDB", link: "http://www.imdb.com/user/ur27356928/", icon: <Filmstrip /> },
-      { primary: "My games", secondary: "on IGDB", link: "https://www.igdb.com/users/simonbuechi", icon: <Gamepad /> },
+      { primary: t("about.linksCode"), secondary: t("about.linksCode2"), link: "https://github.com/simonbuechi", icon: <Github /> },
+      { primary: t("about.linksBooks"), secondary: t("about.linksBooks2"), link: "https://www.goodreads.com/user/show/32950234-simon-b-chi", icon: <BookOpenVariant /> },
+      { primary: t("about.linksMovies"), secondary: t("about.linksMovies2"), link: "http://www.imdb.com/user/ur27356928/", icon: <Filmstrip /> },
+      { primary: t("about.linksGames"), secondary: t("about.linksGames2"), link: "https://www.igdb.com/users/simonbuechi", icon: <Gamepad /> },
     ];
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} md={6}>
           <Typography variant="h2" gutterBottom>
             {t("about.title")}
           </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("about.body1")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("about.body2")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("about.body3")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("about.body4")}
-          </Typography>
+          <Box my={3}>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body1")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body2")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body3")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body4")}
+            </Typography>
+          </Box>
           <Typography variant="h2" gutterBottom>
             {t("about.aboutSiteTitle")} 
           </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("about.aboutSiteBody")} 
-          </Typography>
-          <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb">
-            {t("about.linkGithub")} 
-          </Button>
+          <Box my={3}>
+            <Typography variant="body2" gutterBottom>
+              {t("about.aboutSiteBody")} 
+            </Typography>
+            <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb">
+              {t("about.linkGithub")} 
+            </Button>
+          </Box>
         </Grid>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} md={6}>
           <Typography variant="h2" gutterBottom>
           {t("about.blockchainTitle")}
           </Typography>
