@@ -15,9 +15,10 @@ import Divider from "@material-ui/core/Divider";
 import Tooltip from "@material-ui/core/Tooltip";
 import Rating from "@material-ui/lab/Rating";
 import Zoom from "@material-ui/core/Zoom";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Hidden from "@material-ui/core/Hidden";
 //icons
 import {
   ChevronDown,
@@ -95,11 +96,11 @@ class Offering extends Component {
             {t("base.clickToSeeMore")}
           </Typography>
           <Box my={2}>
-            <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
-              <ExpansionPanelSummary expandIcon={<ChevronDown />}>
+            <Accordion TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
+              <AccordionSummary expandIcon={<ChevronDown />}>
                 <Typography>{t("offering.categoryManagement")}</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              </AccordionSummary>
+              <AccordionDetails>
                 <Box>
                   <List>
                     <Divider />
@@ -108,12 +109,17 @@ class Offering extends Component {
                         <div>
                           <ListItem>
                             <ListItemIcon>{item.img}</ListItemIcon>
-                            <ListItemText primary={item.text} />
-                            <Tooltip title={ratingLabels[item.rating]}>
-                              <ListItemSecondaryAction>
-                                <Rating name="read-only" value={item.rating} max={3} readOnly />
-                              </ListItemSecondaryAction>
-                            </Tooltip>
+                            <ListItemText 
+                              primary={item.text} 
+                              secondary={<Hidden smUp><Rating name="read-only" value={item.rating} max={3} readOnly /></Hidden>} 
+                            />
+                            <Hidden xsDown>
+                              <Tooltip title={ratingLabels[item.rating]}>
+                                <ListItemSecondaryAction>
+                                  <Rating name="read-only" value={item.rating} max={3} readOnly />
+                                </ListItemSecondaryAction>
+                              </Tooltip>
+                            </Hidden>
                           </ListItem>
                           <Divider />
                         </div>
@@ -121,15 +127,15 @@ class Offering extends Component {
                     ))}
                   </List>
                 </Box>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+              </AccordionDetails>
+            </Accordion>
           </Box>
           <Box my={2}>
-            <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
-              <ExpansionPanelSummary expandIcon={<ChevronDown />}>
+            <Accordion TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
+              <AccordionSummary expandIcon={<ChevronDown />}>
                 <Typography>{t("offering.categoryBlockchain")}</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              </AccordionSummary>
+              <AccordionDetails>
                 <Box>
                   <List>
                     <Divider />
@@ -138,12 +144,17 @@ class Offering extends Component {
                         <div>
                           <ListItem>
                             <ListItemIcon>{item.img}</ListItemIcon>
-                            <ListItemText primary={item.text} />
-                            <Tooltip title={ratingLabels[item.rating]}>
-                              <ListItemSecondaryAction>
-                                <Rating name="read-only" value={item.rating} max={3} readOnly />
-                              </ListItemSecondaryAction>
-                            </Tooltip>
+                            <ListItemText 
+                              primary={item.text} 
+                              secondary={<Hidden smUp><Rating name="read-only" value={item.rating} max={3} readOnly /></Hidden>} 
+                            />
+                            <Hidden xsDown>
+                              <Tooltip title={ratingLabels[item.rating]}>
+                                <ListItemSecondaryAction>
+                                  <Rating name="read-only" value={item.rating} max={3} readOnly />
+                                </ListItemSecondaryAction>
+                              </Tooltip>
+                            </Hidden>
                           </ListItem>
                           <Divider />
                         </div>
@@ -151,16 +162,16 @@ class Offering extends Component {
                     ))}
                   </List>
                 </Box>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+              </AccordionDetails>
+            </Accordion>
           </Box>
 
           <Box my={2}>
-            <ExpansionPanel TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
-              <ExpansionPanelSummary expandIcon={<ChevronDown />}>
+            <Accordion TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
+              <AccordionSummary expandIcon={<ChevronDown />}>
                 <Typography>{t("offering.categoryTechnologies")}</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              </AccordionSummary>
+              <AccordionDetails>
                 <Box>
                   <List>
                     <Divider />
@@ -174,12 +185,17 @@ class Offering extends Component {
                               </ListItemAvatar>
                             )}
                             {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                            <ListItemText primary={item.text} />
-                            <Tooltip title={ratingLabels[item.rating]}>
-                              <ListItemSecondaryAction>
-                                <Rating name="read-only" value={item.rating} max={3} readOnly />
-                              </ListItemSecondaryAction>
-                            </Tooltip>
+                            <ListItemText 
+                              primary={item.text} 
+                              secondary={<Hidden smUp><Rating name="read-only" value={item.rating} max={3} readOnly /></Hidden>} 
+                            />
+                            <Hidden xsDown>
+                              <Tooltip title={ratingLabels[item.rating]}>
+                                <ListItemSecondaryAction>
+                                  <Rating name="read-only" value={item.rating} max={3} readOnly />
+                                </ListItemSecondaryAction>
+                              </Tooltip>
+                            </Hidden>
                           </ListItem>
                           <Divider />
                         </div>
@@ -187,8 +203,8 @@ class Offering extends Component {
                     ))}
                   </List>
                 </Box>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+              </AccordionDetails>
+            </Accordion>
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>

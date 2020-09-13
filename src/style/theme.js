@@ -145,6 +145,20 @@ const theme = createMuiTheme({
         margin: 0,
       },
     },
+    MuiFab: {
+      root: {
+        position: 'fixed',
+        zIndex: 1000,
+        bottom: 16,
+        right: 16,
+      },
+      primary: {
+        backgroundColor: blueGrey[500],
+        '&:hover': {
+          backgroundColor: blueGrey[600],
+        },
+      },
+    },
   },
 });
 

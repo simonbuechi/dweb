@@ -14,7 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import List from "@material-ui/core/List";
 import Box from "@material-ui/core/Box";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter, Face } from "mdi-material-ui";
+import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter, Face, OpenInNew } from "mdi-material-ui";
 //images
 import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
@@ -69,10 +69,10 @@ class Start extends Component {
     ];
 
     const myJobs = [
-      { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital" },
-      { primary: "Pacta", secondary: "Founder", link: "https://pacta.app" },
-      { primary: "Pacta Vote", secondary: "Founder & Developer", link: "https://pacta.vote" },
-      { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com" },
+      { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <OpenInNew />  },
+      { primary: "Pacta", secondary: "Founder", link: "https://pacta.app", icon: <OpenInNew /> },
+      { primary: "Pacta Vote", secondary: "Founder & Developer", link: "https://pacta.vote", icon: <OpenInNew /> },
+      { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com", icon: <OpenInNew /> },
     ];
 
     return (
@@ -128,6 +128,7 @@ class Start extends Component {
               <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
                 <div>
                   <ListItem button component="a" href={item.link}>
+                    <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
                     <ListItemText primary={item.primary} secondary={item.secondary} />
                   </ListItem>
                 </div>

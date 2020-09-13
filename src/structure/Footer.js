@@ -10,6 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import Hidden from "@material-ui/core/Hidden";
 //icons
 import { InformationOutline } from "mdi-material-ui";
 //package.json
@@ -35,15 +36,33 @@ class Footer extends Component {
           &nbsp;
         </Grid>
         <Grid item xs={12} sm={9} lg={10}>
-          <Box my={6}>
-            <Typography variant="body2" gutterBottom>
-              <Tooltip title="Disclaimer">
-                <IconButton onClick={this.handledialogFooterOpen}>
-                  <InformationOutline />
-                </IconButton>
-              </Tooltip>
-              © Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}
-            </Typography>
+          <Box mt={10} mb={2}>
+            <Hidden smUp>
+              <Typography variant="caption" color="textSecondary" gutterBottom>
+                <Tooltip title="Disclaimer">
+                  <IconButton onClick={this.handledialogFooterOpen}>
+                    <InformationOutline color="primary" />
+                  </IconButton>
+                </Tooltip>
+                Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}
+              </Typography>
+            </Hidden>
+            <Hidden xsDown>
+              <Typography variant="caption" color="textSecondary" gutterBottom>
+                Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}
+              </Typography> <br />
+              <Typography variant="caption" color="textSecondary" gutterBottom>
+                {t("base.footerText1")}
+              </Typography> <br />
+              <Typography variant="caption" color="textSecondary" gutterBottom>
+                {t("base.footerText2")}
+              </Typography>
+              <Typography>
+                <Button variant="outlined" size="small" color="secondary" onClick={this.handledialogFooterOpen} startIcon={<InformationOutline />}>
+                  Legal info
+                </Button>
+              </Typography>
+            </Hidden>
           </Box>
         </Grid>
         <Dialog onClose={this.handledialogFooterClose} aria-labelledby="dialogFooter" open={dialogFooter}>
@@ -53,6 +72,9 @@ class Footer extends Component {
             </Typography>
             <Typography variant="body2" gutterBottom>
               {t("base.dialogFooterBody")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("base.dialogFooterBody2")}
             </Typography>
             <Typography variant="body2" gutterBottom>
               © Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}

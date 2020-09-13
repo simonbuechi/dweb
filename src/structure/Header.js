@@ -9,10 +9,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Dialog from "@material-ui/core/Dialog";
-import IconButton from "@material-ui/core/IconButton";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+//import Slide from "@material-ui/core/Slide";
 //icons
 import { Menu } from "mdi-material-ui";
 //custom
@@ -43,8 +44,8 @@ class Header extends Component {
       <React.Fragment>
         <Hidden xsDown>
           <Grid item xs={12} sm={3} lg={2}>
-          <Box mt={8} mr={2} textAlign="center">
-            <EthereumSpinner />
+            <Box mt={8} mr={2} textAlign="center">
+              <EthereumSpinner />
             </Box>
           </Grid>
           <Grid item xs={12} sm={9} lg={10}>
@@ -54,23 +55,37 @@ class Header extends Component {
           </Grid>
         </Hidden>
         <Hidden smUp>
-          <Grid item xs={10}>
+          <Fab color="primary" aria-label="menu" onClick={this.handleDialogMenuOpen}>
+            <Menu />
+          </Fab>
+          <Grid item xs={12}>
             <Box my={1}>
               <Typography variant="h1">{t("base.title")}</Typography>
             </Box>
           </Grid>
-          <Grid item xs={2}>
-            <Box mt={2}>
-            <IconButton onClick={this.handleDialogMenuOpen}>
-              <Menu />
-            </IconButton>
-            </Box>
-          </Grid>
-          <Dialog onClose={this.handleDialogMenuClose} aria-labelledby="dialogInfo" open={dialogMenu}>
+          <div>
+          <Dialog 
+            fullScreen 
+            onClose={this.handleDialogMenuClose} 
+            aria-labelledby="menu" 
+            open={dialogMenu} 
+            keepMounted
+          >
             <DialogContent>
-              <Typography variant="h2" gutterBottom>
-                {t("base.menu")}
-              </Typography>
+             <Grid container>
+              <Grid item xs={4}>
+                <Box my={4}>
+                  <EthereumSpinner />
+                </Box>
+              </Grid>
+              <Grid item xs={8}>
+                <Box my={4}>
+                  <Typography variant="h2" gutterBottom>
+                    {t("base.menu")}
+                  </Typography>
+                </Box>
+              </Grid>
+              </Grid>
               <List>
                 <ListItem button onClick={() => setPath("/")}>
                   <ListItemText primary={t("base.navStart")} />
@@ -96,11 +111,12 @@ class Header extends Component {
               </List>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleDialogMenuClose} color="secondary" autoFocus>
+              <Button onClick={this.handleDialogMenuClose} color="secondary">
                 {t("base.close")}
               </Button>
             </DialogActions>
           </Dialog>
+          </div>
         </Hidden>
         
       </React.Fragment>

@@ -3,9 +3,9 @@ import { withTranslation } from "react-i18next";
 //material-ui
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Zoom from "@material-ui/core/Zoom";
@@ -56,11 +56,11 @@ class Projects extends Component {
         {projects.map((item, index) => (
           <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.title}>
             <Box my={2}>
-              <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ChevronDown />}>
+              <Accordion>
+                <AccordionSummary expandIcon={<ChevronDown />}>
                   <Typography>{item.title}</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
+                </AccordionSummary>
+                <AccordionDetails>
                   <Box>
                     <Typography variant="body2" gutterBottom>
                       {item.description}
@@ -73,8 +73,8 @@ class Projects extends Component {
                       </Typography>
                     )}
                   </Box>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
+                </AccordionDetails>
+              </Accordion>
             </Box>
           </Zoom>
         ))}
