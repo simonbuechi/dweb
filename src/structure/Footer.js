@@ -57,11 +57,11 @@ class Footer extends Component {
               <Typography variant="caption" color="textSecondary" gutterBottom>
                 {t("base.footerText2")}
               </Typography>
-              <Typography>
+              <Box my={1}>
                 <Button variant="outlined" size="small" color="secondary" onClick={this.handledialogFooterOpen} startIcon={<InformationOutline />}>
-                  Legal info
+                  Legal notice
                 </Button>
-              </Typography>
+              </Box>
             </Hidden>
           </Box>
         </Grid>

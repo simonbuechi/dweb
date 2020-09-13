@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { withTranslation } from "react-i18next";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -10,18 +10,18 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Hidden from "@material-ui/core/Hidden";
 import Box from "@material-ui/core/Box";
-// navigation
+import CircularProgress from "@material-ui/core/CircularProgress";
+// navigation / app shell
 import Header from "./structure/Header";
 import Footer from "./structure/Footer";
 import Settings from "./structure/Settings";
-// tabs
-import Start from "./pages/Start";
-import About from "./pages/About";
-import Offering from "./pages/Offering";
-import Projects from "./pages/Projects";
-import Wall from "./pages/Wall";
-// import SendMessage from "./pages/SendMessage";
-import Blog from "./pages/Blog";
+// pages (lazy loaded)
+const Start = lazy(() => import("./pages/Start"));
+const About = lazy(() => import( "./pages/About"));
+const Offering = lazy(() => import( "./pages/Offering"));
+const Projects = lazy(() => import( "./pages/Projects"));
+const Wall = lazy(() => import( "./pages/Wall"));
+const Blog = lazy(() => import( "./pages/Blog"));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,6 +60,7 @@ class App extends Component {
       <Container maxWidth="lg">
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
           <Header value={value} handleChange={handleChange} />
+          <Suspense fallback={<CircularProgress color="primary" />}>
           <Grid item xs={12} sm={3} lg={2}>
             <Hidden xsDown>
               <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example">
@@ -95,6 +96,7 @@ class App extends Component {
               <Wall />
             </TabPanel>
           </Grid>
+          </Suspense>
           <Footer />
         </Grid>
       </Container>
