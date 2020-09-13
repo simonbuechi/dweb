@@ -1,6 +1,13 @@
 @font-face {
   font-family: Basetica;
   src: url("Basetica-Med.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("RobotoSlab-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 
 body {
