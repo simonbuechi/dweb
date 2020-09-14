@@ -22,6 +22,7 @@ const Offering = lazy(() => import( "./pages/Offering"));
 const Projects = lazy(() => import( "./pages/Projects"));
 const Wall = lazy(() => import( "./pages/Wall"));
 const Blog = lazy(() => import( "./pages/Blog"));
+const Queries = lazy(() => import( "./pages/Queries"));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,7 +61,6 @@ class App extends Component {
       <Container maxWidth="lg">
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
           <Header value={value} handleChange={handleChange} />
-          <Suspense fallback={<CircularProgress color="primary" />}>
           <Grid item xs={12} sm={3} lg={2}>
             <Hidden xsDown>
               <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example">
@@ -77,26 +77,30 @@ class App extends Component {
             </Hidden>
           </Grid>
           <Grid item xs={12} sm={9} lg={10}>
-            <TabPanel value={value} index="/">
-              <Start />
-            </TabPanel>
-            <TabPanel value={value} index="/about">
-              <About />
-            </TabPanel>
-            <TabPanel value={value} index="/services">
-              <Offering />
-            </TabPanel>
-            <TabPanel value={value} index="/blog">
-              <Blog />
-            </TabPanel>
-            <TabPanel value={value} index="/projects">
-              <Projects />
-            </TabPanel>
-            <TabPanel value={value} index="/wall">
-              <Wall />
-            </TabPanel>
+            <Suspense fallback={<CircularProgress color="primary" />}>
+              <TabPanel value={value} index="/">
+                <Start />
+              </TabPanel>
+              <TabPanel value={value} index="/about">
+                <About />
+              </TabPanel>
+              <TabPanel value={value} index="/services">
+                <Offering />
+              </TabPanel>
+              <TabPanel value={value} index="/blog">
+                <Blog />
+              </TabPanel>
+              <TabPanel value={value} index="/projects">
+                <Projects />
+              </TabPanel>
+              <TabPanel value={value} index="/wall">
+                <Wall />
+              </TabPanel>
+              <TabPanel value={value} index="/queries">
+                <Queries />
+              </TabPanel>
+            </Suspense>
           </Grid>
-          </Suspense>
           <Footer />
         </Grid>
       </Container>

@@ -118,15 +118,15 @@ class Blog extends Component {
         <Typography variant="body2" gutterBottom>
           {t("blog.description")}
         </Typography>
-        <Button variant="contained" color="secondary" href="/" startIcon={<OpenInNew />} disabled>
+        <Button variant="outlined" color="secondary" href="/" startIcon={<OpenInNew />} disabled>
           {t("blog.linkMain")}
         </Button>
         &nbsp;
-        <Button variant="contained" color="secondary" href="https://medium.com/@simonbuechi" startIcon={<OpenInNew />}>
+        <Button variant="outlined" color="secondary" href="https://medium.com/@simonbuechi" startIcon={<OpenInNew />}>
           {t("blog.linkMedium")}
         </Button>
         &nbsp;
-        <Button variant="contained" color="primary" onClick={this.handleDialogOpen} startIcon={<InformationOutline />}>
+        <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<InformationOutline />}>
           {t("blog.dialogButton")}
         </Button>
         {!ready ? (

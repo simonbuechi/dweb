@@ -101,7 +101,7 @@ class Offering extends Component {
                 <Typography>{t("offering.categoryManagement")}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Box>
+                <Box width="100%">
                   <List>
                     <Divider />
                     {skillsConsulting.map((item, index) => (
@@ -136,7 +136,7 @@ class Offering extends Component {
                 <Typography>{t("offering.categoryBlockchain")}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Box>
+                <Box width="100%">
                   <List>
                     <Divider />
                     {skillsBlockchains.map((item, index) => (
@@ -172,7 +172,7 @@ class Offering extends Component {
                 <Typography>{t("offering.categoryTechnologies")}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Box>
+                <Box width="100%">
                   <List>
                     <Divider />
                     {skillsCoding.map((item, index) => (

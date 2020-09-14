@@ -1,0 +1,41 @@
+import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
+//material-ui
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
+
+class Queries extends Component {
+
+  render() {
+    const { t } = this.props;
+    
+    return (
+      <>
+        <Typography variant="h2" gutterBottom>
+          {t("queries.title")}
+        </Typography>    
+        <Box my={2}>
+            <TextField 
+              name="name" 
+              label={t("sendMessage.nameLabel")}
+              fullWidth 
+              margin="normal"
+              variant="outlined"
+            />
+            <Button 
+              variant="contained" 
+              color="primary"
+              type="submit"
+              value="Send"
+            >
+            {t("sendMessage.buttonSend")}
+            </Button>
+        </Box>
+      </>
+    );
+  }
+}
+
+export default withTranslation()(Queries);

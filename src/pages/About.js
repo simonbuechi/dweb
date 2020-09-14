@@ -10,16 +10,33 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Zoom from "@material-ui/core/Zoom";
 import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
 //icons
-import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum, Github } from "mdi-material-ui";
+import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum, Github, Face, OpenInNew, CreativeCommons } from "mdi-material-ui";
 //custom
 import CopyButton from "../structure/CopyButton";
 import QrCode from "../structure/QrCode";
 import config from "../config.json";
+//images
+import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
 class About extends Component {
+  state = {
+    dialogPortrait: false
+  }
+
+  handleDialogPortraitOpen = () => {
+    this.setState({ dialogPortrait: true });
+  };
+  handleDialogPortraitClose = () => {
+    this.setState({ dialogPortrait: false });
+  };
+
   render() {
     const { t } = this.props;
+    const { dialogPortrait } = this.state;
 
     const myCryptos = [
       { primary: "Ethereum", secondary: config.ethereumAddress, link: 2, icon: <Ethereum /> },
@@ -52,6 +69,11 @@ class About extends Component {
             <Typography variant="body2" gutterBottom>
               {t("about.body4")}
             </Typography>
+            <Typography gutterBottom>
+              <Button variant="outlined" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
+                {t("start.image")}
+              </Button>
+            </Typography>
           </Box>
           <Typography variant="h2" gutterBottom>
             {t("about.aboutSiteTitle")} 
@@ -60,7 +82,7 @@ class About extends Component {
             <Typography variant="body2" gutterBottom>
               {t("about.aboutSiteBody")} 
             </Typography>
-            <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb">
+            <Button variant="outlined" color="primary" href="https://github.com/simonbuechi/dweb" startIcon={<OpenInNew />}>
               {t("about.linkGithub")} 
             </Button>
           </Box>
@@ -107,6 +129,20 @@ class About extends Component {
               ))}
             </List>
           </Box>
+          <Dialog onClose={this.handleDialogPortraitClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
+            <DialogContent>
+              <img src={portraitBig} alt="simon buechi portrait" className="dialog" />
+            </DialogContent>
+            <DialogActions>
+              <Button rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" color="secondary" startIcon={<CreativeCommons />}>
+                {t("base.creativecommons")}
+              </Button>
+              &nbsp;
+              <Button onClick={this.handleDialogPortraitClose} color="secondary" autoFocus>
+                {t("base.close")}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Grid>
       </Grid>
     );

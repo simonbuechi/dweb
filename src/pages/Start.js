@@ -14,22 +14,13 @@ import DialogActions from "@material-ui/core/DialogActions";
 import List from "@material-ui/core/List";
 import Box from "@material-ui/core/Box";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information, CreativeCommons, Twitter, Face, OpenInNew } from "mdi-material-ui";
-//images
-import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
+import { Facebook, Linkedin, Email, Numeric3Box, Information, Twitter, OpenInNew } from "mdi-material-ui";
 
 class Start extends Component {
   state = {
-    dialogPortrait: false,
-    dialogInfo: false,
+    dialogInfo: false
   };
 
-  handleDialogPortraitOpen = () => {
-    this.setState({ dialogPortrait: true });
-  };
-  handleDialogPortraitClose = () => {
-    this.setState({ dialogPortrait: false });
-  };
   handleDialogInfoOpen = () => {
     this.setState({ dialogInfo: true });
   };
@@ -39,7 +30,7 @@ class Start extends Component {
 
   render() {
     const { t } = this.props;
-    const { dialogPortrait, dialogInfo } = this.state;
+    const { dialogInfo } = this.state;
 
     const questions = [
       {
@@ -88,16 +79,9 @@ class Start extends Component {
           <Typography variant="body2" gutterBottom>
             {t("start.paragraph2")}
           </Typography>
-          </Box>
-          <Box my={3}>
           <Typography gutterBottom>
             <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
               {t("start.dialogInfoButton")}
-            </Button>
-          </Typography>
-          <Typography gutterBottom>
-            <Button variant="outlined" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
-              {t("start.image")}
             </Button>
           </Typography>
           </Box>
@@ -108,7 +92,7 @@ class Start extends Component {
           </Typography>
           <List dense>
             {myContacts.map((item, index) => (
-              <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
+              <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={item.primary}>
                 <div>
                   <ListItem button component="a" href={item.link}>
                     <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
@@ -135,20 +119,6 @@ class Start extends Component {
               </Zoom>
             ))}
           </List>
-          <Dialog onClose={this.handleDialogPortraitClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
-            <DialogContent>
-              <img src={portraitBig} alt="simon buechi portrait" className="dialog" />
-            </DialogContent>
-            <DialogActions>
-              <Button rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" color="secondary" startIcon={<CreativeCommons />}>
-                {t("base.creativecommons")}
-              </Button>
-              &nbsp;
-              <Button onClick={this.handleDialogPortraitClose} color="secondary" autoFocus>
-                {t("base.close")}
-              </Button>
-            </DialogActions>
-          </Dialog>
           <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo}>
             <DialogContent>
               <Typography variant="h2" gutterBottom>
