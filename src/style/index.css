@@ -16,7 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background: url(../assets/bg.jpg) no-repeat center center fixed;
+  background: url(../assets/bg2.jpg) no-repeat right top fixed;
   background-size: cover;
 
   /* simple diamond pattern
