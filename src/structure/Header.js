@@ -49,7 +49,7 @@ class Header extends Component {
             </Box>
           </Grid>
           <Grid item xs={12} sm={9} lg={10}>
-            <Box mt={4} mb={6}>
+            <Box mt={4} mb={8}>
               <Typography variant="h1">{t("base.title")}</Typography>
             </Box>
           </Grid>

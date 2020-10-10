@@ -14,7 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import List from "@material-ui/core/List";
 import Box from "@material-ui/core/Box";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information, Twitter, OpenInNew } from "mdi-material-ui";
+import { Facebook, Linkedin, Email, Numeric3Box, Information, Twitter, OpenInNew, Chat, Whatsapp } from "mdi-material-ui";
 
 class Start extends Component {
   state = {
@@ -56,7 +56,9 @@ class Start extends Component {
       { primary: "Facebook", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Facebook /> },
       { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Twitter /> },
       { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
+      { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> },
       { primary: "Email", secondary: "", link: "mailto:simon.buechi@gmail.com", icon: <Email /> },
+      { primary: "Keybase", secondary: "", link: "https://keybase.io/simonbuechi", icon: <Chat /> }
     ];
 
     const myJobs = [
@@ -68,7 +70,7 @@ class Start extends Component {
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <Typography variant="h2" gutterBottom>
             {t("start.title")}
           </Typography>
@@ -85,8 +87,25 @@ class Start extends Component {
             </Button>
           </Typography>
           </Box>
+          <Typography variant="body2" gutterBottom>
+            {t("start.engagementsTitle")}
+          </Typography>
+          <List dense>
+            {myJobs.map((item, index) => (
+              <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
+                <div>
+                  <ListItem button component="a" href={item.link}>
+                    <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.primary} secondary={item.secondary} />
+                  </ListItem>
+                </div>
+              </Zoom>
+            ))}
+          </List>
+
+
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <Typography variant="h2" gutterBottom>
             {t("start.connectTitle")}
           </Typography>
@@ -103,45 +122,28 @@ class Start extends Component {
             ))}
           </List>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2" gutterBottom>
-            {t("start.engagementsTitle")}
-          </Typography>
-          <List dense>
-            {myJobs.map((item, index) => (
-              <Zoom in style={{ transitionDelay: 450 + index * 100 + "ms" }} key={item.primary}>
-                <div>
-                  <ListItem button component="a" href={item.link}>
-                    <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.primary} secondary={item.secondary} />
-                  </ListItem>
-                </div>
-              </Zoom>
-            ))}
-          </List>
-          <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo}>
-            <DialogContent>
-              <Typography variant="h2" gutterBottom>
-                {t("start.dialogInfoTitle")}
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                {t("start.dialogInfoBody")}
-              </Typography>
-              <List>
-                {questions.map((item, index) => (
-                  <ListItem key={index}>
-                    <ListItemText primary={item.question} secondary={item.answer} />
-                  </ListItem>
-                ))}
-              </List>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>
-                {t("base.close")}
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Grid>
+        <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo}>
+          <DialogContent>
+            <Typography variant="h2" gutterBottom>
+              {t("start.dialogInfoTitle")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("start.dialogInfoBody")}
+            </Typography>
+            <List>
+              {questions.map((item, index) => (
+                <ListItem key={index}>
+                  <ListItemText primary={item.question} secondary={item.answer} />
+                </ListItem>
+              ))}
+            </List>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>
+              {t("base.close")}
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Grid>
     );
   }

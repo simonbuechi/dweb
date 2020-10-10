@@ -28,7 +28,10 @@ class CopyButton extends Component {
     return (
       <Tooltip title={t("base.copyClipboard")} aria-label={t("base.copyClipboard")}>
         <CopyToClipboard text={text} onCopy={this.handleCopyClick}>
-          <IconButton aria-label="Copy">{this.state.success ? <CheckboxMarkedCircle /> : <ContentCopy />}</IconButton>
+          <IconButton color="primary" aria-label="Copy">{this.state.success ? 
+            <CheckboxMarkedCircle fontSize="small" /> : 
+            <ContentCopy fontSize="small"  />}
+          </IconButton>
         </CopyToClipboard>
       </Tooltip>
     );

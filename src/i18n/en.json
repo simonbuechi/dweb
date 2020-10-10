@@ -22,7 +22,8 @@
     "dialogFooterBody2": "This site uses no cookies, no analytics, no 3rd-party javascript. Because p rivacy matters.",
     "footerText1": "This site uses no cookies, no analytics, no 3rd-party javascript.",
     "footerText2": "Because privacy matters.",
-    "menu": "Menu"
+    "menu": "Menu",
+    "experimental": "This is a experimental feature."
   },
   "start": {
     "title": "Welcome",

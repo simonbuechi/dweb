@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import {
   Whatsapp,
   Email,
-  Key,
+  Linkedin
 } from "mdi-material-ui";
 
 class Contact extends Component {
@@ -24,8 +24,8 @@ class Contact extends Component {
           </Typography>
           <Typography variant="body2" gutterBottom>
             <Button variant="outlined" color="primary" href="mailto:simon.buechi@gmail.com" startIcon={<Email />}>
-              Email
-            </Button>
+              Email 
+            </Button> 
           </Typography>
           <Typography variant="body2" gutterBottom>
             <Button variant="outlined" color="primary" href="https://wa.me/41787401627" startIcon={<Whatsapp />}>
@@ -33,8 +33,8 @@ class Contact extends Component {
             </Button>
           </Typography>
           <Typography variant="body2" gutterBottom>
-            <Button variant="outlined" color="primary" href="https://keybase.io/simonbuechi/chat" startIcon={<Key />}>
-              Keybase
+            <Button variant="outlined" color="primary" href="https://www.linkedin.com/in/simonbuechi" startIcon={<Linkedin />}>
+              LinkedIn
             </Button>
           </Typography>
           </React.Fragment>
