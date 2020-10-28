@@ -17,6 +17,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+import Alert from "@material-ui/lab/Alert";
 //icons
 import { Account, Web, Twitter, Numeric3Box, Github, Email, OpenInNew, Information } from "mdi-material-ui";
 // custom
@@ -74,6 +75,9 @@ class Wall extends Component {
         <Typography variant="h2" gutterBottom>
           {t("wall.title")}
         </Typography>
+        <Box my={2}>
+          <Alert variant="filled" severity="warning">{t("base.experimental")}</Alert>
+        </Box>
         <Typography variant="body2" gutterBottom>
           {t("wall.description")} ( {t("wall.buttonWriteWallNote")} )
         </Typography>

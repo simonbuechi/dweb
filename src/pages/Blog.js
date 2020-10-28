@@ -22,6 +22,7 @@ import Collapse from "@material-ui/core/Collapse";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
+import Alert from "@material-ui/lab/Alert";
 //icons
 import { OpenInNew, InformationOutline, Message, Share, ChevronDown, Account } from "mdi-material-ui";
 //custom
@@ -115,6 +116,9 @@ class Blog extends Component {
         <Typography variant="h2" gutterBottom>
           {t("blog.title")}
         </Typography>
+        <Box my={2}>
+          <Alert variant="filled" severity="warning">{t("base.experimental")}</Alert>
+        </Box>
         <Typography variant="body2" gutterBottom>
           {t("blog.description")}
         </Typography>
