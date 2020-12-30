@@ -46,42 +46,42 @@ class Projects extends Component {
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-      <Grid item xs={12} md={8}>
-        <Typography variant="h2" gutterBottom>
-          {t("projects.title")}
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          {t("projects.paragraph1")}
-        </Typography>
-        {projects.map((item, index) => (
-          <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.title}>
-            <Box my={2}>
-              <Accordion>
-                <AccordionSummary expandIcon={<ChevronDown />}>
-                  <Typography>{item.title}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Box>
-                    <Typography variant="body2" gutterBottom>
-                      {item.description}
-                    </Typography>
-                    {item.link && (
+        <Grid item xs={12} md={8}>
+          <Typography variant="h2" gutterBottom>
+            {t("projects.title")}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {t("projects.paragraph1")}
+          </Typography>
+          {projects.map((item, index) => (
+            <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.title}>
+              <Box my={2}>
+                <Accordion>
+                  <AccordionSummary expandIcon={<ChevronDown />}>
+                    <Typography variant="h3">{item.title}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box>
                       <Typography variant="body2" gutterBottom>
-                        <Button variant="contained" color="primary" href={item.link}>
-                          {item.linkTitle}
-                        </Button>
+                        {item.description}
                       </Typography>
-                    )}
-                  </Box>
-                </AccordionDetails>
-              </Accordion>
-            </Box>
-          </Zoom>
-        ))}
-      </Grid>
-      <Grid item xs={12} md={4}>
-        <Contact />
-      </Grid>
+                      {item.link && (
+                        <Typography variant="body2" gutterBottom>
+                          <Button variant="contained" color="primary" href={item.link}>
+                            {item.linkTitle}
+                          </Button>
+                        </Typography>
+                      )}
+                    </Box>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+            </Zoom>
+          ))}
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Contact />
+        </Grid>
       </Grid>
     );
   }

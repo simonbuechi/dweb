@@ -18,7 +18,7 @@ import { Facebook, Linkedin, Email, Numeric3Box, Information, Twitter, OpenInNew
 
 class Start extends Component {
   state = {
-    dialogInfo: false
+    dialogInfo: false,
   };
 
   handleDialogInfoOpen = () => {
@@ -58,11 +58,11 @@ class Start extends Component {
       { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
       { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> },
       { primary: "Email", secondary: "", link: "mailto:simon.buechi@gmail.com", icon: <Email /> },
-      { primary: "Keybase", secondary: "", link: "https://keybase.io/simonbuechi", icon: <Chat /> }
+      { primary: "Keybase", secondary: "", link: "https://keybase.io/simonbuechi", icon: <Chat /> },
     ];
 
     const myJobs = [
-      { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <OpenInNew />  },
+      { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <OpenInNew /> },
       { primary: "Pacta", secondary: "Founder", link: "https://pacta.app", icon: <OpenInNew /> },
       { primary: "Pacta Vote", secondary: "Founder & Developer", link: "https://pacta.vote", icon: <OpenInNew /> },
       { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com", icon: <OpenInNew /> },
@@ -70,24 +70,29 @@ class Start extends Component {
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={12}>
           <Typography variant="h2" gutterBottom>
             {t("start.title")}
           </Typography>
-          <Box my={3}>
-          <Typography variant="body2" gutterBottom>
-            {t("start.paragraph1")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("start.paragraph2")}
-          </Typography>
-          <Typography gutterBottom>
-            <Button variant="outlined" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
-              {t("start.dialogInfoButton")}
-            </Button>
-          </Typography>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box mb={3}>
+            <Typography variant="h3" gutterBottom>
+              {t("start.aboutTitle")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("start.paragraph1")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("start.paragraph2")}
+            </Typography>
+            <Typography gutterBottom>
+              <Button variant="contained" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
+                {t("start.dialogInfoButton")}
+              </Button>
+            </Typography>
           </Box>
-          <Typography variant="body2" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             {t("start.engagementsTitle")}
           </Typography>
           <List dense>
@@ -102,11 +107,9 @@ class Start extends Component {
               </Zoom>
             ))}
           </List>
-
-
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             {t("start.connectTitle")}
           </Typography>
           <List dense>
@@ -139,7 +142,7 @@ class Start extends Component {
             </List>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleDialogInfoClose} color="secondary" autoFocus>
+            <Button color="primary" variant="contained" onClick={this.handleDialogInfoClose} autoFocus>
               {t("base.close")}
             </Button>
           </DialogActions>

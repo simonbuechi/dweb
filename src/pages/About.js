@@ -24,8 +24,8 @@ import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
 class About extends Component {
   state = {
-    dialogPortrait: false
-  }
+    dialogPortrait: false,
+  };
 
   handleDialogPortraitOpen = () => {
     this.setState({ dialogPortrait: true });
@@ -45,18 +45,28 @@ class About extends Component {
 
     const myLinks = [
       { primary: t("about.linksCode"), secondary: t("about.linksCode2"), link: "https://github.com/simonbuechi", icon: <Github /> },
-      { primary: t("about.linksBooks"), secondary: t("about.linksBooks2"), link: "https://www.goodreads.com/user/show/32950234-simon-b-chi", icon: <BookOpenVariant /> },
+      {
+        primary: t("about.linksBooks"),
+        secondary: t("about.linksBooks2"),
+        link: "https://www.goodreads.com/user/show/32950234-simon-b-chi",
+        icon: <BookOpenVariant />,
+      },
       { primary: t("about.linksMovies"), secondary: t("about.linksMovies2"), link: "http://www.imdb.com/user/ur27356928/", icon: <Filmstrip /> },
       { primary: t("about.linksGames"), secondary: t("about.linksGames2"), link: "https://www.igdb.com/users/simonbuechi", icon: <Gamepad /> },
     ];
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={12}>
           <Typography variant="h2" gutterBottom>
             {t("about.title")}
           </Typography>
-          <Box my={3}>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box mb={3}>
+            <Typography variant="h3" gutterBottom>
+              {t("about.personTitle")}
+            </Typography>
             <Typography variant="body2" gutterBottom>
               {t("about.body1")}
             </Typography>
@@ -70,26 +80,24 @@ class About extends Component {
               {t("about.body4")}
             </Typography>
             <Typography gutterBottom>
-              <Button variant="outlined" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
+              <Button variant="contained" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
                 {t("start.image")}
               </Button>
             </Typography>
           </Box>
-          <Typography variant="h2" gutterBottom>
-            {t("about.aboutSiteTitle")} 
+          <Typography variant="h3" gutterBottom>
+            {t("about.aboutSiteTitle")}
           </Typography>
-          <Box my={3}>
-            <Typography variant="body2" gutterBottom>
-              {t("about.aboutSiteBody")} 
-            </Typography>
-            <Button variant="outlined" color="primary" href="https://github.com/simonbuechi/dweb" startIcon={<OpenInNew />}>
-              {t("about.linkGithub")} 
-            </Button>
-          </Box>
+          <Typography variant="body2" gutterBottom>
+            {t("about.aboutSiteBody")}
+          </Typography>
+          <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb" startIcon={<OpenInNew />}>
+            {t("about.linkGithub")}
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h2" gutterBottom>
-          {t("about.blockchainTitle")}
+          <Typography variant="h3" gutterBottom>
+            {t("about.blockchainTitle")}
           </Typography>
           <List dense>
             {myCryptos.map((item, index) => (
@@ -112,7 +120,7 @@ class About extends Component {
               </Zoom>
             ))}
           </List>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             {t("about.linksTitle")}
           </Typography>
           <Box>

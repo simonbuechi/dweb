@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Hidden from "@material-ui/core/Hidden";
+import Divider from "@material-ui/core/Divider";
 //icons
 import { InformationOutline } from "mdi-material-ui";
 //package.json
@@ -38,6 +39,7 @@ class Footer extends Component {
         <Grid item xs={12} sm={9} lg={10}>
           <Box mt={10} mb={2}>
             <Hidden smUp>
+              <Divider />
               <Typography variant="caption" color="textSecondary" gutterBottom>
                 <Tooltip title="Disclaimer">
                   <IconButton onClick={this.handledialogFooterOpen}>
@@ -48,20 +50,14 @@ class Footer extends Component {
               </Typography>
             </Hidden>
             <Hidden xsDown>
+              <Divider />
               <Typography variant="caption" color="textSecondary" gutterBottom>
+                <IconButton onClick={this.handledialogFooterOpen}>
+                  <InformationOutline color="primary" />
+                </IconButton>
                 Copyright {new Date().getFullYear()} Simon Buechi | v{pkg.version}
-              </Typography> <br />
-              <Typography variant="caption" color="textSecondary" gutterBottom>
-                {t("base.footerText1")}
-              </Typography> <br />
-              <Typography variant="caption" color="textSecondary" gutterBottom>
-                {t("base.footerText2")}
-              </Typography>
-              <Box my={1}>
-                <Button variant="outlined" size="small" color="secondary" onClick={this.handledialogFooterOpen} startIcon={<InformationOutline />}>
-                  Legal notice
-                </Button>
-              </Box>
+              </Typography>{" "}
+              <Box my={1}></Box>
             </Hidden>
           </Box>
         </Grid>
@@ -81,7 +77,7 @@ class Footer extends Component {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handledialogFooterClose} color="secondary" autoFocus>
+            <Button onClick={this.handledialogFooterClose} color="primary" variant="contained" autoFocus>
               {t("base.close")}
             </Button>
           </DialogActions>

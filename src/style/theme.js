@@ -1,5 +1,6 @@
-import { blueGrey } from "@material-ui/core/colors";
+import { blueGrey, brown } from "@material-ui/core/colors";
 import { createMuiTheme } from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
 //import logo from '../assets/logo.svg';
 
 // A custom theme for this app
@@ -12,7 +13,7 @@ const theme = createMuiTheme({
     },
     background: {
       paper: "#fff",
-      default: blueGrey[50],
+      default: "transparent",
     },
     error: {
       light: "#e57373",
@@ -21,99 +22,97 @@ const theme = createMuiTheme({
       contrastText: "rgba(185, 149, 149, 1)",
     },
     text: {
-      primary: "rgba(0, 0, 0, 0.87)",
-      secondary: "rgba(0, 0, 0, 0.54)",
-      disabled: "rgba(0, 0, 0, 0.38)",
-      hint: "rgba(0, 0, 0, 0.38)",
+      primary: "rgba(0, 0, 0, 1)",
+      secondary: "rgba(0, 0, 0, 0.64)",
+      disabled: "rgba(0, 0, 0, 0.5)",
+      hint: "rgba(0, 0, 0, 0.6)",
     },
     primary: {
-      light: blueGrey[400],
-      main: blueGrey[600],
-      dark: blueGrey[800],
+      light: brown[400],
+      main: brown[700],
+      dark: brown[900],
       contrastText: "#fff",
     },
     secondary: {
       light: blueGrey[400],
       main: blueGrey[600],
-      dark: blueGrey[800],
+      dark: blueGrey[900],
       contrastText: "#fff",
     },
   },
   typography: {
-    fontFamily: ["Roboto Slab", "serif"].join(","),
+    fontFamily: ["Source Serif Pro", "serif"].join(","),
+    fontWeight: 400,
   },
   overrides: {
     MuiTabs: {
       vertical: {
-        borderRight: `1px solid ${blueGrey[300]}`,
+        borderRight: 0,
         marginRight: 32,
       },
     },
     MuiTab: {
       root: {
         textTransform: "none",
-        fontFamily: "Basetica",
+        fontFamily: "Source Serif Pro",
+        fontWeight: 400,
       },
     },
     MuiTypography: {
       h1: {
-        display: "inline",
-        fontFamily: "Basetica",
-        lineHeight: "1.5",
-        fontSize: "3rem",
-        backgroundImage:
-          "gradient( linear, left top, right top, color-stop(0, " +
-          blueGrey[900] +
-          "), color-stop(0.3, " +
-          blueGrey[700] +
-          "), color-stop(0.7, " +
-          blueGrey[500] +
-          ") )",
-        color: "transparent",
-        "-webkitBackgroundClip": "text",
-        backgroundClip: "text",
+        display: "inline-block",
+        fontFamily: "Playfair Display",
+        fontStyle: "italic",
+        lineHeight: "2.5",
+        fontSize: "1rem",
+        color: brown[900],
+        fontWeight: 500,
       },
       h2: {
-        fontFamily: "Basetica",
-        fontSize: "1.8rem",
+        display: "inline-block",
+        fontFamily: "Playfair Display",
+        fontStyle: "italic",
+        fontSize: "2rem",
         lineHeight: "1.5",
-        backgroundImage:
-          "gradient( linear, left top, right top, color-stop(0, " +
-          blueGrey[900] +
-          "), color-stop(0.3, " +
-          blueGrey[700] +
-          "), color-stop(0.7, " +
-          blueGrey[500] +
-          ") )",
+        fontWeight: 600,
+        backgroundImage: "linear-gradient(to right, " + "#000" + ", " + "#4F4643" + ")",
         color: "transparent",
         "-webkitBackgroundClip": "text",
         backgroundClip: "text",
       },
       h3: {
-        fontFamily: "Roboto Slab",
+        fontFamily: "Playfair Display",
+        display: "inline-block",
+        fontStyle: "italic",
         fontSize: "1rem",
-        fontWeight: 300,
+        fontWeight: 600,
+        backgroundImage: "linear-gradient(to right, " + "#000" + ", " + "#4F4643" + ")",
+        color: "transparent",
+        "-webkitBackgroundClip": "text",
+        lineHeight: "1.5",
       },
       body1: {
         fontSize: "0.875rem",
-      }
+      },
     },
     MuiButton: {
       root: {
-        fontFamily: "Basetica",
+        fontFamily: "Source Serif Pro",
         textTransform: "none",
         marginBottom: 4,
       },
       containedPrimary: {
-        backgroundImage: "linear-gradient(to right," + blueGrey[700] + " 0%, " + blueGrey[500] + " 51%) ",
+        color: "#000",
+        backgroundColor: "#fff",
+        backgroundImage: "linear-gradient(to right, " + fade("#B7AEAC", 1) + " 0%, " + fade("#B7AEAC", 0.8) + " 100%) ",
       },
     },
     MuiRating: {
       root: {
-        color: blueGrey[600],
+        color: brown[600],
       },
       iconEmpty: {
-        color: blueGrey[100],
+        color: brown[100],
       },
     },
     MuiPaper: {
@@ -122,7 +121,7 @@ const theme = createMuiTheme({
       },
       outlined: {
         backgroundColor: "rgba(255,255,255,0)",
-        borderColor: blueGrey[300],
+        borderColor: brown[300],
       },
     },
     MuiListItemSecondaryAction: {
@@ -137,7 +136,13 @@ const theme = createMuiTheme({
     },
     MuiListItemIcon: {
       root: {
-        color: blueGrey[500],
+        color: blueGrey[600],
+      },
+    },
+    MuiList: {
+      padding: {
+        paddingTop: 0,
+        paddingBottom: 24,
       },
     },
     MuiGrid: {
@@ -147,15 +152,15 @@ const theme = createMuiTheme({
     },
     MuiFab: {
       root: {
-        position: 'fixed',
+        position: "fixed",
         zIndex: 1000,
         bottom: 16,
         right: 16,
       },
       primary: {
-        backgroundColor: blueGrey[500],
-        '&:hover': {
-          backgroundColor: blueGrey[600],
+        backgroundColor: brown[500],
+        "&:hover": {
+          backgroundColor: brown[600],
         },
       },
     },

@@ -17,12 +17,13 @@ import Footer from "./structure/Footer";
 import Settings from "./structure/Settings";
 // pages (lazy loaded)
 const Start = lazy(() => import("./pages/Start"));
-const About = lazy(() => import( "./pages/About"));
-const Offering = lazy(() => import( "./pages/Offering"));
-const Projects = lazy(() => import( "./pages/Projects"));
-const Wall = lazy(() => import( "./pages/Wall"));
-const Blog = lazy(() => import( "./pages/Blog"));
-const Queries = lazy(() => import( "./pages/Queries"));
+const About = lazy(() => import("./pages/About"));
+const Offering = lazy(() => import("./pages/Offering"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Wall = lazy(() => import("./pages/Wall"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Queries = lazy(() => import("./pages/Queries"));
+const Arts = lazy(() => import("./pages/Arts"));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,6 +69,7 @@ class App extends Component {
                 <Tab label={t("base.navAbout")} value="/about" />
                 <Tab label={t("base.navOffering")} value="/services" />
                 <Tab label={t("base.navProjects")} value="/projects" />
+                <Tab label={t("base.navArts")} value="/arts" />
                 <Tab label={t("base.navBlog")} value="/blog" />
                 <Tab label={t("base.navWall")} value="/wall" />
               </Tabs>
@@ -95,6 +97,9 @@ class App extends Component {
               </TabPanel>
               <TabPanel value={value} index="/wall">
                 <Wall />
+              </TabPanel>
+              <TabPanel value={value} index="/arts">
+                <Arts />
               </TabPanel>
               <TabPanel value={value} index="/queries">
                 <Queries />

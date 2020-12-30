@@ -30,7 +30,7 @@ class QrCode extends Component {
     return (
       <React.Fragment>
         <Tooltip title={t("base.showQr")} aria-label={t("base.showQr")}>
-          <IconButton color="primary" aria-label="Copy" onClick={this.handleDialogQrOpen}>
+          <IconButton color="secondary" aria-label="Copy" onClick={this.handleDialogQrOpen}>
             <Qrcode fontSize="small" />
           </IconButton>
         </Tooltip>

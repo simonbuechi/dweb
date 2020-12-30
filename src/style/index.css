@@ -10,14 +10,18 @@
   font-display: swap;
 }
 
+html {
+  background: url(../assets/bg.jpg) no-repeat right top fixed;
+  background-size: cover;
+}
+
 body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background: url(../assets/bg2.jpg) no-repeat right top fixed;
-  background-size: cover;
+  
 
   /* simple diamond pattern
   background-color: #ccc;
