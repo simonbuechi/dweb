@@ -3,6 +3,9 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 //import logo from '../assets/logo.svg';
 
+const black = "#000";
+const fontBrown = "#4F4643";
+
 // A custom theme for this app
 const theme = createMuiTheme({
   palette: {
@@ -75,7 +78,7 @@ const theme = createMuiTheme({
         fontSize: "2rem",
         lineHeight: "1.5",
         fontWeight: 600,
-        backgroundImage: "linear-gradient(to right, " + "#000" + ", " + "#4F4643" + ")",
+        backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
         color: "transparent",
         "-webkitBackgroundClip": "text",
         backgroundClip: "text",
@@ -86,7 +89,7 @@ const theme = createMuiTheme({
         fontStyle: "italic",
         fontSize: "1rem",
         fontWeight: 600,
-        backgroundImage: "linear-gradient(to right, " + "#000" + ", " + "#4F4643" + ")",
+        backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
         color: "transparent",
         "-webkitBackgroundClip": "text",
         lineHeight: "1.5",

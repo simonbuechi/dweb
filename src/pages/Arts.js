@@ -9,13 +9,14 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Zoom from "@material-ui/core/Zoom";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
 //icons
-import { ArrowExpand } from "mdi-material-ui";
+import { ArrowExpand, Close, OpenInNew } from "mdi-material-ui";
 //artworks
 const A001 = lazy(() => import("../artworks/A001"));
 const A002 = lazy(() => import("../artworks/A002"));
@@ -25,6 +26,7 @@ class Arts extends Component {
   state = {
     dialog: false,
     currentArtwork: <></>,
+    currentTitle: "",
   };
 
   handledialogOpen = () => {
@@ -32,24 +34,37 @@ class Arts extends Component {
   };
   handledialogClose = () => {
     this.setState({ dialog: false });
+    this.setState({ currentTitle: "", currentArtwork: <></> });
   };
-  openArtwork = (currentArtwork) => {
-    this.setState({ currentArtwork });
+  openArtwork = (currentTitle, currentArtwork) => {
+    this.setState({ currentTitle, currentArtwork });
     this.handledialogOpen();
   };
-  formatDate = (timestamp) => {
-    return Intl.DateTimeFormat("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" }).format(new Date(timestamp * 1000));
+  formatDate = (date) => {
+    return Intl.DateTimeFormat("default", { year: "2-digit", month: "short" }).format(date);
   };
   render() {
     const { t } = this.props;
-    const { dialog, currentArtwork } = this.state;
+    const { dialog, currentArtwork, currentTitle } = this.state;
 
     // tags: animated,
 
     const myDrafts = [
-      { primary: "Demo stuff", secondary: "Some demo stuff", date: new Date(2020, 12, 5), content: <A001 /> },
-      { primary: "Demo stuff", secondary: "Some demo stuff", date: new Date(2020, 1, 5), content: <A002 /> },
-      { primary: "Demo stuff", secondary: "Some demo stuff", date: new Date(2020, 12, 5), content: <A003 /> },
+      { primary: "Bar code", secondary: " ", date: new Date(2020, 12, 5), content: <A001 /> },
+      {
+        primary: "Mondrian playground",
+        secondary: "inspired by angichau/r1BOM69-4",
+        link: "https://editor.p5js.org/angichau/sketches/r1BOM69-4",
+        date: new Date(2020, 1, 5),
+        content: <A002 />,
+      },
+      {
+        primary: "Mondrian recursive",
+        secondary: "inspired by sofiagarcia/mondrian",
+        link: "https://github.com/sofiagarcia/mondrian/blob/master/mondrian-v.1/sketch.js",
+        date: new Date(2020, 12, 5),
+        content: <A003 />,
+      },
     ];
 
     const myArtworks = [
@@ -71,12 +86,18 @@ class Arts extends Component {
             {myArtworks.map((item, index) => (
               <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={index}>
                 <div>
-                  <ListItem button onClick={() => this.openArtwork(item.content)}>
+                  <ListItem button onClick={() => this.openArtwork(item.primary, item.content)}>
                     <ListItemIcon color="secondary">
                       <ArrowExpand />
                     </ListItemIcon>
-                    <ListItemText primary={item.primary} secondary={item.secondary} />
-                    <ListItemSecondaryAction>{Intl.DateTimeFormat("default").format(item.date)}</ListItemSecondaryAction>
+                    <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
+                    {item.link && (
+                      <ListItemSecondaryAction>
+                        <IconButton edge="end" href={item.link}>
+                          <OpenInNew />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    )}
                   </ListItem>
                 </div>
               </Zoom>
@@ -91,14 +112,20 @@ class Arts extends Component {
             </Typography>
             <List dense>
               {myDrafts.map((item, index) => (
-                <Zoom in style={{ transitionDelay: 400 + index * 100 + "ms" }} key={index}>
+                <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={index}>
                   <div>
-                    <ListItem button onClick={() => this.openArtwork(item.content)}>
+                    <ListItem button onClick={() => this.openArtwork(item.primary, item.content)}>
                       <ListItemIcon color="secondary">
                         <ArrowExpand />
                       </ListItemIcon>
-                      <ListItemText primary={item.primary} secondary={item.secondary} />
-                      <ListItemSecondaryAction>{Intl.DateTimeFormat("default").format(item.date)}</ListItemSecondaryAction>
+                      <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
+                      {item.link && (
+                        <ListItemSecondaryAction>
+                          <IconButton edge="end" href={item.link}>
+                            <OpenInNew />
+                          </IconButton>
+                        </ListItemSecondaryAction>
+                      )}
                     </ListItem>
                   </div>
                 </Zoom>
@@ -106,13 +133,15 @@ class Arts extends Component {
             </List>
           </Box>
           <Dialog fullScreen onClose={this.handledialogClose} aria-labelledby="dialog" open={dialog}>
+            <AppBar color="transparent" position="relative">
+              <Toolbar>
+                <IconButton edge="start" color="inherit" onClick={this.handledialogClose} aria-label="close">
+                  <Close />
+                </IconButton>
+                <Typography variant="h3">{currentTitle}</Typography>
+              </Toolbar>
+            </AppBar>
             <Suspense fallback={<CircularProgress color="primary" />}>{currentArtwork}</Suspense>
-
-            <DialogActions>
-              <Button onClick={this.handledialogClose} color="secondary" autoFocus>
-                {t("base.close")}
-              </Button>
-            </DialogActions>
           </Dialog>
         </Grid>
         <Grid item xs={12} md={4}>
