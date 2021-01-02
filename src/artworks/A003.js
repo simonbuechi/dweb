@@ -2,6 +2,8 @@ import React from "react";
 import Sketch from "react-p5";
 
 export default (props) => {
+  const canvasWidth = window.innerWidth;
+  const canvasHeight = window.innerHeight;
   const N = 3; //number of recursive steps
 
   function mondrian(p5, x, y, x2, y2, N) {
@@ -27,8 +29,8 @@ export default (props) => {
   }
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(500, 500).parent(canvasParentRef);
-    mondrian(p5, 1, 1, 500, 500, N);
+    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
+    mondrian(p5, 1, 1, canvasWidth, canvasHeight, N);
   };
 
   const draw = (p5) => {};

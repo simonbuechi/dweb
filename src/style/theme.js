@@ -144,7 +144,6 @@ const theme = createMuiTheme({
     },
     MuiList: {
       padding: {
-        paddingTop: 0,
         paddingBottom: 24,
       },
     },

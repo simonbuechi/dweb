@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { withRouter, Link } from "react-router-dom";
 // material-ui
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -44,10 +45,10 @@ class Header extends Component {
       <React.Fragment>
         <Hidden xsDown>
           <Grid item xs={12} sm={3} lg={2}>
-            <Box mt={8} mr={2} textAlign="center"></Box>
+            <Box mt={2} mr={2} textAlign="center"></Box>
           </Grid>
           <Grid item xs={12} sm={9} lg={10}>
-            <Box mt={4} mb={8}>
+            <Box mt={2} mb={4}>
               <Typography variant="h1">{t("base.title")}</Typography>
               <Divider />
             </Box>
@@ -81,22 +82,22 @@ class Header extends Component {
                   </Grid>
                 </Grid>
                 <List>
-                  <ListItem button onClick={() => setPath("/")}>
+                  <ListItem button onClick={() => setPath("/")} component={Link} to="/">
                     <ListItemText primary={t("base.navStart")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/about")}>
+                  <ListItem button onClick={() => setPath("/")} component={Link} to="/about">
                     <ListItemText primary={t("base.navAbout")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/services")}>
+                  <ListItem button onClick={() => setPath("/")} component={Link} to="/services">
                     <ListItemText primary={t("base.navOffering")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/projects")}>
+                  <ListItem button onClick={() => setPath("/")} component={Link} to="/projects">
                     <ListItemText primary={t("base.navProjects")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/blog")}>
+                  <ListItem button onClick={() => setPath("/")} component={Link} to="/blog">
                     <ListItemText primary={t("base.navBlog")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/wall")}>
+                  <ListItem button onClick={() => setPath("/")} component={Link} to="/wall">
                     <ListItemText primary={t("base.navWall")} />
                   </ListItem>
                   <ListItem>
@@ -117,4 +118,4 @@ class Header extends Component {
   }
 }
 
-export default withTranslation()(Header);
+export default withTranslation()(withRouter(Header));

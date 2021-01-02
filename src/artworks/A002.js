@@ -3,11 +3,13 @@ import Sketch from "react-p5";
 
 export default (props) => {
   //const seed = "12j34h12j4khl2j3k";
-  var sizes = [50, 100, 150, 200];
-  var colors;
+  const sizes = [50, 75, 100, 200, 300, 400];
+  const canvasWidth = window.innerWidth;
+  const canvasHeight = window.innerHeight;
+  let colors;
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(400, 400).parent(canvasParentRef);
+    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
     p5.background(255);
 
     // only primary colors and white
