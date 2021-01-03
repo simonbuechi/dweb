@@ -26,12 +26,15 @@ const Queries = lazy(() => import("./pages/Queries"));
 const Arts = lazy(() => import("./pages/Arts"));
 
 class App extends Component {
+  state = {
+    value: 0,
+  };
+
   render() {
     const { t } = this.props;
 
     const handleChange = (event, value) => {
       this.setState({ value });
-      this.props.history.push(value);
     };
 
     return (
@@ -42,10 +45,10 @@ class App extends Component {
         </Helmet>
         <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
           <Header handleChange={handleChange} />
-          <Grid item xs={12} sm={3} lg={2}>
+          <Grid item xs={12} sm={3} lg={3} xl={3}>
             <Hidden xsDown>
               <Box mt={0}>
-                <Tabs orientation="vertical" variant="scrollable" value={false}>
+                <Tabs orientation="vertical" variant="scrollable" value={this.state.value} onChange={handleChange}>
                   <Tab label={t("base.navStart")} component={Link} to="/" />
                   <Tab label={t("base.navAbout")} component={Link} to="/about" />
                   <Tab label={t("base.navOffering")} component={Link} to="/services" />
@@ -60,7 +63,7 @@ class App extends Component {
               </Box>
             </Hidden>
           </Grid>
-          <Grid item xs={12} sm={9} lg={10}>
+          <Grid item xs={12} sm={9} lg={9} xl={9}>
             <Suspense fallback={<CircularProgress color="primary" />}>
               <Switch>
                 <Route exact path="/" component={Start} />

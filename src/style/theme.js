@@ -4,7 +4,8 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 //import logo from '../assets/logo.svg';
 
 const black = "#000";
-const fontBrown = "#4F4643";
+const fontBrown = "#604941";
+const iconBrown = "#776A67";
 
 // A custom theme for this app
 const theme = createMuiTheme({
@@ -63,13 +64,10 @@ const theme = createMuiTheme({
     },
     MuiTypography: {
       h1: {
-        display: "inline-block",
-        fontFamily: "Playfair Display",
-        fontStyle: "italic",
         lineHeight: "2.5",
         fontSize: "1rem",
         color: brown[900],
-        fontWeight: 500,
+        fontWeight: 400,
       },
       h2: {
         display: "inline-block",
@@ -82,13 +80,11 @@ const theme = createMuiTheme({
         color: "transparent",
         "-webkitBackgroundClip": "text",
         backgroundClip: "text",
+        paddingLeft: 4,
       },
       h3: {
-        fontFamily: "Playfair Display",
-        display: "inline-block",
-        fontStyle: "italic",
-        fontSize: "1rem",
-        fontWeight: 600,
+        fontSize: "1.3rem",
+        fontWeight: 400,
         backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
         color: "transparent",
         "-webkitBackgroundClip": "text",
@@ -139,7 +135,7 @@ const theme = createMuiTheme({
     },
     MuiListItemIcon: {
       root: {
-        color: blueGrey[600],
+        color: iconBrown,
       },
     },
     MuiList: {

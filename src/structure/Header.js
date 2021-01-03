@@ -33,21 +33,16 @@ class Header extends Component {
   };
 
   render() {
-    const { t, handleChange } = this.props;
+    const { t } = this.props;
     const { dialogMenu } = this.state;
-
-    const setPath = (path) => {
-      this.handleDialogMenuClose();
-      handleChange(null, path);
-    };
 
     return (
       <React.Fragment>
         <Hidden xsDown>
-          <Grid item xs={12} sm={3} lg={2}>
+          <Grid item xs={12} sm={3} lg={3} xl={3}>
             <Box mt={2} mr={2} textAlign="center"></Box>
           </Grid>
-          <Grid item xs={12} sm={9} lg={10}>
+          <Grid item xs={12} sm={9} lg={9} xl={9}>
             <Box mt={2} mb={4}>
               <Typography variant="h1">{t("base.title")}</Typography>
               <Divider />
@@ -82,22 +77,25 @@ class Header extends Component {
                   </Grid>
                 </Grid>
                 <List>
-                  <ListItem button onClick={() => setPath("/")} component={Link} to="/">
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/">
                     <ListItemText primary={t("base.navStart")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/")} component={Link} to="/about">
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/about">
                     <ListItemText primary={t("base.navAbout")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/")} component={Link} to="/services">
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/services">
                     <ListItemText primary={t("base.navOffering")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/")} component={Link} to="/projects">
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/projects">
                     <ListItemText primary={t("base.navProjects")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/")} component={Link} to="/blog">
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/arts">
+                    <ListItemText primary={t("base.navArts")} />
+                  </ListItem>
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/blog">
                     <ListItemText primary={t("base.navBlog")} />
                   </ListItem>
-                  <ListItem button onClick={() => setPath("/")} component={Link} to="/wall">
+                  <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/wall">
                     <ListItemText primary={t("base.navWall")} />
                   </ListItem>
                   <ListItem>

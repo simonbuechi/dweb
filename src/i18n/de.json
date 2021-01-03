@@ -11,6 +11,7 @@
     "navProjects": "Projekte",
     "navBlog": "Blog",
     "navWall": "Pinnwand",
+    "navArts": "Arts",
     "close": "Schliessen",
     "qrCode": "QR Code",
     "showQr": "QR Code anzeigen",
@@ -63,7 +64,8 @@
     "linksMovies": "Meine Filme",
     "linksMovies2": "Auf IMDB",
     "linksGames": "Meine Games",
-    "linksGames2": "Auf IGDB"
+    "linksGames2": "Auf IGDB",
+    "personTitle": "Simon in Kürze"
   },
   "wall": {
     "title": "Meine Pinnwand",

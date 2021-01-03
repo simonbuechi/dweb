@@ -14,29 +14,71 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 //icons
-import { Gamepad, Filmstrip, BookOpenVariant, Bitcoin, Ethereum, Github, Face, OpenInNew, CreativeCommons } from "mdi-material-ui";
+import {
+  Gamepad,
+  Filmstrip,
+  BookOpenVariant,
+  Bitcoin,
+  Ethereum,
+  Github,
+  Information,
+  OpenInNew,
+  Facebook,
+  Linkedin,
+  Email,
+  Numeric3Box,
+  Twitter,
+  Chat,
+  Whatsapp,
+} from "mdi-material-ui";
 //custom
 import CopyButton from "../structure/CopyButton";
 import QrCode from "../structure/QrCode";
 import config from "../config.json";
-//images
-import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
 class About extends Component {
   state = {
-    dialogPortrait: false,
+    dialogInfo: false,
   };
 
-  handleDialogPortraitOpen = () => {
-    this.setState({ dialogPortrait: true });
+  handleDialogInfoOpen = () => {
+    this.setState({ dialogInfo: true });
   };
-  handleDialogPortraitClose = () => {
-    this.setState({ dialogPortrait: false });
+  handleDialogInfoClose = () => {
+    this.setState({ dialogInfo: false });
   };
 
   render() {
     const { t } = this.props;
-    const { dialogPortrait } = this.state;
+    const { dialogInfo } = this.state;
+
+    const questions = [
+      {
+        question: t("start.q1"),
+        answer: t("start.a1"),
+      },
+      {
+        question: t("start.q2"),
+        answer: t("start.a2"),
+      },
+      {
+        question: t("start.q3"),
+        answer: t("start.a3"),
+      },
+      {
+        question: t("start.q4"),
+        answer: t("start.a4"),
+      },
+    ];
+    const myContacts = [
+      { primary: "LinkedIn", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Linkedin /> },
+      { primary: "Facebook", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Facebook /> },
+      { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Twitter /> },
+      { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
+      { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> },
+      { primary: "Email", secondary: "", link: "mailto:simon.buechi@gmail.com", icon: <Email /> },
+      { primary: "Keybase", secondary: "", link: "https://keybase.io/simonbuechi", icon: <Chat /> },
+    ];
 
     const myCryptos = [
       { primary: "Ethereum", secondary: config.ethereumAddress, link: 2, icon: <Ethereum /> },
@@ -65,35 +107,39 @@ class About extends Component {
         <Grid item xs={12} md={6}>
           <Box mb={3}>
             <Typography variant="h3" gutterBottom>
-              {t("about.personTitle")}
+              {t("start.connectTitle")}
             </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t("about.body1")}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t("about.body2")}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t("about.body3")}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t("about.body4")}
-            </Typography>
-            <Typography gutterBottom>
-              <Button variant="contained" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
-                {t("start.image")}
-              </Button>
-            </Typography>
+            <List dense>
+              {myContacts.map((item, index) => (
+                <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={item.primary}>
+                  <div>
+                    <ListItem button component="a" href={item.link}>
+                      <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
+                      <ListItemText primary={item.primary} secondary={item.secondary} />
+                    </ListItem>
+                  </div>
+                </Zoom>
+              ))}
+            </List>
           </Box>
           <Typography variant="h3" gutterBottom>
             {t("about.aboutSiteTitle")}
           </Typography>
           <Typography variant="body2" gutterBottom>
+            {t("start.paragraph2")}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
             {t("about.aboutSiteBody")}
           </Typography>
-          <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb" startIcon={<OpenInNew />}>
-            {t("about.linkGithub")}
-          </Button>
+          <Typography gutterBottom>
+            <Button variant="contained" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
+              {t("start.dialogInfoButton")}
+            </Button>
+            &nbsp;
+            <Button variant="contained" color="primary" href="https://github.com/simonbuechi/dweb" startIcon={<OpenInNew />}>
+              {t("about.linkGithub")}
+            </Button>
+          </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h3" gutterBottom>
@@ -137,16 +183,24 @@ class About extends Component {
               ))}
             </List>
           </Box>
-          <Dialog onClose={this.handleDialogPortraitClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
+          <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo}>
             <DialogContent>
-              <img src={portraitBig} alt="simon buechi portrait" className="dialog" />
+              <Typography variant="h2" gutterBottom>
+                {t("start.dialogInfoTitle")}
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                {t("start.dialogInfoBody")}
+              </Typography>
+              <List>
+                {questions.map((item, index) => (
+                  <ListItem key={index}>
+                    <ListItemText primary={item.question} secondary={item.answer} />
+                  </ListItem>
+                ))}
+              </List>
             </DialogContent>
             <DialogActions>
-              <Button rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" color="secondary" startIcon={<CreativeCommons />}>
-                {t("base.creativecommons")}
-              </Button>
-              &nbsp;
-              <Button onClick={this.handleDialogPortraitClose} color="secondary" autoFocus>
+              <Button color="primary" variant="contained" onClick={this.handleDialogInfoClose} autoFocus>
                 {t("base.close")}
               </Button>
             </DialogActions>

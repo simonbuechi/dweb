@@ -11,6 +11,7 @@
     "navProjects": "Projects",
     "navBlog": "Blog",
     "navWall": "Wall",
+    "navArts": "Arts",
     "close": "Close",
     "qrCode": "QR Code",
     "showQr": "Show QR Code",
@@ -64,7 +65,8 @@
     "linksMovies": "My movies",
     "linksMovies2": "On IMDB",
     "linksGames": "My games",
-    "linksGames2": "On IGDB"
+    "linksGames2": "On IGDB",
+    "personTitle": "Simon in a nutshell"
   },
   "wall": {
     "title": "My Wall",

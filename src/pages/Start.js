@@ -14,52 +14,25 @@ import DialogActions from "@material-ui/core/DialogActions";
 import List from "@material-ui/core/List";
 import Box from "@material-ui/core/Box";
 //icons
-import { Facebook, Linkedin, Email, Numeric3Box, Information, Twitter, OpenInNew, Chat, Whatsapp } from "mdi-material-ui";
+import { OpenInNew, Face, CreativeCommons } from "mdi-material-ui";
+//images
+import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
 
 class Start extends Component {
   state = {
-    dialogInfo: false,
+    dialogPortrait: false,
   };
 
-  handleDialogInfoOpen = () => {
-    this.setState({ dialogInfo: true });
+  handleDialogPortraitOpen = () => {
+    this.setState({ dialogPortrait: true });
   };
-  handleDialogInfoClose = () => {
-    this.setState({ dialogInfo: false });
+  handleDialogPortraitClose = () => {
+    this.setState({ dialogPortrait: false });
   };
 
   render() {
     const { t } = this.props;
-    const { dialogInfo } = this.state;
-
-    const questions = [
-      {
-        question: t("start.q1"),
-        answer: t("start.a1"),
-      },
-      {
-        question: t("start.q2"),
-        answer: t("start.a2"),
-      },
-      {
-        question: t("start.q3"),
-        answer: t("start.a3"),
-      },
-      {
-        question: t("start.q4"),
-        answer: t("start.a4"),
-      },
-    ];
-
-    const myContacts = [
-      { primary: "LinkedIn", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Linkedin /> },
-      { primary: "Facebook", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Facebook /> },
-      { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Twitter /> },
-      { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
-      { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> },
-      { primary: "Email", secondary: "", link: "mailto:simon.buechi@gmail.com", icon: <Email /> },
-      { primary: "Keybase", secondary: "", link: "https://keybase.io/simonbuechi", icon: <Chat /> },
-    ];
+    const { dialogPortrait } = this.state;
 
     const myJobs = [
       { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <OpenInNew /> },
@@ -78,20 +51,31 @@ class Start extends Component {
         <Grid item xs={12} md={6}>
           <Box mb={3}>
             <Typography variant="h3" gutterBottom>
-              {t("start.aboutTitle")}
+              {t("about.personTitle")}
             </Typography>
             <Typography variant="body2" gutterBottom>
               {t("start.paragraph1")}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              {t("start.paragraph2")}
+              {t("about.body1")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body2")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body3")}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {t("about.body4")}
             </Typography>
             <Typography gutterBottom>
-              <Button variant="contained" color="primary" onClick={this.handleDialogInfoOpen} startIcon={<Information />}>
-                {t("start.dialogInfoButton")}
+              <Button variant="contained" color="primary" onClick={this.handleDialogPortraitOpen} startIcon={<Face />}>
+                {t("start.image")}
               </Button>
             </Typography>
           </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
           <Typography variant="h3" gutterBottom>
             {t("start.engagementsTitle")}
           </Typography>
@@ -108,41 +92,16 @@ class Start extends Component {
             ))}
           </List>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h3" gutterBottom>
-            {t("start.connectTitle")}
-          </Typography>
-          <List dense>
-            {myContacts.map((item, index) => (
-              <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={item.primary}>
-                <div>
-                  <ListItem button component="a" href={item.link}>
-                    <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.primary} secondary={item.secondary} />
-                  </ListItem>
-                </div>
-              </Zoom>
-            ))}
-          </List>
-        </Grid>
-        <Dialog onClose={this.handleDialogInfoClose} aria-labelledby="dialogInfo" open={dialogInfo}>
+        <Dialog onClose={this.handleDialogPortraitClose} aria-labelledby="dialogPortrait" open={dialogPortrait} maxWidth="xl">
           <DialogContent>
-            <Typography variant="h2" gutterBottom>
-              {t("start.dialogInfoTitle")}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t("start.dialogInfoBody")}
-            </Typography>
-            <List>
-              {questions.map((item, index) => (
-                <ListItem key={index}>
-                  <ListItemText primary={item.question} secondary={item.answer} />
-                </ListItem>
-              ))}
-            </List>
+            <img src={portraitBig} alt="simon buechi portrait" className="dialog" />
           </DialogContent>
           <DialogActions>
-            <Button color="primary" variant="contained" onClick={this.handleDialogInfoClose} autoFocus>
+            <Button rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" color="secondary" startIcon={<CreativeCommons />}>
+              {t("base.creativecommons")}
+            </Button>
+            &nbsp;
+            <Button onClick={this.handleDialogPortraitClose} color="secondary" autoFocus>
               {t("base.close")}
             </Button>
           </DialogActions>
