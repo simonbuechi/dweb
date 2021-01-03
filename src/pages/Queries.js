@@ -6,33 +6,32 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 
-class Queries extends Component {
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import { TestQuery } from "../graphql/testQuery";
 
+const apolloClient = new ApolloClient({
+  uri: "https://api.thegraph.com/subgraphs/name/ensdomains/ens",
+});
+
+class Queries extends Component {
   render() {
     const { t } = this.props;
-    
+
     return (
       <>
         <Typography variant="h2" gutterBottom>
           {t("queries.title")}
-        </Typography>    
+        </Typography>
         <Box my={2}>
-            <TextField 
-              name="name" 
-              label={t("sendMessage.nameLabel")}
-              fullWidth 
-              margin="normal"
-              variant="outlined"
-            />
-            <Button 
-              variant="contained" 
-              color="primary"
-              type="submit"
-              value="Send"
-            >
+          <TextField name="name" label={t("sendMessage.nameLabel")} fullWidth margin="normal" variant="outlined" />
+          <Button variant="contained" color="primary" type="submit" value="Send">
             {t("sendMessage.buttonSend")}
-            </Button>
+          </Button>
         </Box>
+        <ApolloProvider client={apolloClient}>
+          <TestQuery />
+        </ApolloProvider>
       </>
     );
   }

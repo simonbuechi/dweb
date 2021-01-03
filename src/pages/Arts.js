@@ -17,6 +17,10 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
+import Switch from "@material-ui/core/Switch";
+import Collapse from "@material-ui/core/Collapse";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import TextField from "@material-ui/core/TextField";
 //icons
 import { ArrowExpand, Close, OpenInNew } from "mdi-material-ui";
 //artworks
@@ -25,7 +29,7 @@ const A002 = lazy(() => import("../artworks/A002"));
 const A003 = lazy(() => import("../artworks/A003"));
 const A004 = lazy(() => import("../artworks/A004"));
 
-const myDrafts = [
+const myArtworks = [
   {
     id: "A001",
     primary: "Bar code",
@@ -68,16 +72,17 @@ class Arts extends Component {
     dialog: false,
     currentContent: <></>,
     currentTitle: "",
+    signatureCollapsed: false,
+    signature: "",
   };
 
   componentDidUpdate = () => {
     if (this.props.match.params.id && !this.state.dialog) {
-      let currentArtwork = myDrafts.find((x) => x.id === this.props.match.params.id);
+      let currentArtwork = myArtworks.find((x) => x.id === this.props.match.params.id);
       this.setState({ currentTitle: currentArtwork.primary, currentContent: currentArtwork.content });
       this.handledialogOpen();
     }
   };
-
   handledialogOpen = () => {
     this.setState({ dialog: true });
   };
@@ -85,6 +90,9 @@ class Arts extends Component {
     this.setState({ dialog: false });
     this.setState({ currentTitle: "", currentContent: <></> });
     this.props.history.push("/arts");
+  };
+  handleSwitch = () => {
+    this.setState({ signatureCollapsed: !this.state.signatureCollapsed });
   };
   openArtwork = (currentTitle, currentContent) => {
     this.setState({ currentTitle, currentContent });
@@ -95,7 +103,7 @@ class Arts extends Component {
   };
   render() {
     const { t } = this.props;
-    const { dialog, currentContent, currentTitle } = this.state;
+    const { dialog, currentContent, currentTitle, signatureCollapsed } = this.state;
     // tags: animated,
 
     return (
@@ -104,7 +112,7 @@ class Arts extends Component {
           <title>Simon Buechi Artworks</title>
           <meta name="description" content="Generative artworks created with p5.js and crypto signatures" />
         </Helmet>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={12}>
           <Typography variant="h2" gutterBottom>
             {t("arts.title")}
           </Typography>
@@ -112,6 +120,11 @@ class Arts extends Component {
             {t("arts.about")}
             Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen.
           </Typography>
+          <FormControlLabel value="end" control={<Switch color="primary" onClick={this.handleSwitch} />} label="Set custom seed" labelPlacement="end" />
+          <Collapse in={signatureCollapsed}>
+            <TextField name="name" label={t("sendMessage.nameLabel")} fullWidth margin="normal" variant="outlined" />
+          </Collapse>
+
           <Box my={3}>
             <Typography variant="h2" gutterBottom>
               {t("arts.draftsTitle")}
@@ -120,7 +133,7 @@ class Arts extends Component {
               {t("arts.draftsAbout")}
             </Typography>
             <List dense>
-              {myDrafts.map((item, index) => (
+              {myArtworks.map((item, index) => (
                 <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={index}>
                   <div>
                     <ListItem button component={Link} to={"/arts/" + item.id}>
