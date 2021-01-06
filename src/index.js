@@ -1,18 +1,23 @@
-import React from "react";
+import React, {Suspense, lazy} from "react";
 import ReactDOM from "react-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { BrowserRouter as Router } from "react-router-dom";
-import App from "./App";
 import theme from "./style/theme";
 import "./i18n/i18n";
+import SplashScreen from "./structure/SplashScreen"
+//lazy load
+const ThemeProvider = lazy(() => import("./utils/ThemeProvider"));
+const Router = lazy(() => import("./utils/Router"));
+const App = lazy(() => import("./App"));
+const CssBaseline = lazy(() => import( "@material-ui/core/CssBaseline"));
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+    <Suspense fallback={<SplashScreen />}>
+      <ThemeProvider theme={theme}>
     <Router basename="/">
-      <CssBaseline />
+    <CssBaseline />
       <App />
-    </Router>
-  </ThemeProvider>,
+      </Router>
+  </ThemeProvider>
+      </Suspense>
+    ,
   document.getElementById("root")
 );

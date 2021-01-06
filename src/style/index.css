@@ -1,3 +1,4 @@
+/*
 @font-face {
   font-family: Basetica;
   src: url("Basetica-Med.otf") format("opentype");
@@ -7,6 +8,27 @@
 @font-face {
   font-family: "Roboto Slab";
   src: url("RobotoSlab-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+*/
+@font-face {
+  font-family: "Playfair Display";
+  src: url("PlayfairDisplay-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("SourceSerifPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("SourceSerifPro-SemiBold.ttf") format("truetype");
+  font-weight: bold;
   font-display: swap;
 }
 

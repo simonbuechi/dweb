@@ -21,6 +21,8 @@ import Switch from "@material-ui/core/Switch";
 import Collapse from "@material-ui/core/Collapse";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import InputAdornment from '@material-ui/core/InputAdornment';
 //icons
 import { ArrowExpand, Close, OpenInNew } from "mdi-material-ui";
 //artworks
@@ -101,6 +103,9 @@ class Arts extends Component {
   formatDate = (date) => {
     return Intl.DateTimeFormat("default", { year: "2-digit", month: "short" }).format(date);
   };
+  setSeed = (seed) => {
+    window.localStorage.setItem("seed", seed);
+  }
   render() {
     const { t } = this.props;
     const { dialog, currentContent, currentTitle, signatureCollapsed } = this.state;
@@ -122,7 +127,20 @@ class Arts extends Component {
           </Typography>
           <FormControlLabel value="end" control={<Switch color="primary" onClick={this.handleSwitch} />} label="Set custom seed" labelPlacement="end" />
           <Collapse in={signatureCollapsed}>
-            <TextField name="name" label={t("sendMessage.nameLabel")} fullWidth margin="normal" variant="outlined" />
+            <TextField 
+              name="name" 
+              label={t("sendMessage.nameLabel")} 
+              fullWidth 
+              margin="normal" 
+              variant="outlined" 
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Button color="primary" variant="contained" onClick={this.setSeed}>{t("base.save")}</Button>
+                  </InputAdornment>
+                ),
+              }} 
+        />
           </Collapse>
 
           <Box my={3}>
