@@ -116,5 +116,14 @@
     "dialogBlogLink": "Go to the 'real' Blog",
     "dialogOrbitLink": "Learn more about OrbitDB",
     "dialog3BoxLink": "Learn more about 3Box"
+  },
+  "arts": {
+    "title": "Arts",
+    "draftsTitle": "My drafts",
+    "about": "Find here my generative arts experiments.",
+    "draftsAbout": "Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen.",
+    "seedTitle": "Set custom seed",
+    "seedField": "Enter seed here",
+    "seedHelper": "All artworks are based on noise functions (such as Perlin) as opposed to random functions. By setting a custom seed, you get a personalized version of the artwork."
   }
 }

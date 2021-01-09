@@ -76,6 +76,7 @@ class Arts extends Component {
     currentTitle: "",
     signatureCollapsed: false,
     signature: "",
+    seed: ""
   };
 
   componentDidUpdate = () => {
@@ -103,8 +104,14 @@ class Arts extends Component {
   formatDate = (date) => {
     return Intl.DateTimeFormat("default", { year: "2-digit", month: "short" }).format(date);
   };
-  setSeed = (seed) => {
-    window.localStorage.setItem("seed", seed);
+  setSeed = () => {
+    window.localStorage.setItem("seed", this.state.seed);
+  }
+  removeSeed = () => {
+    window.localStorage.removeItem("seed");
+  }
+  handleSeed = (event) => {
+    this.setState({ seed: event.target.value });
   }
   render() {
     const { t } = this.props;
@@ -127,20 +134,27 @@ class Arts extends Component {
           </Typography>
           <FormControlLabel value="end" control={<Switch color="primary" onClick={this.handleSwitch} />} label="Set custom seed" labelPlacement="end" />
           <Collapse in={signatureCollapsed}>
-            <TextField 
-              name="name" 
-              label={t("sendMessage.nameLabel")} 
-              fullWidth 
-              margin="normal" 
-              variant="outlined" 
+            <TextField
+              name="name"
+              label={t("sendMessage.nameLabel")}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              value={this.state.seed}
+              onChange={this.handleSeed}
+              disabled={window.localStorage.getItem("seed") !== null}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <Button color="primary" variant="contained" onClick={this.setSeed}>{t("base.save")}</Button>
+                    {window.localStorage.getItem("seed") === null ? (
+                      <Button color="primary" variant="contained" onClick={this.setSeed}>{t("base.save")}</Button>
+                    ) : (
+                        <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>{t("base.remove")}</Button>
+                      )}
                   </InputAdornment>
                 ),
-              }} 
-        />
+              }}
+            />
           </Collapse>
 
           <Box my={3}>
@@ -178,7 +192,7 @@ class Arts extends Component {
                 <IconButton edge="start" color="inherit" onClick={this.handledialogClose} aria-label="close">
                   <Close />
                 </IconButton>
-                <Typography variant="h3">{currentTitle}</Typography>
+                <Typography variant="h2">{currentTitle}</Typography>
               </Toolbar>
             </AppBar>
             <Suspense fallback={<CircularProgress color="primary" />}>{currentContent}</Suspense>

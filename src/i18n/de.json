@@ -115,5 +115,11 @@
     "dialogBlogLink": "Detaillierter Blog",
     "dialogOrbitLink": "Mehr über OrbitDB",
     "dialog3BoxLink": "Mehr über 3Box"
+  },
+  "arts": {
+    "title": "Arts",
+    "draftsTitle": "My drafts",
+    "about": "Find here my generative arts experiments.",
+    "draftsAbout": "Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen."
   }
 }
