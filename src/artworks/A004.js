@@ -11,7 +11,6 @@ export default (props) => {
   var scl = 10;
   var cols, rows;
   var zoff = 0;
-  var fr;
   var particles = [];
   var flowfield;
 
@@ -80,17 +79,49 @@ export default (props) => {
     p5.createCanvas(800, 600).parent(canvasParentRef);
     cols = p5.floor(p5.width / scl);
     rows = p5.floor(p5.height / scl);
-    fr = p5.createP("");
 
     flowfield = new Array(cols * rows);
 
     for (var i = 0; i < 2500; i++) {
-      particles[i] = new Particle(p5);
+      particles[i] = new Particle();
     }
     p5.background(240);
+
+
+    for (var j = 0; j < 100; j++) {
+    var yoff = 0;
+    for (var y = 0; y < rows; y++) {
+      var xoff = 0;
+      for (var x = 0; x < cols; x++) {
+        var index = x + y * cols;
+        var angle = p5.noise(xoff, yoff, zoff) * p5.TWO_PI * 4;
+        var v = Vector.fromAngle(angle);
+        v.setMag(1);
+        flowfield[index] = v;
+        xoff += inc;
+        p5.stroke(0, 50);
+      }
+      yoff += inc;
+
+      zoff += 0.0003;
+    }
+
+    for (var ji = 0; ji < particles.length; ji++) {
+      particles[ji].follow(flowfield);
+      particles[ji].update();
+      particles[ji].edges();
+      particles[ji].show();
+    }
+    
+  }
+
+
+
+
   };
 
   const draw = (p5) => {
+    /*
     var yoff = 0;
     for (var y = 0; y < rows; y++) {
       var xoff = 0;
@@ -120,8 +151,7 @@ export default (props) => {
       particles[i].edges();
       particles[i].show();
     }
-
-    fr.html(p5.floor(p5.frameRate()));
+*/
   };
 
   return <Sketch setup={setup} draw={draw} />;

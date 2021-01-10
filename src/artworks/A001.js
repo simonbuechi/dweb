@@ -1,20 +1,20 @@
 import React from "react";
 import Sketch from "react-p5";
 
+//global constants
+const canvasWidth = window.innerWidth;
+const canvasHeight = window.innerHeight;
+const seed = window.localStorage.getItem("seedX") ? window.localStorage.getItem("seedX") : Math.random() * 1000;
+const NO_COLORS = 3;
+
+function normDist(u = 0, v = 0) {
+  while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+  while(v === 0) v = Math.random();
+  return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+}
+
 export default (props) => {
-  //global constants
-  const canvasWidth = window.innerWidth;
-  const canvasHeight = window.innerHeight;
-  const seed = window.localStorage.getItem("seedX") ? window.localStorage.getItem("seedX") : Math.random() * 1000;
-  const NO_COLORS = 3;
-
   
-  function normDist(u = 0, v = 0) {
-    while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
-    while(v === 0) v = Math.random();
-    return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
-  }
-
   const setup = (p5, canvasParentRef) => {
     //setup canvas
     p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);

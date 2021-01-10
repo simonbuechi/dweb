@@ -30,6 +30,7 @@ const A001 = lazy(() => import("../artworks/A001"));
 const A002 = lazy(() => import("../artworks/A002"));
 const A003 = lazy(() => import("../artworks/A003"));
 const A004 = lazy(() => import("../artworks/A004"));
+const A005 = lazy(() => import("../artworks/A005"));
 
 const myArtworks = [
   {
@@ -65,6 +66,15 @@ const myArtworks = [
     link: "https://www.openprocessing.org/sketch/397924/",
     date: new Date(2020, 12, 5),
     content: <A004 />,
+    group: "drafts",
+  },
+  {
+    id: "A005",
+    primary: "Mondrian recursive",
+    secondary: "inspired by openprocessing/397924",
+    link: "...",
+    date: new Date(2020, 12, 5),
+    content: <A005 />,
     group: "drafts",
   },
 ];
