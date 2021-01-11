@@ -22,15 +22,17 @@ import Collapse from "@material-ui/core/Collapse";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Tooltip from "@material-ui/core/Tooltip";
 //icons
-import { ArrowExpand, Close, OpenInNew } from "mdi-material-ui";
+import { ArrowExpand, Close, OpenInNew, Image } from "mdi-material-ui";
 //artworks
 const A001 = lazy(() => import("../artworks/A001"));
 const A002 = lazy(() => import("../artworks/A002"));
 const A003 = lazy(() => import("../artworks/A003"));
 const A004 = lazy(() => import("../artworks/A004"));
 const A005 = lazy(() => import("../artworks/A005"));
+const A006 = lazy(() => import("../artworks/A006"));
 
 const myArtworks = [
   {
@@ -46,7 +48,7 @@ const myArtworks = [
     primary: "Mondrian playground",
     secondary: "inspired by angichau/r1BOM69-4",
     link: "https://editor.p5js.org/angichau/sketches/r1BOM69-4",
-    date: new Date(2020, 1, 5),
+    date: new Date(2021, 0, 3),
     content: <A002 />,
     group: "drafts",
   },
@@ -55,16 +57,16 @@ const myArtworks = [
     primary: "Mondrian recursive",
     secondary: "inspired by sofiagarcia/mondrian",
     link: "https://github.com/sofiagarcia/mondrian/blob/master/mondrian-v.1/sketch.js",
-    date: new Date(2020, 12, 5),
+    date: new Date(2021, 0, 7),
     content: <A003 />,
     group: "drafts",
   },
   {
     id: "A004",
-    primary: "Mondrian recursive",
+    primary: "A new world",
     secondary: "inspired by openprocessing/397924",
-    link: "https://www.openprocessing.org/sketch/397924/",
-    date: new Date(2020, 12, 5),
+    link: "https://editor.p5js.org/Kubi/sketches/CHPTDZOu2",
+    date: new Date(2021, 0, 5),
     content: <A004 />,
     group: "drafts",
   },
@@ -73,9 +75,18 @@ const myArtworks = [
     primary: "Mondrian recursive",
     secondary: "inspired by openprocessing/397924",
     link: "...",
-    date: new Date(2020, 12, 5),
+    date: new Date(2021, 0, 10),
     content: <A005 />,
     group: "drafts",
+  },
+  {
+    id: "A006",
+    primary: "Procedural waves on a good trip",
+    secondary: "inspired by procedural night reflections",
+    date: new Date(2021, 0, 10),
+    content: <A006 />,
+    group: "drafts",
+    webgl: true,
   },
 ];
 
@@ -86,7 +97,7 @@ class Arts extends Component {
     currentTitle: "",
     signatureCollapsed: false,
     signature: "",
-    seed: ""
+    seed: "",
   };
 
   componentDidUpdate = () => {
@@ -112,17 +123,17 @@ class Arts extends Component {
     this.handledialogOpen();
   };
   formatDate = (date) => {
-    return Intl.DateTimeFormat("default", { year: "2-digit", month: "short" }).format(date);
+    return Intl.DateTimeFormat("default", { year: "2-digit", month: "long", day: "numeric" }).format(date);
   };
   setSeed = () => {
     window.localStorage.setItem("seed", this.state.seed);
-  }
+  };
   removeSeed = () => {
     window.localStorage.removeItem("seed");
-  }
+  };
   handleSeed = (event) => {
     this.setState({ seed: event.target.value });
-  }
+  };
   render() {
     const { t } = this.props;
     const { dialog, currentContent, currentTitle, signatureCollapsed } = this.state;
@@ -142,7 +153,9 @@ class Arts extends Component {
             {t("arts.about")}
             Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen.
           </Typography>
-          <FormControlLabel value="end" control={<Switch color="primary" onClick={this.handleSwitch} />} label="Set custom seed" labelPlacement="end" />
+          <Tooltip title="Click to configure">
+            <FormControlLabel value="end" control={<Switch color="primary" onClick={this.handleSwitch} />} label="Set custom seed" labelPlacement="end" />
+          </Tooltip>
           <Collapse in={signatureCollapsed}>
             <TextField
               name="name"
@@ -157,10 +170,14 @@ class Arts extends Component {
                 endAdornment: (
                   <InputAdornment position="end">
                     {window.localStorage.getItem("seed") === null ? (
-                      <Button color="primary" variant="contained" onClick={this.setSeed}>{t("base.save")}</Button>
+                      <Button color="primary" variant="contained" onClick={this.setSeed}>
+                        {t("base.save")}
+                      </Button>
                     ) : (
-                        <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>{t("base.remove")}</Button>
-                      )}
+                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                        {t("base.remove")}
+                      </Button>
+                    )}
                   </InputAdornment>
                 ),
               }}
@@ -179,17 +196,29 @@ class Arts extends Component {
                 <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={index}>
                   <div>
                     <ListItem button component={Link} to={"/arts/" + item.id}>
-                      <ListItemIcon color="secondary">
-                        <ArrowExpand />
-                      </ListItemIcon>
+                      <Tooltip title="Show artwork">
+                        <ListItemIcon color="secondary">
+                          <ArrowExpand />
+                        </ListItemIcon>
+                      </Tooltip>
                       <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
-                      {item.link && (
-                        <ListItemSecondaryAction>
-                          <IconButton edge="end" href={item.link}>
-                            <OpenInNew />
-                          </IconButton>
-                        </ListItemSecondaryAction>
-                      )}
+
+                      <ListItemSecondaryAction>
+                        {item.staticImage && (
+                          <Tooltip title="Show static image">
+                            <IconButton edge="end" href={item.staticImage}>
+                              <Image />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                        {item.link && (
+                          <Tooltip title="Go to original piece">
+                            <IconButton edge="end" href={item.link}>
+                              <OpenInNew />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                      </ListItemSecondaryAction>
                     </ListItem>
                   </div>
                 </Zoom>
