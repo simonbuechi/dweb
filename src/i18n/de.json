@@ -24,7 +24,9 @@
     "footerText1": "Diese Webseite hat keine Cookies, kein Analytics und kein Code von Drittparteien.",
     "footerText2": "Because privacy matters.",
     "menu": "Menü",
-    "experimental": "Das ist eine experimentelle Funktion."
+    "experimental": "Das ist eine experimentelle Funktion.",
+    "save": "Speichern",
+    "remove": "Löschen"
   },
   "start": {
     "title": "Willkommen",
@@ -118,8 +120,15 @@
   },
   "arts": {
     "title": "Arts",
-    "draftsTitle": "My drafts",
-    "about": "Find here my generative arts experiments.",
-    "draftsAbout": "Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen."
+    "draftsTitle": "Meine Werke",
+    "about": "Hier führe ich meine bunte Mischung von Experimenten mit generativer Kunst. Sie sind alle mit p5.js umgesetzt.",
+    "draftsAbout": "Alle Werke werden ad-hoc im Browser gerendert und and die Bildschirm-Grösse angepasst. Es ist möglich, dass es auf sehr kleinen  (Smartphones) oder alten Geräten nicht richtig angezeigt wird.",
+    "seedSwitchLabel": "Individuellen Seed festlegen",
+    "seedLabel": "Seed hier eingeben",
+    "seedHelper": "Die meisten meiner Werke nutzen Noise Funktionen (z.B. Perlin Noise). Mit einem individuellen Seed wird das Werk personalisiert.",
+    "seedSwitchTooltip": "Klicken um mehr zu sehen",
+    "artworkTooltipImage": "Statisches Bild anzeigen",
+    "artworkTooltipShow": "Werk aufrufen",
+    "artworkTooltipLink": "Link für weitere Details"
   }
 }

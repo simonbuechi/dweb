@@ -162,6 +162,18 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiAvatar: {
+      colorDefault: {
+        color: black,
+        backgroundColor: brown[100],
+      },
+    },
+    MuiChip: {
+      root: {
+        marginRight: 3,
+        backgroundColor: brown[100],
+      },
+    },
   },
 });
 

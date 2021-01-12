@@ -9,7 +9,9 @@ import Box from "@material-ui/core/Box";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import Chip from "@material-ui/core/Chip";
 import Zoom from "@material-ui/core/Zoom";
 import Dialog from "@material-ui/core/Dialog";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -25,7 +27,7 @@ import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 //icons
-import { ArrowExpand, Close, OpenInNew, Image } from "mdi-material-ui";
+import { Close, OpenInNew, Image, Check } from "mdi-material-ui";
 //artworks
 const A001 = lazy(() => import("../artworks/A001"));
 const A002 = lazy(() => import("../artworks/A002"));
@@ -38,10 +40,11 @@ const myArtworks = [
   {
     id: "A001",
     primary: "Bar code",
-    secondary: " ",
+    secondary: "A simple case of color theory",
     date: new Date(2020, 12, 5),
     content: <A001 />,
-    group: "drafts",
+    color: true,
+    noise: true,
   },
   {
     id: "A002",
@@ -50,43 +53,48 @@ const myArtworks = [
     link: "https://editor.p5js.org/angichau/sketches/r1BOM69-4",
     date: new Date(2021, 0, 3),
     content: <A002 />,
-    group: "drafts",
+    color: true,
+    noise: true,
   },
   {
     id: "A003",
     primary: "Mondrian recursive",
     secondary: "inspired by sofiagarcia/mondrian",
     link: "https://github.com/sofiagarcia/mondrian/blob/master/mondrian-v.1/sketch.js",
-    date: new Date(2021, 0, 7),
+    date: new Date(2021, 0, 5),
     content: <A003 />,
-    group: "drafts",
+    color: true,
+    noise: true,
   },
   {
     id: "A004",
     primary: "A new world",
     secondary: "inspired by openprocessing/397924",
     link: "https://editor.p5js.org/Kubi/sketches/CHPTDZOu2",
-    date: new Date(2021, 0, 5),
+    date: new Date(2021, 0, 7),
     content: <A004 />,
-    group: "drafts",
+    color: true,
+    noise: false,
   },
   {
     id: "A005",
-    primary: "Mondrian recursive",
-    secondary: "inspired by openprocessing/397924",
-    link: "...",
+    primary: "Noisy pathways",
+    secondary: "Experimenting with Perlin noise",
     date: new Date(2021, 0, 10),
     content: <A005 />,
-    group: "drafts",
+    animated: true,
+    noise: false,
   },
   {
     id: "A006",
-    primary: "Procedural waves on a good trip",
+    primary: "Procedural Tripping",
     secondary: "inspired by procedural night reflections",
-    date: new Date(2021, 0, 10),
+    date: new Date(2021, 0, 11),
     content: <A006 />,
-    group: "drafts",
     webgl: true,
+    animated: true,
+    color: true,
+    noise: false,
   },
 ];
 
@@ -98,6 +106,7 @@ class Arts extends Component {
     signatureCollapsed: false,
     signature: "",
     seed: "",
+    filter: "all",
   };
 
   componentDidUpdate = () => {
@@ -134,10 +143,20 @@ class Arts extends Component {
   handleSeed = (event) => {
     this.setState({ seed: event.target.value });
   };
+  handleFilter = (filter) => {
+    this.setState({ filter });
+  };
+  checkFilter = (color, noise, animated) => {
+    while (this.state.filter === "all") return true;
+    while (this.state.filter === "noise" && noise) return true;
+    while (this.state.filter === "color" && color) return true;
+    while (this.state.filter === "animated" && animated) return true;
+    return false;
+  };
+
   render() {
     const { t } = this.props;
     const { dialog, currentContent, currentTitle, signatureCollapsed } = this.state;
-    // tags: animated,
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
@@ -151,15 +170,23 @@ class Arts extends Component {
           </Typography>
           <Typography variant="body2" gutterBottom>
             {t("arts.about")}
-            Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen.
           </Typography>
-          <Tooltip title="Click to configure">
-            <FormControlLabel value="end" control={<Switch color="primary" onClick={this.handleSwitch} />} label="Set custom seed" labelPlacement="end" />
+          <Typography variant="body2" gutterBottom>
+            {t("arts.draftsAbout")}
+          </Typography>
+          <Tooltip title={t("arts.seedSwitchTooltip")}>
+            <FormControlLabel
+              value="end"
+              control={<Switch color="primary" onClick={this.handleSwitch} />}
+              label={t("arts.seedSwitchLabel")}
+              labelPlacement="end"
+            />
           </Tooltip>
           <Collapse in={signatureCollapsed}>
             <TextField
               name="name"
-              label={t("sendMessage.nameLabel")}
+              label={t("arts.seedLabel")}
+              helperText={t("arts.seedHelper")}
               fullWidth
               margin="normal"
               variant="outlined"
@@ -188,41 +215,75 @@ class Arts extends Component {
             <Typography variant="h2" gutterBottom>
               {t("arts.draftsTitle")}
             </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t("arts.draftsAbout")}
-            </Typography>
+            <Box my={1}>
+              <Chip
+                color={this.state.filter === "all" ? "primary" : "default"}
+                size="small"
+                label="All"
+                clickable
+                onClick={() => this.handleFilter("all")}
+                icon={this.state.filter === "all" ? <Check /> : <></>}
+              />
+              <Chip
+                color={this.state.filter === "noise" ? "primary" : "default"}
+                size="small"
+                label="Seedworthy"
+                clickable
+                onClick={() => this.handleFilter("noise")}
+                icon={this.state.filter === "noise" ? <Check /> : <></>}
+              />
+              <Chip
+                color={this.state.filter === "color" ? "primary" : "default"}
+                size="small"
+                label="Color Theory"
+                clickable
+                onClick={() => this.handleFilter("color")}
+                icon={this.state.filter === "color" ? <Check /> : <></>}
+              />
+              <Chip
+                color={this.state.filter === "animated" ? "primary" : "default"}
+                size="small"
+                label="Animated"
+                clickable
+                onClick={() => this.handleFilter("animated")}
+                icon={this.state.filter === "animated" ? <Check /> : <></>}
+              />
+            </Box>
             <List dense>
-              {myArtworks.map((item, index) => (
-                <Zoom in style={{ transitionDelay: 50 + index * 100 + "ms" }} key={index}>
-                  <div>
-                    <ListItem button component={Link} to={"/arts/" + item.id}>
-                      <Tooltip title="Show artwork">
-                        <ListItemIcon color="secondary">
-                          <ArrowExpand />
-                        </ListItemIcon>
-                      </Tooltip>
-                      <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
+              {myArtworks.map(
+                (item, index) =>
+                  this.checkFilter(item.color, item.noise, item.animated) && (
+                    <Zoom in key={index}>
+                      <div>
+                        <ListItem button component={Link} to={"/arts/" + item.id}>
+                          <Tooltip title={t("arts.artworkTooltipShow")}>
+                            <ListItemAvatar color="secondary">
+                              <Avatar>{index + 1}</Avatar>
+                            </ListItemAvatar>
+                          </Tooltip>
+                          <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
 
-                      <ListItemSecondaryAction>
-                        {item.staticImage && (
-                          <Tooltip title="Show static image">
-                            <IconButton edge="end" href={item.staticImage}>
-                              <Image />
-                            </IconButton>
-                          </Tooltip>
-                        )}
-                        {item.link && (
-                          <Tooltip title="Go to original piece">
-                            <IconButton edge="end" href={item.link}>
-                              <OpenInNew />
-                            </IconButton>
-                          </Tooltip>
-                        )}
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  </div>
-                </Zoom>
-              ))}
+                          <ListItemSecondaryAction>
+                            {item.staticImage && (
+                              <Tooltip title={t("arts.artworkTooltipImage")}>
+                                <IconButton edge="end" href={item.staticImage}>
+                                  <Image />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                            {item.link && (
+                              <Tooltip title={t("arts.artworkTooltipLink")}>
+                                <IconButton edge="end" href={item.link}>
+                                  <OpenInNew />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      </div>
+                    </Zoom>
+                  )
+              )}
             </List>
           </Box>
           <Dialog fullScreen onClose={this.handledialogClose} aria-labelledby="dialog" open={dialog}>
