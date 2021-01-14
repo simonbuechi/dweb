@@ -35,7 +35,8 @@ const A003 = lazy(() => import("../artworks/A003"));
 const A004 = lazy(() => import("../artworks/A004"));
 const A005 = lazy(() => import("../artworks/A005"));
 const A006 = lazy(() => import("../artworks/A006"));
-const A007 = lazy(() => import("../artworks/A007"));
+//const A007 = lazy(() => import("../artworks/A007"));
+//const A008 = lazy(() => import("../artworks/A008"));
 
 const myArtworks = [
   {
@@ -103,7 +104,7 @@ const myArtworks = [
     secondary: "inspired by https://www.youtube.com/watch?v=n66jkd94qN4",
     link: "https://github.com/matthewepler/Generative-Design-Systems-with-P5js/tree/master/21_final",
     date: new Date(2021, 0, 12),
-    content: <A007 />,
+    content: <></>,
   },
 ];
 
@@ -113,9 +114,19 @@ class Arts extends Component {
     currentContent: <></>,
     currentTitle: "",
     signatureCollapsed: false,
-    signature: "",
-    seed: "",
+    signature: null,
+    seedField: "",
     filter: "all",
+  };
+
+  componentDidMount = () => {
+    if (window.localStorage.getItem("signature")) {
+      const currentSignature = window.localStorage.getItem("signature");
+      this.setState({ 
+        signature: currentSignature,
+        seedField: currentSignature
+      })
+    }
   };
 
   componentDidUpdate = () => {
@@ -144,13 +155,15 @@ class Arts extends Component {
     return Intl.DateTimeFormat("default", { year: "2-digit", month: "long", day: "numeric" }).format(date);
   };
   setSeed = () => {
-    window.localStorage.setItem("seed", this.state.seed);
+    window.localStorage.setItem("signature", this.state.seedField);
+    this.setState({signature: this.state.seedField});
   };
   removeSeed = () => {
-    window.localStorage.removeItem("seed");
+    window.localStorage.removeItem("signature");
+    this.setState({signature: null});
   };
   handleSeed = (event) => {
-    this.setState({ seed: event.target.value });
+    this.setState({ seedField: event.target.value });
   };
   handleFilter = (filter) => {
     this.setState({ filter });
@@ -165,7 +178,7 @@ class Arts extends Component {
 
   render() {
     const { t } = this.props;
-    const { dialog, currentContent, currentTitle, signatureCollapsed } = this.state;
+    const { dialog, currentContent, currentTitle, signatureCollapsed, signature, seedField } = this.state;
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
@@ -199,13 +212,13 @@ class Arts extends Component {
               fullWidth
               margin="normal"
               variant="outlined"
-              value={this.state.seed}
+              value={seedField}
               onChange={this.handleSeed}
-              disabled={window.localStorage.getItem("seed") !== null}
+              disabled={signature !== null}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    {window.localStorage.getItem("seed") === null ? (
+                    {signature === null ? (
                       <Button color="primary" variant="contained" onClick={this.setSeed}>
                         {t("base.save")}
                       </Button>

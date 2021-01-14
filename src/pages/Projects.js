@@ -25,10 +25,10 @@ class Projects extends Component {
         linkTitle: t("projects.pactaLink"),
       },
       {
-        title: t("projects.pactaVoteTitle"),
-        description: t("projects.pactaVoteDescription"),
-        link: "https://pacta.vote",
-        linkTitle: t("projects.pactaVoteLink"),
+        title: "Voveo",
+        description: "Voveo...",
+        link: "https://voveo.ch",
+        linkTitle: "Voveo Website",
       },
       {
         title: t("projects.raisinpickerTitle"),

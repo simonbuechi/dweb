@@ -36,8 +36,8 @@ class Start extends Component {
 
     const myJobs = [
       { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <OpenInNew /> },
+      { primary: "Voveo", secondary: "Founder & Developer", link: "https://voveo.ch", icon: <OpenInNew /> },
       { primary: "Pacta", secondary: "Founder", link: "https://pacta.app", icon: <OpenInNew /> },
-      { primary: "Pacta Vote", secondary: "Founder & Developer", link: "https://pacta.vote", icon: <OpenInNew /> },
       { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com", icon: <OpenInNew /> },
     ];
 
