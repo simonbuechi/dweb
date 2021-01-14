@@ -19,7 +19,7 @@ import Divider from "@material-ui/core/Divider";
 import { Menu } from "mdi-material-ui";
 //custom
 import Settings from "./Settings";
-import EthereumSpinner from "./EthereumSpinner";
+//import EthereumSpinner from "./EthereumSpinner";
 
 class Header extends Component {
   state = {
@@ -60,22 +60,12 @@ class Header extends Component {
             </Box>
           </Grid>
           <div>
-            <Dialog fullScreen onClose={this.handleDialogMenuClose} aria-labelledby="menu" open={dialogMenu} keepMounted>
+            <Dialog onClose={this.handleDialogMenuClose} aria-labelledby="menu" open={dialogMenu} keepMounted maxWidth="lg">
               <DialogContent>
-                <Grid container>
-                  <Grid item xs={4}>
-                    <Box my={4}>
-                      <EthereumSpinner />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={8}>
-                    <Box my={4}>
-                      <Typography variant="h2" gutterBottom>
-                        {t("base.menu")}
-                      </Typography>
-                    </Box>
-                  </Grid>
-                </Grid>
+                <Typography variant="h2" gutterBottom>
+                  {t("base.menu")}
+                </Typography>
+
                 <List>
                   <ListItem button onClick={this.handleDialogMenuClose} component={Link} to="/">
                     <ListItemText primary={t("base.navStart")} />
@@ -104,7 +94,7 @@ class Header extends Component {
                 </List>
               </DialogContent>
               <DialogActions>
-                <Button onClick={this.handleDialogMenuClose} color="secondary">
+                <Button onClick={this.handleDialogMenuClose} variant="contained" color="primary">
                   {t("base.close")}
                 </Button>
               </DialogActions>

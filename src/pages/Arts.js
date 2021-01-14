@@ -35,6 +35,7 @@ const A003 = lazy(() => import("../artworks/A003"));
 const A004 = lazy(() => import("../artworks/A004"));
 const A005 = lazy(() => import("../artworks/A005"));
 const A006 = lazy(() => import("../artworks/A006"));
+const A007 = lazy(() => import("../artworks/A007"));
 
 const myArtworks = [
   {
@@ -63,7 +64,7 @@ const myArtworks = [
     link: "https://github.com/sofiagarcia/mondrian/blob/master/mondrian-v.1/sketch.js",
     date: new Date(2021, 0, 5),
     content: <A003 />,
-    color: true,
+    color: false,
     noise: true,
   },
   {
@@ -73,7 +74,7 @@ const myArtworks = [
     link: "https://editor.p5js.org/Kubi/sketches/CHPTDZOu2",
     date: new Date(2021, 0, 7),
     content: <A004 />,
-    color: true,
+    color: false,
     noise: false,
   },
   {
@@ -95,6 +96,14 @@ const myArtworks = [
     animated: true,
     color: true,
     noise: false,
+  },
+  {
+    id: "A007",
+    primary: "...",
+    secondary: "inspired by https://www.youtube.com/watch?v=n66jkd94qN4",
+    link: "https://github.com/matthewepler/Generative-Design-Systems-with-P5js/tree/master/21_final",
+    date: new Date(2021, 0, 12),
+    content: <A007 />,
   },
 ];
 
