@@ -35,10 +35,18 @@ const A003 = lazy(() => import("../artworks/A003"));
 const A004 = lazy(() => import("../artworks/A004"));
 const A005 = lazy(() => import("../artworks/A005"));
 const A006 = lazy(() => import("../artworks/A006"));
-//const A007 = lazy(() => import("../artworks/A007"));
-//const A008 = lazy(() => import("../artworks/A008"));
+const P5Helper = lazy(() => import("../artworks/P5Helper"));
+const A007 = lazy(() => import("../artworks/A007"));
+const A008 = lazy(() => import("../artworks/A008"));
 
 const myArtworks = [
+  {
+    id: "p5helper",
+    primary: "P5 Helper functions",
+    secondary: "not really a piece of art...",
+    date: new Date(2020, 11, 27),
+    content: <P5Helper />
+  },
   {
     id: "A001",
     primary: "Bar code",
@@ -100,11 +108,19 @@ const myArtworks = [
   },
   {
     id: "A007",
-    primary: "...",
+    primary: "Hexadingens",
     secondary: "inspired by https://www.youtube.com/watch?v=n66jkd94qN4",
     link: "https://github.com/matthewepler/Generative-Design-Systems-with-P5js/tree/master/21_final",
-    date: new Date(2021, 0, 12),
-    content: <></>,
+    date: new Date(2021, 0, 17),
+    content: <A007 />,
+  },
+  {
+    id: "A008",
+    primary: "Rosettes",
+    secondary: "...",
+    date: new Date(2021, 0, 20),
+    content: <A008 />,
+    noise: true,
   },
 ];
 
@@ -126,6 +142,11 @@ class Arts extends Component {
         signature: currentSignature,
         seedField: currentSignature
       })
+    }
+    if (this.props.match.params.id && !this.state.dialog) {
+      let currentArtwork = myArtworks.find((x) => x.id === this.props.match.params.id);
+      this.setState({ currentTitle: currentArtwork.primary, currentContent: currentArtwork.content });
+      this.handledialogOpen();
     }
   };
 
@@ -249,7 +270,7 @@ class Arts extends Component {
               <Chip
                 color={this.state.filter === "noise" ? "primary" : "default"}
                 size="small"
-                label="Seedworthy"
+                label="Seed Supported"
                 clickable
                 onClick={() => this.handleFilter("noise")}
                 icon={this.state.filter === "noise" ? <Check /> : <></>}
@@ -280,7 +301,7 @@ class Arts extends Component {
                         <ListItem button component={Link} to={"/arts/" + item.id}>
                           <Tooltip title={t("arts.artworkTooltipShow")}>
                             <ListItemAvatar color="secondary">
-                              <Avatar>{index + 1}</Avatar>
+                              <Avatar>{index}</Avatar>
                             </ListItemAvatar>
                           </Tooltip>
                           <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />

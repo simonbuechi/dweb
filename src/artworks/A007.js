@@ -30,18 +30,18 @@ export default (props) => {
     return p5.createVector(x, y);
   };
 
-  const randomSelectTwo = (p5) => {
-    const rando = p5.random(1);
+  const randomSelectTwo = () => {
+    const rando = Math.random();
     return rando > 0.5 ? true : false;
   };
 
-  const getRandomFromPalette = (p5) => {
-    const rando = p5.floor(p5.random(0, PALETTE.length));
+  const getRandomFromPalette = () => {
+    const rando = Math.floor(Math.random() * PALETTE.length);
     return PALETTE[rando];
   };
 
   const testLines = (p5, state) => {
-    state.numShapes = randomSelectTwo(p5) ? state.sides : state.sides * 2;
+    state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2;
     state.angle = 360 / state.numShapes;
 
     return {
@@ -98,7 +98,7 @@ export default (props) => {
       init: (p5, props) =>
         centeredShape(p5, {
           ...props,
-          ...setState(p5, state),
+          ...setState(state),
         }),
       weight: 0.3,
     },
@@ -154,7 +154,7 @@ export default (props) => {
           lines: false,
           circle: false,
           ...props,
-          ...setState(state),
+          ...setState(p5, state),
         }),
       weight: 1,
     },
@@ -165,7 +165,7 @@ export default (props) => {
       let picker = p5.random(1);
       const draw = picker > lcon.weight;
       // const draw = lcon.name === 'Test Lines'
-      return lcon.init({
+      return lcon.init(p5, {
         pos,
         draw,
       });
@@ -191,11 +191,11 @@ export default (props) => {
     thickStroke: 3,
   };
 
-  const setState = (p5, state) => {
-    (state.numShapes = state.sides),
-      (state.angle = 360 / state.numShapes),
-      (state.singleStep = CRYSTAL_SIZE / 2 / state.stepsOut),
-      (state.layerColor = getRandomFromPalette(p5));
+  const setState = (state) => {
+    state.numShapes = state.sides;
+    state.angle = 360 / state.numShapes;
+    state.singleStep = CRYSTAL_SIZE / 2 / state.stepsOut;
+    state.layerColor = getRandomFromPalette();
     return state;
   };
 
@@ -222,12 +222,12 @@ export default (props) => {
   };
 
   const simpleLines = (p5, state) => {
-    state.numSteps = randomSelectTwo(p5) ? state.stepsOut : p5.int(state.stepsOut * 1.25);
+    state.numSteps = randomSelectTwo() ? state.stepsOut : p5.int(state.stepsOut * 1.25);
     state.step = CRYSTAL_SIZE / 2 / state.numSteps;
     state.start = p5.floor(p5.random(0, state.numSteps));
     state.stop = p5.floor(p5.random(state.start, state.numSteps + 1));
-    state.weight = randomSelectTwo(p5) ? state.thinStroke : state.thickStroke;
-    state.numShapes = randomSelectTwo(p5) ? state.sides : state.sides * 2;
+    state.weight = randomSelectTwo() ? state.thinStroke : state.thickStroke;
+    state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2;
     state.angle = 360 / state.numShapes;
 
     return {
@@ -249,8 +249,8 @@ export default (props) => {
   };
 
   const outlineShape = (p5, state) => {
-    state.weight = randomSelectTwo(p5) ? state.thinStroke : state.thickStroke;
-    state.hexagonTrue = randomSelectTwo(p5);
+    state.weight = randomSelectTwo() ? state.thinStroke : state.thickStroke;
+    state.hexagonTrue = randomSelectTwo();
 
     return {
       name: "Outline Shape",
@@ -271,7 +271,7 @@ export default (props) => {
   };
 
   const dottedLines = (p5, state) => {
-    state.numShapes = randomSelectTwo(p5) ? state.sides : state.sides * 2;
+    state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2;
     state.angle = 360 / state.numShapes;
     state.shapeSize = 3;
     state.centerOffset = state.singleStep;
@@ -313,7 +313,7 @@ export default (props) => {
           p5.ellipse(0, 0, state.shapeSize * 2, state.shapeSize * 2);
         } else if (state.randomShape >= 0.6) {
           p5.rotate(state.angle / 2);
-          hexagon(0, 0, state.shapeSize);
+          hexagon(p5, 0, 0, state.shapeSize);
         }
         p5.pop();
       },
@@ -377,7 +377,7 @@ export default (props) => {
         //translate(width / 2, height / 2)
         p5.rotate(state.angle / 2);
         for (let i = 1; i < state.numSteps + 1; i++) {
-          hexagon(0, 0, state.centerOffset + i * state.singleStep);
+          hexagon(p5, 0, 0, state.centerOffset + i * state.singleStep);
         }
         p5.pop();
       },
