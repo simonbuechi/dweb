@@ -93,6 +93,9 @@ class Offering extends Component {
             {t("offering.title")}
           </Typography>
           <Typography variant="body2" gutterBottom>
+            {t("offering.description")}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
             {t("base.clickToSeeMore")}
           </Typography>
           <Box my={2}>

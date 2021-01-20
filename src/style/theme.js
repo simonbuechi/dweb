@@ -103,7 +103,7 @@ const theme = createMuiTheme({
       containedPrimary: {
         color: "#000",
         backgroundColor: "#fff",
-        backgroundImage: "linear-gradient(to right, " + fade("#B7AEAC", 1) + " 0%, " + fade("#B7AEAC", 0.8) + " 100%) ",
+        backgroundImage: "linear-gradient(to right, " + fade(brown[200], 1) + " 0%, " + fade(brown[200], 0.7) + " 100%) ",
       },
     },
     MuiRating: {

@@ -26,7 +26,7 @@ class Projects extends Component {
       },
       {
         title: "Voveo",
-        description: "Voveo...",
+        description: "Voveo is a blockchain based voting tool for annual general meetings (AGM) and other types of assemblies or meeting. Voveo runs on any device: desktop, tablet and mobile phones (iOS & Android). Set up your event with a few clicks and accredit participants with personalized invitation codes. All polling is stored on the Ethereum blockchain - one of the most secure and immutable database.",
         link: "https://voveo.ch",
         linkTitle: "Voveo Website",
       },
@@ -58,7 +58,7 @@ class Projects extends Component {
               <Box my={2}>
                 <Accordion>
                   <AccordionSummary expandIcon={<ChevronDown />}>
-                    <Typography variant="h3">{item.title}</Typography>
+                    <Typography variant="body1">{item.title}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Box>

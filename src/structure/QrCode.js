@@ -40,10 +40,13 @@ class QrCode extends Component {
             <Typography variant="body2" gutterBottom>
               {t("base.qrCode")}
             </Typography>
-            <QRCode value={text} size={250} bgColor="#FFFFFF" fgColor="#000000" />
+            <Typography variant="body2" gutterBottom>
+            {text}
+            </Typography>
+            <QRCode value={text} size={350} bgColor="#FFFFFF" fgColor="#000000" />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleDialogQrClose} color="secondary" autoFocus>
+            <Button onClick={this.handleDialogQrClose} variant="contained" color="primary" autoFocus>
               {t("base.close")}
             </Button>
           </DialogActions>

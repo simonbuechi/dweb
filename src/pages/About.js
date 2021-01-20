@@ -25,10 +25,8 @@ import {
   OpenInNew,
   Facebook,
   Linkedin,
-  Email,
   Numeric3Box,
   Twitter,
-  Chat,
   Whatsapp,
 } from "mdi-material-ui";
 //custom
@@ -75,10 +73,8 @@ class About extends Component {
       { primary: "Facebook", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Facebook /> },
       { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Twitter /> },
       { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
-      { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> },
-      { primary: "Email", secondary: "", link: "mailto:simon.buechi@gmail.com", icon: <Email /> },
-      { primary: "Keybase", secondary: "", link: "https://keybase.io/simonbuechi", icon: <Chat /> },
-    ];
+      { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> }
+        ];
 
     const myCryptos = [
       { primary: "Ethereum", secondary: config.ethereumAddress, link: 2, icon: <Ethereum /> },

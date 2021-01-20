@@ -7,7 +7,7 @@
     "copyright": "© Copyright 2020 Simon Büchi",
     "navStart": "Start",
     "navAbout": "Über mich",
-    "navOffering": "Angebot",
+    "navOffering": "Services",
     "navProjects": "Projekte",
     "navBlog": "Blog",
     "navWall": "Pinnwand",
@@ -96,7 +96,8 @@
     "simonbuechiLink": "Gehe zu Github"
   },
   "offering": {
-    "title": "Meine Angebote und Fähigkeiten",
+    "title": "Services",
+    "description": "Gerne stehe ich zur Verfügung und helfe",
     "reachoutTitle": "Kontakt",
     "reachoutDescription": "Ich freue mich auf deine Kontaktaufnahme",
     "categoryTechnologies": "Technologien & Programmiersprachen",
