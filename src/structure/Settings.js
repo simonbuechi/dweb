@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { withTranslation } from "react-i18next";
 import i18n from "../i18n/i18n";
 //material-ui
@@ -10,11 +10,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import CircularProgress from "@material-ui/core/CircularProgress";
 //icons
 //import { InformationOutline, AccountBox } from "mdi-material-ui";
 //import Brightness6 from 'mdi-material-ui/Brightness6';
 //custom
-import Web3 from "../web3/Web3";
+const Web3 = lazy(() => import("../web3/Web3"));
 
 class Settings extends Component {
   state = {
@@ -55,14 +56,14 @@ class Settings extends Component {
             </Button>
           </Tooltip>
         </ButtonGroup>
-        <Box mt={2}>
+        <Box mt={1}>
           <Tooltip title="Connect to your Ethereum account">
             <Button size="small" variant="outlined" color="secondary" onClick={this.handleDialogWeb3Open}>
               Web3 Connect
           </Button>
           </Tooltip>
         </Box>
-        <Box mt={2}>
+        <Box mt={1}>
           <Tooltip title="Disclaimer">
             <Button size="small" variant="outlined" color="secondary" onClick={this.handleDialogDisclaimerOpen}>
               Disclaimer
@@ -74,7 +75,9 @@ class Settings extends Component {
             <Typography variant="h2" gutterBottom>
               Connect Wallet
             </Typography>
-            <Web3 />
+            <Suspense fallback={<CircularProgress color="primary" />}>
+              <Web3 />
+            </Suspense>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleDialogWeb3Close} variant="contained" color="primary">

@@ -92,7 +92,7 @@ function Header() {
 
   return (
     <>
-      <Typography variant="h3" textAlign="right" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Status: {active ? "you're connected" : error ? "There's a problem." : "..."}
       </Typography>
       <Typography variant="body2" gutterBottom>

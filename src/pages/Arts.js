@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { Component, Suspense } from "react";
 import { withTranslation } from "react-i18next";
 import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -28,101 +28,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 //icons
 import { Close, OpenInNew, Image, Check } from "mdi-material-ui";
-//artworks
-const A001 = lazy(() => import("../artworks/A001"));
-const A002 = lazy(() => import("../artworks/A002"));
-const A003 = lazy(() => import("../artworks/A003"));
-const A004 = lazy(() => import("../artworks/A004"));
-const A005 = lazy(() => import("../artworks/A005"));
-const A006 = lazy(() => import("../artworks/A006"));
-const P5Helper = lazy(() => import("../artworks/P5Helper"));
-const A007 = lazy(() => import("../artworks/A007"));
-const A008 = lazy(() => import("../artworks/A008"));
-
-const myArtworks = [
-  {
-    id: "p5helper",
-    primary: "P5 Helper functions",
-    secondary: "not really a piece of art...",
-    date: new Date(2020, 11, 27),
-    content: <P5Helper />
-  },
-  {
-    id: "A001",
-    primary: "Bar code",
-    secondary: "A simple case of color theory",
-    date: new Date(2020, 12, 5),
-    content: <A001 />,
-    color: true,
-    noise: true,
-  },
-  {
-    id: "A002",
-    primary: "Mondrian playground",
-    secondary: "inspired by angichau/r1BOM69-4",
-    link: "https://editor.p5js.org/angichau/sketches/r1BOM69-4",
-    date: new Date(2021, 0, 3),
-    content: <A002 />,
-    color: true,
-    noise: true,
-  },
-  {
-    id: "A003",
-    primary: "Mondrian recursive",
-    secondary: "inspired by sofiagarcia/mondrian",
-    link: "https://github.com/sofiagarcia/mondrian/blob/master/mondrian-v.1/sketch.js",
-    date: new Date(2021, 0, 5),
-    content: <A003 />,
-    color: false,
-    noise: true,
-  },
-  {
-    id: "A004",
-    primary: "A new world",
-    secondary: "inspired by openprocessing/397924",
-    link: "https://editor.p5js.org/Kubi/sketches/CHPTDZOu2",
-    date: new Date(2021, 0, 7),
-    content: <A004 />,
-    color: false,
-    noise: false,
-  },
-  {
-    id: "A005",
-    primary: "Noisy pathways",
-    secondary: "Experimenting with Perlin noise",
-    date: new Date(2021, 0, 10),
-    content: <A005 />,
-    animated: true,
-    noise: false,
-  },
-  {
-    id: "A006",
-    primary: "Procedural Tripping",
-    secondary: "inspired by procedural night reflections",
-    date: new Date(2021, 0, 11),
-    content: <A006 />,
-    webgl: true,
-    animated: true,
-    color: true,
-    noise: false,
-  },
-  {
-    id: "A007",
-    primary: "Hexadingens",
-    secondary: "inspired by https://www.youtube.com/watch?v=n66jkd94qN4",
-    link: "https://github.com/matthewepler/Generative-Design-Systems-with-P5js/tree/master/21_final",
-    date: new Date(2021, 0, 17),
-    content: <A007 />,
-  },
-  {
-    id: "A008",
-    primary: "Rosettes",
-    secondary: "...",
-    date: new Date(2021, 0, 20),
-    content: <A008 />,
-    noise: true,
-  },
-];
+// custom
+import {artworkIndex} from "../artworks/ArtworkIndex";
 
 class Arts extends Component {
   state = {
@@ -130,21 +37,19 @@ class Arts extends Component {
     currentContent: <></>,
     currentTitle: "",
     signatureCollapsed: false,
-    signature: null,
-    seedField: "",
+    customCollapsed: false,
+    seed: null,
+    customField: "",
     filter: "all",
   };
 
   componentDidMount = () => {
-    if (window.localStorage.getItem("signature")) {
-      const currentSignature = window.localStorage.getItem("signature");
-      this.setState({ 
-        signature: currentSignature,
-        seedField: currentSignature
-      })
+    if (window.localStorage.getItem("seed")) {
+      const currentSeed = window.localStorage.getItem("seed");
+      this.setState({seed: currentSeed });
     }
     if (this.props.match.params.id && !this.state.dialog) {
-      let currentArtwork = myArtworks.find((x) => x.id === this.props.match.params.id);
+      let currentArtwork = artworkIndex.find((x) => x.id === this.props.match.params.id);
       this.setState({ currentTitle: currentArtwork.primary, currentContent: currentArtwork.content });
       this.handledialogOpen();
     }
@@ -152,7 +57,7 @@ class Arts extends Component {
 
   componentDidUpdate = () => {
     if (this.props.match.params.id && !this.state.dialog) {
-      let currentArtwork = myArtworks.find((x) => x.id === this.props.match.params.id);
+      let currentArtwork = artworkIndex.find((x) => x.id === this.props.match.params.id);
       this.setState({ currentTitle: currentArtwork.primary, currentContent: currentArtwork.content });
       this.handledialogOpen();
     }
@@ -165,8 +70,10 @@ class Arts extends Component {
     this.setState({ currentTitle: "", currentContent: <></> });
     this.props.history.push("/arts");
   };
-  handleSwitch = () => {
-    this.setState({ signatureCollapsed: !this.state.signatureCollapsed });
+  handleSwitch = (item) => {
+    console.log(item);
+    console.log(!this.state[item]);
+    this.setState({ [item]: !this.state[item] });
   };
   openArtwork = (currentTitle, currentContent) => {
     this.setState({ currentTitle, currentContent });
@@ -176,15 +83,18 @@ class Arts extends Component {
     return Intl.DateTimeFormat("default", { year: "2-digit", month: "long", day: "numeric" }).format(date);
   };
   setSeed = () => {
-    window.localStorage.setItem("signature", this.state.seedField);
-    this.setState({signature: this.state.seedField});
+    window.localStorage.setItem("seed", this.state.customField);
+    this.setState({seed: this.state.customField});
   };
   removeSeed = () => {
-    window.localStorage.removeItem("signature");
-    this.setState({signature: null});
+    window.localStorage.removeItem("seed");
+    this.setState({seed: null});
   };
-  handleSeed = (event) => {
-    this.setState({ seedField: event.target.value });
+  handleCustomSeed = (event) => {
+    this.setState({ customField: event.target.value });
+  };
+  setSignature = () => {
+
   };
   handleFilter = (filter) => {
     this.setState({ filter });
@@ -199,7 +109,7 @@ class Arts extends Component {
 
   render() {
     const { t } = this.props;
-    const { dialog, currentContent, currentTitle, signatureCollapsed, signature, seedField } = this.state;
+    const { dialog, currentContent, currentTitle, signatureCollapsed, signature, customCollapsed, customField } = this.state;
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
@@ -220,12 +130,12 @@ class Arts extends Component {
           <Tooltip title={t("arts.seedSwitchTooltip")}>
             <FormControlLabel
               value="end"
-              control={<Switch color="primary" onClick={this.handleSwitch} />}
+              control={<Switch color="primary" onClick={() => this.handleSwitch("customCollapsed")} />}
               label={t("arts.seedSwitchLabel")}
               labelPlacement="end"
             />
           </Tooltip>
-          <Collapse in={signatureCollapsed}>
+          <Collapse in={customCollapsed}>
             <TextField
               name="name"
               label={t("arts.seedLabel")}
@@ -233,8 +143,8 @@ class Arts extends Component {
               fullWidth
               margin="normal"
               variant="outlined"
-              value={seedField}
-              onChange={this.handleSeed}
+              value={customField}
+              onChange={this.handleCustomSeed}
               disabled={signature !== null}
               InputProps={{
                 endAdornment: (
@@ -253,7 +163,41 @@ class Arts extends Component {
               }}
             />
           </Collapse>
-
+          <Tooltip title={t("arts.cryptoSeedSwitchTooltip")}>
+            <FormControlLabel
+              value="end"
+              control={<Switch color="primary" onClick={() => this.handleSwitch("signatureCollapsed")} />}
+              label={t("arts.cryptoSeedSwitchLabel")}
+              labelPlacement="end"
+            />
+          </Tooltip>
+          <Collapse in={signatureCollapsed}>
+            <TextField
+              name="name"
+              label={t("arts.cryptoSeedLabel")}
+              helperText={t("arts.cryptoSeedHelper")}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              value={signature}
+              disabled
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    {signature === null ? (
+                      <Button color="primary" variant="contained" onClick={this.setSignature}>
+                        {t("arts.cryptoSeed")}
+                      </Button>
+                    ) : (
+                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                        {t("base.remove")}
+                      </Button>
+                    )}
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Collapse>
           <Box my={3}>
             <Typography variant="h2" gutterBottom>
               {t("arts.draftsTitle")}
@@ -293,7 +237,7 @@ class Arts extends Component {
               />
             </Box>
             <List dense>
-              {myArtworks.map(
+              {artworkIndex.map(
                 (item, index) =>
                   this.checkFilter(item.color, item.noise, item.animated) && (
                     <Zoom in key={index}>
