@@ -95,9 +95,6 @@ class Offering extends Component {
           <Typography variant="body2" gutterBottom>
             {t("offering.description")}
           </Typography>
-          <Typography variant="body2" gutterBottom>
-            {t("base.clickToSeeMore")}
-          </Typography>
           <Box my={2}>
             <Accordion TransitionProps={{ unmountOnExit: true, mountOnEnter: true }}>
               <AccordionSummary expandIcon={<ChevronDown />}>

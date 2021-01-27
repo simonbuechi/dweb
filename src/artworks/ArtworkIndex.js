@@ -9,6 +9,7 @@ const A005 = lazy(() => import("../artworks/A005"));
 const A006 = lazy(() => import("../artworks/A006"));
 const A007 = lazy(() => import("../artworks/A007"));
 const A008 = lazy(() => import("../artworks/A008"));
+const A009 = lazy(() => import("../artworks/A009"));
 
 export const artworkIndex = [
   {
@@ -79,7 +80,7 @@ export const artworkIndex = [
   },
   {
     id: "A007",
-    primary: "Hexadingens",
+    primary: "Hexadingens  (draft)",
     secondary: "inspired by https://www.youtube.com/watch?v=n66jkd94qN4",
     link: "https://github.com/matthewepler/Generative-Design-Systems-with-P5js/tree/master/21_final",
     date: new Date(2021, 0, 17),
@@ -87,10 +88,18 @@ export const artworkIndex = [
   },
   {
     id: "A008",
-    primary: "Rosettes",
-    secondary: "...",
+    primary: "Rosette I  (draft)",
+    secondary: "A single rosette",
     date: new Date(2021, 0, 20),
     content: <A008 />,
+    noise: true,
+  },
+  {
+    id: "A009",
+    primary: "Rosette II (draft)",
+    secondary: "A bouquet of rosettes",
+    date: new Date(2021, 0, 22),
+    content: <A009 />,
     noise: true,
   },
 ];

@@ -47,14 +47,13 @@
   },
   "about": {
     "title": "About me",
-    "body1": "Living in Switzerland.",
-    "body2": "Alumnus of University of St. Gallen (M.A.HSG in Marketing, Services and Communication Management)",
-    "body3": "Worked at Synpulse, Bearingpoint, Zuercher Kantonalbank",
-    "body4": "Cerified in Avaloq, Financial Risk Manager (Part 1), Scrum, Six Sigma",
-    "paragraph1": "This site is about me, Simon Buechi. Swiss national, citizen of the canton of Zurich, resident of the city of Winterthur. Alumnus of Kantonsschule Buelrain and University of St. Gallen. I have been working as business analyst, programmer, business engineer, project manager. I am interested in trends in banking and web devolopment. More than technologies I am fascinated by disruptive business models. I enjoy reading about philosophy, economics, politics, history and technology. I enjoy classical music.",
+    "body1": "Live and work in Switzerland.",
+    "body2": "Alumn of University of St Gallen (M.A.HSG in Marketing, Services and Communication Management).",
+    "body3": "Worked at Synpulse, Bearingpoint, Zuercher Kantonalbank and SWIC Digital. Certified in Avaloq, Financial Risk Manager (Part 1), Scrum, Six Sigma and others. Do project management, business engineering, analysis and research. Specialized on finance, banking, blockchain, Ethereum, tokens, DAOs.",
+    "body4": "Know Full Web Stack (HTML, JS, CSS) and especially React / Create React App. Also Redux and web3.js. Write smart contracts in Solidity on Ethereum. Hin und wieder Processing und p5.js. Spreche deutsch, englisch, französisch und etwas spanisch.",
     "titleLinks": "Links",
     "aboutSiteTitle": "About this site",
-    "aboutSiteBody": "This site both serves as a place to find information about me as well as a showcase for decentralized technologies.",
+    "aboutSiteBody": "This website is my business card and showcase of my activities. I run some experiments with decentralized technologies which I share on this site. Everything here is open source. I want to help to make a better web. A web that is open to all and safe from censhorship.",
     "linkGithub": "This site on Github",
     "blockchainTitle": "My addresses",
     "linksTitle": "My links",
@@ -92,10 +91,14 @@
     "raisinpickerLink": "Go to Raisin Picker",
     "simonbuechiTitle": "simonbuechi.eth",
     "simonbuechiDescription": "My work on this site. It is a create-react-app based site. Feel free to fork this site and build your own",
-    "simonbuechiLink": "Go to simonbuechi.eth"
+    "simonbuechiLink": "Go to simonbuechi.eth",
+    "voveoLink": "Voveo Website",
+    "voveoTitle": "Voveo",
+    "voveoDescription": "Voveo is a blockchain based voting tool for annual general meetings (AGM) and other types of assemblies or meeting. Voveo runs on any device: desktop, tablet and mobile phones (iOS & Android). Set up your event with a few clicks and accredit participants with personalized invitation codes. All polling is stored on the Ethereum blockchain - one of the most secure and immutable database."
   },
   "offering": {
-    "title": "My skills & services",
+    "title": "My services",
+    "description": "I am happy to support you with your project. Please find below an overview of my skills and know-how.",
     "reachoutTitle": "Contact",
     "reachoutDescription": "Please reach out to me",
     "categoryTechnologies": "Technologies & programming languages",
@@ -119,11 +122,22 @@
   },
   "arts": {
     "title": "Arts",
-    "draftsTitle": "My drafts",
-    "about": "Find here my generative arts experiments.",
+    "draftsTitle": "My artworks",
+    "about": "Please find my work with generative art. I used p5.js. Most artworks use a type of noise (e.g. Perlin Noise). Setting an individual seed (i.e. any number or text sequence), you get a personalized version of the artwork. Code is open source, see licence per artwork.",
     "draftsAbout": "Please note that artworks are generated ad hoc and adapt to your screen size. It is generally recommended to use at least a tablet-sized screen.",
     "seedTitle": "Set custom seed",
     "seedField": "Enter seed here",
-    "seedHelper": "All artworks are based on noise functions (such as Perlin) as opposed to random functions. By setting a custom seed, you get a personalized version of the artwork."
+    "seedHelper": "All artworks are based on noise functions (such as Perlin) as opposed to random functions. By setting a custom seed, you get a personalized version of the artwork.",
+    "seedSwitchLabel": "Set seed with text input",
+    "seedLabel": "Seed hier eingeben",
+    "seedSwitchTooltip": "Click to see more",
+    "artworkTooltipImage": "Show static image of artwork",
+    "artworkTooltipShow": "Open artwork",
+    "artworkTooltipLink": "Further details and/or reference",
+    "cryptoSeedSwitchTooltip": "Create seed signed with your crypto wallet",
+    "cryptoSeedSwitchLabel": "Set seed with wallet",
+    "cryptoSeedLabel": "(hidden)",
+    "cryptoSeedHelper": "Set a seed signed with your crypto wallet and get your personalized artwork.",
+    "signWithWallet": "Set seed"
   }
 }

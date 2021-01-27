@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { withTranslation } from "react-i18next";
 import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -26,14 +26,19 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
 //icons
-import { Close, OpenInNew, Image, Check } from "mdi-material-ui";
+import { Close, OpenInNew, Image, Check, Github, RadioboxBlank } from "mdi-material-ui";
 // custom
-import {artworkIndex} from "../artworks/ArtworkIndex";
+import { artworkIndex } from "../artworks/ArtworkIndex";
+//lazy 
+const Web3 = lazy(() => import("../web3/Web3"));
 
 class Arts extends Component {
   state = {
     dialog: false,
+    dialogWeb3: false,
     currentContent: <></>,
     currentTitle: "",
     signatureCollapsed: false,
@@ -46,7 +51,7 @@ class Arts extends Component {
   componentDidMount = () => {
     if (window.localStorage.getItem("seed")) {
       const currentSeed = window.localStorage.getItem("seed");
-      this.setState({seed: currentSeed });
+      this.setState({ seed: currentSeed });
     }
     if (this.props.match.params.id && !this.state.dialog) {
       let currentArtwork = artworkIndex.find((x) => x.id === this.props.match.params.id);
@@ -70,10 +75,24 @@ class Arts extends Component {
     this.setState({ currentTitle: "", currentContent: <></> });
     this.props.history.push("/arts");
   };
+  handleDialogWeb3Open = () => {
+    this.setState({ dialogWeb3: true });
+  };
+  handleDialogWeb3Close = () => {
+    this.setState({ dialogWeb3: false });
+  };
   handleSwitch = (item) => {
-    console.log(item);
-    console.log(!this.state[item]);
-    this.setState({ [item]: !this.state[item] });
+    if(item === "customCollapsed") {
+      this.setState({
+        signatureCollapsed: false,
+        customCollapsed: !this.state.customCollapsed
+      });
+    } else {
+      this.setState({
+        signatureCollapsed: !this.state.signatureCollapsed,
+        customCollapsed: false
+      });
+    }
   };
   openArtwork = (currentTitle, currentContent) => {
     this.setState({ currentTitle, currentContent });
@@ -84,11 +103,11 @@ class Arts extends Component {
   };
   setSeed = () => {
     window.localStorage.setItem("seed", this.state.customField);
-    this.setState({seed: this.state.customField});
+    this.setState({ seed: this.state.customField });
   };
   removeSeed = () => {
     window.localStorage.removeItem("seed");
-    this.setState({seed: null});
+    this.setState({ seed: null });
   };
   handleCustomSeed = (event) => {
     this.setState({ customField: event.target.value });
@@ -109,7 +128,7 @@ class Arts extends Component {
 
   render() {
     const { t } = this.props;
-    const { dialog, currentContent, currentTitle, signatureCollapsed, signature, customCollapsed, customField } = this.state;
+    const { dialog, currentContent, currentTitle, signatureCollapsed, seed, customCollapsed, customField, dialogWeb3 } = this.state;
 
     return (
       <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
@@ -122,15 +141,36 @@ class Arts extends Component {
             {t("arts.title")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {t("arts.about")}
+            {t("arts.about")} 
           </Typography>
           <Typography variant="body2" gutterBottom>
             {t("arts.draftsAbout")}
           </Typography>
+          <Box mt={1} mb={3}>
+          <Button
+            color="primary"
+            variant="contained"
+            component="a"
+            href="https://github.com/simonbuechi/dweb/tree/master/src/artworks"
+            startIcon={<Github />}
+          >
+            Source Code
+          </Button>
+          &nbsp;
+          <Button
+            color="primary"
+            variant="contained"
+            component="a"
+            href="https://p5js.org"
+            startIcon={<OpenInNew />}
+          >
+            Learn about P5
+          </Button>
+          </Box>
           <Tooltip title={t("arts.seedSwitchTooltip")}>
             <FormControlLabel
               value="end"
-              control={<Switch color="primary" onClick={() => this.handleSwitch("customCollapsed")} />}
+              control={<Switch color="primary" checked={customCollapsed} onClick={() => this.handleSwitch("customCollapsed")} />}
               label={t("arts.seedSwitchLabel")}
               labelPlacement="end"
             />
@@ -145,19 +185,19 @@ class Arts extends Component {
               variant="outlined"
               value={customField}
               onChange={this.handleCustomSeed}
-              disabled={signature !== null}
+              disabled={seed !== null}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    {signature === null ? (
+                    {seed === null ? (
                       <Button color="primary" variant="contained" onClick={this.setSeed}>
                         {t("base.save")}
                       </Button>
                     ) : (
-                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
-                        {t("base.remove")}
-                      </Button>
-                    )}
+                        <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                          {t("base.remove")}
+                        </Button>
+                      )}
                   </InputAdornment>
                 ),
               }}
@@ -166,7 +206,7 @@ class Arts extends Component {
           <Tooltip title={t("arts.cryptoSeedSwitchTooltip")}>
             <FormControlLabel
               value="end"
-              control={<Switch color="primary" onClick={() => this.handleSwitch("signatureCollapsed")} />}
+              control={<Switch color="primary" checked={signatureCollapsed}  onClick={() => this.handleSwitch("signatureCollapsed")} />}
               label={t("arts.cryptoSeedSwitchLabel")}
               labelPlacement="end"
             />
@@ -179,20 +219,19 @@ class Arts extends Component {
               fullWidth
               margin="normal"
               variant="outlined"
-              value={signature}
               disabled
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    {signature === null ? (
-                      <Button color="primary" variant="contained" onClick={this.setSignature}>
-                        {t("arts.cryptoSeed")}
+                    {seed === null ? (
+                      <Button color="primary" variant="contained"  onClick={this.handleDialogWeb3Open}>
+                        {t("arts.signWithWallet")}
                       </Button>
                     ) : (
-                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
-                        {t("base.remove")}
-                      </Button>
-                    )}
+                        <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                          {t("base.remove")}
+                        </Button>
+                      )}
                   </InputAdornment>
                 ),
               }}
@@ -207,33 +246,37 @@ class Arts extends Component {
                 color={this.state.filter === "all" ? "primary" : "default"}
                 size="small"
                 label="All"
+                variant="outlined"
                 clickable
                 onClick={() => this.handleFilter("all")}
-                icon={this.state.filter === "all" ? <Check /> : <></>}
+                icon={this.state.filter === "all" ? <Check /> : <RadioboxBlank />}
               />
               <Chip
                 color={this.state.filter === "noise" ? "primary" : "default"}
                 size="small"
                 label="Seed Supported"
+                variant="outlined"
                 clickable
                 onClick={() => this.handleFilter("noise")}
-                icon={this.state.filter === "noise" ? <Check /> : <></>}
+                icon={this.state.filter === "noise" ? <Check /> : <RadioboxBlank />}
               />
               <Chip
                 color={this.state.filter === "color" ? "primary" : "default"}
                 size="small"
                 label="Color Theory"
+                variant="outlined"
                 clickable
                 onClick={() => this.handleFilter("color")}
-                icon={this.state.filter === "color" ? <Check /> : <></>}
+                icon={this.state.filter === "color" ? <Check /> : <RadioboxBlank />}
               />
               <Chip
                 color={this.state.filter === "animated" ? "primary" : "default"}
                 size="small"
                 label="Animated"
+                variant="outlined"
                 clickable
                 onClick={() => this.handleFilter("animated")}
-                icon={this.state.filter === "animated" ? <Check /> : <></>}
+                icon={this.state.filter === "animated" ? <Check /> : <RadioboxBlank />}
               />
             </Box>
             <List dense>
@@ -284,6 +327,21 @@ class Arts extends Component {
             </AppBar>
             <Suspense fallback={<CircularProgress color="primary" />}>{currentContent}</Suspense>
           </Dialog>
+          <Dialog onClose={this.handleDialogWeb3Close} open={dialogWeb3} keepMounted maxWidth="lg">
+          <DialogContent>
+            <Typography variant="h2" gutterBottom>
+              Connect Wallet
+            </Typography>
+            <Suspense fallback={<CircularProgress color="primary" />}>
+              <Web3 />
+            </Suspense>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleDialogWeb3Close} variant="contained" color="primary">
+              {t("base.close")}
+            </Button>
+          </DialogActions>
+        </Dialog>
         </Grid>
         <Grid item xs={12} md={4}>
           &nbsp;

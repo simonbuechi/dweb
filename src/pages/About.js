@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 //material-ui
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import Tooltip from "@material-ui/core/Tooltip";
 //icons
 import {
   Gamepad,
@@ -30,15 +32,24 @@ import {
   Whatsapp,
 } from "mdi-material-ui";
 //custom
-import CopyButton from "../structure/CopyButton";
 import QrCode from "../structure/QrCode";
 import config from "../config.json";
 
 class About extends Component {
   state = {
     dialogInfo: false,
+    success: null
   };
 
+  handleCopyClick = () => {
+    if (!this.state.success) {
+      this.setState({ success: true }, () => {
+        this.timer = setTimeout(() => {
+          this.setState({ success: false });
+        }, 1000);
+      });
+    }
+  };
   handleDialogInfoOpen = () => {
     this.setState({ dialogInfo: true });
   };
@@ -48,7 +59,7 @@ class About extends Component {
 
   render() {
     const { t } = this.props;
-    const { dialogInfo } = this.state;
+    const { dialogInfo, success } = this.state;
 
     const questions = [
       {
@@ -74,11 +85,12 @@ class About extends Component {
       { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Twitter /> },
       { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Numeric3Box /> },
       { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Whatsapp /> }
-        ];
+    ];
 
     const myCryptos = [
-      { primary: "Ethereum", secondary: config.ethereumAddress, link: 2, icon: <Ethereum /> },
-      { primary: "Bitcoin", secondary: config.bitcoinAddress, link: 2, icon: <Bitcoin /> },
+      { primary: "Ethereum Name System (ENS)", secondary: config.ensName, qr: false, copy: true, icon: <Ethereum /> },
+      { primary: "Ethereum", secondary: config.ethereumAddress, qr: true, copy: true, icon: <Ethereum /> },
+      { primary: "Bitcoin", secondary: config.bitcoinAddress, qr: true, copy: true, icon: <Bitcoin /> },
     ];
 
     const myLinks = [
@@ -122,9 +134,6 @@ class About extends Component {
             {t("about.aboutSiteTitle")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {t("start.paragraph2")}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
             {t("about.aboutSiteBody")}
           </Typography>
           <Typography gutterBottom>
@@ -143,21 +152,25 @@ class About extends Component {
           </Typography>
           <List dense>
             {myCryptos.map((item, index) => (
-              <Zoom in style={{ transitionDelay: 150 + index * 100 + "ms" }} key={item.primary}>
+              <Zoom in style={{ transitionDelay: 500 + index * 100 + "ms" }} key={item.primary}>
                 <div>
-                  <ListItem>
-                    <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
-                    <ListItemText
-                      primary={item.primary}
-                      secondary={
-                        <Typography variant="body2" noWrap>
-                          {item.secondary}
-                        </Typography>
-                      }
-                    />
-                    <QrCode text={item.secondary} />
-                    <CopyButton text={item.secondary} />
-                  </ListItem>
+                  <CopyToClipboard text={item.secondary} onCopy={this.handleCopyClick}>
+                    <ListItem button >
+                      <Tooltip title={success ? t("base.copied") : t("base.copyClipboard")} >
+                        <ListItemIcon color="secondary">{item.icon}</ListItemIcon>
+                      </Tooltip>
+                      <ListItemText
+                        primary={item.primary}
+                        secondary={
+                          <Typography variant="body2" noWrap>
+                            {item.secondary}
+                          </Typography>
+                        }
+                      />
+                      {item.qr && <QrCode text={item.secondary} />}
+                    </ListItem>
+                  </CopyToClipboard>
+
                 </div>
               </Zoom>
             ))}
@@ -168,7 +181,7 @@ class About extends Component {
           <Box>
             <List dense>
               {myLinks.map((item, index) => (
-                <Zoom in style={{ transitionDelay: 850 + index * 100 + "ms" }} key={item.primary}>
+                <Zoom in style={{ transitionDelay: 900 + index * 100 + "ms" }} key={item.primary}>
                   <div>
                     <ListItem button component="a" href={item.link}>
                       <ListItemIcon color="secondary">{item.icon}</ListItemIcon>

@@ -19,16 +19,16 @@ class Projects extends Component {
     const { t } = this.props;
     const projects = [
       {
+        title: t("projects.voveoTitle"),
+        description: t("projects.voveoDescription"),
+        link: "https://voveo.ch",
+        linkTitle: t("projects.voveoLink"),
+      },
+      {
         title: t("projects.pactaTitle"),
         description: t("projects.pactaDescription"),
         link: "https://pacta.app",
         linkTitle: t("projects.pactaLink"),
-      },
-      {
-        title: "Voveo",
-        description: "Voveo is a blockchain based voting tool for annual general meetings (AGM) and other types of assemblies or meeting. Voveo runs on any device: desktop, tablet and mobile phones (iOS & Android). Set up your event with a few clicks and accredit participants with personalized invitation codes. All polling is stored on the Ethereum blockchain - one of the most secure and immutable database.",
-        link: "https://voveo.ch",
-        linkTitle: "Voveo Website",
       },
       {
         title: t("projects.raisinpickerTitle"),

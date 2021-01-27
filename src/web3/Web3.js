@@ -131,6 +131,16 @@ function App() {
   // handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
   useInactiveListener(!triedEager || !!activatingConnector)
 
+  const setSeed = signature => {
+    setMessage("Success");
+    window.localStorage.setItem("seed", signature);
+    console.log(signature);
+  };
+  const setSeedCanceled = error => {
+    setMessage("Error")
+    console.log(error.message);
+  };
+
   return (
     <>
       <Header />
@@ -213,14 +223,14 @@ function App() {
                   .getSigner(account)
                   .signMessage('simonsartworks')
                   .then((signature) => {
-                    setMessage(signature);
+                    setSeed(signature);
                   })
                   .catch((error) => {
-                    setMessage("Failure!" + (error && error.message ? error.message : ""));
+                    setSeedCanceled(error);
                   })
               }}
             >
-              Sign Message
+              Set signature/seed
           </Button>
             <Typography variant="body2" gutterBottom>
               {message}

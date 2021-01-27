@@ -33,7 +33,6 @@ class Start extends Component {
   render() {
     const { t } = this.props;
     const { dialogPortrait } = this.state;
-
     const myJobs = [
       { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <OpenInNew /> },
       { primary: "Voveo", secondary: "Founder & Developer", link: "https://voveo.ch", icon: <OpenInNew /> },
