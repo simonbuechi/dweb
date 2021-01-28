@@ -13,7 +13,7 @@ const CssBaseline = lazy(() => import( "@material-ui/core/CssBaseline"));
 ReactDOM.render(
     <Suspense fallback={<SplashScreen />}>
       <ThemeProvider theme={theme}>
-    <Router basename="/">
+    <Router>
     <CssBaseline />
       <App />
       </Router>
