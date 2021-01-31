@@ -17,17 +17,44 @@ import { formatEther } from '@ethersproject/units'
 import { useEagerConnect, useInactiveListener } from './Hooks'
 import {
   injected,
-  walletconnect
+  network,
+  walletconnect,
+  walletlink,
+  ledger,
+  trezor,
+  authereum,
+  fortmatic,
+  magic,
+  portis,
+  torus
 } from './Connectors'
 
 const ConnectorNames = {
   Injected: 'Injected',
-  WalletConnect: 'WalletConnect'
-};
+  Network: 'Network',
+  WalletConnect: 'WalletConnect',
+  WalletLink: 'WalletLink',
+  Ledger: 'Ledger',
+  Trezor: 'Trezor',
+  Authereum: 'Authereum',
+  Fortmatic: 'Fortmatic',
+  Magic: 'Magic',
+  Portis: 'Portis',
+  Torus: 'Torus'
+}
 
 const connectorsByName = {
   [ConnectorNames.Injected]: injected,
-  [ConnectorNames.WalletConnect]: walletconnect
+  [ConnectorNames.Network]: network,
+  [ConnectorNames.WalletConnect]: walletconnect,
+  [ConnectorNames.WalletLink]: walletlink,
+  [ConnectorNames.Ledger]: ledger,
+  [ConnectorNames.Trezor]: trezor,
+  [ConnectorNames.Authereum]: authereum,
+  [ConnectorNames.Fortmatic]: fortmatic,
+  [ConnectorNames.Magic]: magic,
+  [ConnectorNames.Portis]: portis,
+  [ConnectorNames.Torus]: torus
 }
 
 function getErrorMessage(error) {

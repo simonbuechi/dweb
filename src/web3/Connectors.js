@@ -1,14 +1,14 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { NetworkConnector } from '@web3-react/network-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-//import { WalletLinkConnector } from '@web3-react/walletlink-connector'
-//import { LedgerConnector } from '@web3-react/ledger-connector'
-//import { TrezorConnector } from '@web3-react/trezor-connector'
+import { WalletLinkConnector } from '@web3-react/walletlink-connector'
+import { LedgerConnector } from '@web3-react/ledger-connector'
+import { TrezorConnector } from '@web3-react/trezor-connector'
 import { AuthereumConnector } from '@web3-react/authereum-connector'
 import { FortmaticConnector } from '@web3-react/fortmatic-connector'
-//import { MagicConnector } from '@web3-react/magic-connector'
-//import { PortisConnector } from '@web3-react/portis-connector'
-//import { TorusConnector } from '@web3-react/torus-connector'
+import { MagicConnector } from '@web3-react/magic-connector'
+import { PortisConnector } from '@web3-react/portis-connector'
+import { TorusConnector } from '@web3-react/torus-connector'
 
 const POLLING_INTERVAL = 12000
 const RPC_URLS = {
@@ -29,14 +29,14 @@ export const walletconnect = new WalletConnectConnector({
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
 })
-/*
+
 export const walletlink = new WalletLinkConnector({
   url: RPC_URLS[1],
   appName: 'web3-react example'
 })
-*/
-// export const ledger = new LedgerConnector({ chainId: 1, url: RPC_URLS[1], pollingInterval: POLLING_INTERVAL })
-/*
+
+export const ledger = new LedgerConnector({ chainId: 1, url: RPC_URLS[1], pollingInterval: POLLING_INTERVAL })
+
 export const trezor = new TrezorConnector({
   chainId: 1,
   url: RPC_URLS[1],
@@ -44,18 +44,17 @@ export const trezor = new TrezorConnector({
   manifestEmail: 'dummy@abc.xyz',
   manifestAppUrl: 'http://localhost:1234'
 })
-*/
+
 export const authereum = new AuthereumConnector({ chainId: 42 })
 
 export const fortmatic = new FortmaticConnector({ apiKey: process.env.FORTMATIC_API_KEY, chainId: 4 })
 
-/*
 export const magic = new MagicConnector({
   apiKey: process.env.MAGIC_API_KEY,
   chainId: 4,
   email: 'hello@example.org'
 })
-*/
-//export const portis = new PortisConnector({ dAppId: process.env.PORTIS_DAPP_ID, networks: [1, 100] })
 
-//export const torus = new TorusConnector({ chainId: 1 })
+export const portis = new PortisConnector({ dAppId: process.env.PORTIS_DAPP_ID, networks: [1, 100] })
+
+export const torus = new TorusConnector({ chainId: 1 })
