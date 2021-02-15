@@ -96,10 +96,11 @@ export const artworkIndex = [
   },
   {
     id: "A009",
-    primary: "Rosette II (draft)",
-    secondary: "A bouquet of rosettes",
+    primary: "Splatter",
+    secondary: "Based on openprocessing sketch 1015644",
     date: new Date(2021, 0, 22),
     content: <A009 />,
+    link: "https://openprocessing.org/sketch/1015644",
     noise: true,
   },
 ];
