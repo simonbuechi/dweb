@@ -114,5 +114,13 @@ export default (props) => {
     }
   };
 
-  return <Sketch setup={setup} draw={draw} />;
+  const keyPressed = (p5) => { //save the framme when we press the letter s
+
+    if (p5.keyCode === p5.DOWN_ARROW) {
+      p5.saveFrame("artwork-###.png");
+    } 
+
+  }
+
+  return <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />;
 };
