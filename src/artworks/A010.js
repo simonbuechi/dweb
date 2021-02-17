@@ -55,19 +55,19 @@ export default (props) => {
     let begin = p5.random(50); //changes the begin of noise each time
     let i = 0; 
     
-    for(int x = 0; x < width; x += 2)
+    for(let x = 0; x < width; x += 2)
     {    
       let j = 0; 
       
-      for(int y = 0; y < height/3; y += 2)
+      for(let y = 0; y < height/3; y += 2)
       {     
-        let alfaMax = map(y, 0, height/4, 520, 0);  //the clouds become transparent as they become near to the mountains   
-        let alfa = noise(begin + i, begin + j);
-        alfa = map(alfa, 0.4, 1, 0, alfaMax);
+        let alfaMax = p5.map(y, 0, height/4, 520, 0);  //the clouds become transparent as they become near to the mountains   
+        let alfa = p5.noise(begin + i, begin + j);
+        alfa = p5.map(alfa, 0.4, 1, 0, alfaMax);
         
-        noStroke();    
-        fill(cloudColor, alfa);
-        ellipse(x, y, 2, 2);
+        p5.noStroke();    
+        p5.fill(cloudColor, alfa);
+        p5.ellipse(x, y, 2, 2);
         
         j += 0.06; //increase j faster than i so the clouds look horizontal
       }
@@ -79,49 +79,49 @@ export default (props) => {
   
   function mountains(p5)  {
     //FIND THE REFERENCE Y OF EACH MOUNTAIN:
-    float y0 = width - 500;  //fist reference y
-    int i0 = 30;  //initial interval
+    let y0 = width - 500;  //fist reference y
+    let i0 = 30;  //initial interval
     
-    float[] cy = new float[10]; //initialize the reference y array
-    for (int j = 0; j < 10; j++)
+    let cy = new Array[10]; //initialize the reference y array
+    for (let j = 0; j < 10; j++)
     {
       cy[9-j] = y0;
       y0 -= i0 / pow(1.2, j);
     }
     
     //DRAW THE MOUNTAINS/
-    float dx = 0;
+    let dx = 0;
     
-    for (int j = 1; j <  10; j++)
+    for (let j = 1; j <  10; j++)
     {               
-      float a = random(-width/2, width/2);  //random discrepancy between the sin waves
-      float b = random(-width/2, width/2);  //random discrepancy between the sin waves  
-      float c = random(2, 4);  //random amplitude for the second sin wave
-      float d = random(40, 50);  //noise function amplitude
-      float e = random(-width/2, width/2);  //adds a discrepancy between the noise of each mountain
+      let a = random(-width/2, width/2);  //random discrepancy between the sin waves
+      let b = random(-width/2, width/2);  //random discrepancy between the sin waves  
+      let c = random(2, 4);  //random amplitude for the second sin wave
+      let d = random(40, 50);  //noise function amplitude
+      let e = random(-width/2, width/2);  //adds a discrepancy between the noise of each mountain
         
-      for (int x = 0; x < width; x ++)
+      for (let x = 0; x < width; x ++)
       {          
-        float y = cy[j]; //y = reference y 
+        let y = cy[j]; //y = reference y 
         y += 10*j*sin(2*dx/j + a);  //first sin wave oscillates according to j (the closer the mountain, the bigger the amplitude and smaller the frequency)        
         y += c*j*sin(5*dx/j + b);   //second sin wave has a random medium amplitude (affects more the further mountains) and bigger frequenc  
-        y += d*j*noise(1.2*dx/j +e);  //first noise function adds randomness to the mountains, amplitude depends on a random number and increases with j, frequency decrases with j
-        y += 1.7*j*noise(10*dx);  //second noise function simulates the canopy, it has high frequency and small amplitude depending on j so it is smoother on the further mountains
+        y += d*j*p5.noise(1.2*dx/j +e);  //first p5. function adds randomness to the mountains, amplitude depends on a random number and increases with j, frequency decrases with j
+        y += 1.7*j*p5.noise(10*dx);  //second noise function simulates the canopy, it has high frequency and small amplitude depending on j so it is smoother on the further mountains
         
-        strokeWeight(2);  //mountains look smoother with stroke weight of 2
-        stroke(lerpColor(furtherColor, closerColor, j/9));
-        line(x, y, x, height); 
+        p5.strokeWeight(2);  //mountains look smoother with stroke weight of 2
+        p5.stroke(lerpColor(furtherColor, closerColor, j/9));
+        p5.line(x, y, x, p5.height); 
         
         dx += 0.02;
       }
      
       //ADD MIST 
-      for (int i =  height; i > cy[j]; i -= 3)
+      for (let i =  p5.height; i > cy[j]; i -= 3)
       {
-        float alfa = map(i, cy[j], height, 0, 360/(j+1));  //alfa is begins bigger for the further mountains      
-        strokeWeight(3);  //interval of 3 for faster rendering
-        stroke(mistColor, alfa);     
-        line(0, i, width, i);
+        let alfa = p5.map(i, cy[j], p5.height, 0, 360/(j+1));  //alfa is begins bigger for the further mountains      
+        p5.strokeWeight(3);  //interval of 3 for faster rendering
+        p5.stroke(cMist, alfa);     
+        p5.line(0, i, p5.width, i);
       } 
     }
   }
