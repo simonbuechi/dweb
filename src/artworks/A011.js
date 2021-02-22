@@ -16,6 +16,7 @@ export default (props) => {
   let sky = [];
   let b1, b2, m1, m2, m3;
   let mountain;
+  /*
   let sh;
   let g;
 
@@ -61,19 +62,20 @@ export default (props) => {
       'gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);' +
     '}' +
   '}';
-
-
+*/
 
   function setGradient(p5, x, y, w, h, c1, c2, axis) {
     p5.noFill();
-    if (axis === Y_AXIS) { // Top to bottom gradient
+    if (axis === Y_AXIS) {
+      // Top to bottom gradient
       for (let i = y; i <= y + h; i++) {
         let inter = p5.float(p5.map(i, y, y + h, 0, 1));
         let c = p5.lerpColor(c1, c2, inter);
         p5.stroke(c);
         p5.line(x, i, x + w, i);
       }
-    } else if (axis === X_AXIS) { // Left to right gradient
+    } else if (axis === X_AXIS) {
+      // Left to right gradient
       for (let i = x; i <= x + w; i++) {
         let inter = p5.float(p5.map(i, x, x + w, 0, 1));
         let c = p5.lerpColor(c1, c2, inter);
@@ -135,7 +137,7 @@ export default (props) => {
     p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
 
     // noise setup
-    p5.noiseSeed(seed !== null ? seed : Math.random()*100);
+    p5.noiseSeed(seed !== null ? seed : Math.random() * 100);
     // setup WEBGL shader
     //g = p5.createGraphics(p5.width, p5.height, p5.WEBGL);
     //sh = p5.createShader(vs, fs);
@@ -151,12 +153,10 @@ export default (props) => {
       sky[i] = new Star(p5);
     }
     mountain = new Mountain(p5);
-    
   };
 
   const draw = (p5) => {
-    
-    setGradient(p5, 0, 0, p5.width, .65 * p5.height, b1, b2, Y_AXIS);
+    setGradient(p5, 0, 0, p5.width, 0.65 * p5.height, b1, b2, Y_AXIS);
     p5.stroke(m1);
     mountain.display(p5, 100, 350);
     p5.stroke(m2);
@@ -179,6 +179,5 @@ export default (props) => {
     */
   };
 
-
-  return <Sketch setup={setup} draw={draw}  />;
+  return <Sketch setup={setup} draw={draw} />;
 };

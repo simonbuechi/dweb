@@ -12,12 +12,17 @@ export default (props) => {
   const ITERATIONS_MINIMUM = 200;
   const ITERATIONS_MULTIPLIER = 800;
   const BRUSH_EXTENSION = 1.2; // make sure to fill in edges of canvas
-  const BRUSH_THICKNESS = 50;
+  const BRUSH_THICKNESS = 30;
   const BRUSH_THICKNESS_MAX = 10;
   const COLOR_VARIANCE = 20;
   const BACKGROUND_SATURATION = 80;
   const BACKGROUND_BRIGHTNESS = 50;
   const BACKGROUND_BRIGHTNESS_LIGHTEN = 30;
+  const STIPPLE_DISTANCE = 25;
+  const STIPPLE_FREQUENCY = 20;
+  const SPLATTER_AMOUNT = 50;
+  const SPLATTER_FREQUENCY = 55;
+  const SPLATTER_SIZE_MAX = 18;
 
   let colors = [];
   let brush = { x: 0, y: 0, px: 0, py: 0 };
@@ -25,29 +30,41 @@ export default (props) => {
   let xoff = 0;
   let i = 0;
   let iterations;
+  let symmetry = false;
 
   function drizzle(p5) {
     let s = 1 + BRUSH_THICKNESS / p5.dist(brush.px, brush.py, brush.x, brush.y);
     s = p5.min(BRUSH_THICKNESS_MAX, s);
     p5.strokeWeight(s);
-    p5.stroke(0);
-    p5.line(brush.px, brush.py, brush.x, brush.y);
-    p5.stroke(255);
-    p5.line(p5.width - brush.px, p5.height - brush.py, p5.width - brush.x, p5.height - brush.y);
+    if (symmetry) {
+      p5.stroke(0);
+      p5.line(brush.px, brush.py, brush.x, brush.y);
+      p5.stroke(0);
+      p5.line(p5.width - brush.px, p5.height - brush.py, p5.width - brush.x, p5.height - brush.y);
+      p5.stroke(255);
+      p5.line(p5.width - brush.px, brush.py, p5.width - brush.x, brush.y);
+      p5.stroke(255);
+      p5.line(brush.px, p5.height - brush.py, brush.x, p5.height - brush.y);
+    } else {
+      p5.stroke(0);
+      p5.line(brush.px, brush.py, brush.x, brush.y);
+      p5.stroke(255);
+      p5.line(p5.width - brush.px, p5.height - brush.py, p5.width - brush.x, p5.height - brush.y);
+    }
   }
 
   function splatter(p5, bx, by) {
     let c = colors[p5.floor(p5.random(colors.length))];
     bx += p5.random(-15, 15);
     by += p5.random(-15, 15);
-    let mx = 10 * p5.movedX;
-    let my = 10 * p5.movedY;
-    for (let i = 0; i < 80; i++) {
+    let mx = 25 * p5.abs(brush.px - brush.x);
+    let my = 25 * p5.abs(brush.py - brush.y);
+    for (let i = 0; i < SPLATTER_AMOUNT; i++) {
       xoff2 += 0.01;
       let x = bx + mx * (0.5 - p5.noise(xoff2 + i));
       let y = by + my * (0.5 - p5.noise(xoff2 + 2 * i));
-      let s = 150 / p5.dist(bx, by, x, y);
-      if (s > 20) s = 20;
+      let s = 70 / p5.dist(bx, by, x, y);
+      if (s > SPLATTER_SIZE_MAX) s = SPLATTER_SIZE_MAX;
       let a = 255 - s * 5;
       p5.noStroke();
       c.setAlpha(a);
@@ -60,10 +77,10 @@ export default (props) => {
   function stipple(p5, bx, by, c) {
     p5.noStroke();
     p5.fill(c);
-    let radius = p5.random(3, 12);
-    p5.ellipse(bx + p5.random(-30, 30), by + p5.random(30, -30), radius);
+    let radius = p5.random(2, 12);
+    p5.ellipse(bx + p5.random(-STIPPLE_DISTANCE, STIPPLE_DISTANCE), by + p5.random(STIPPLE_DISTANCE, -STIPPLE_DISTANCE), radius);
     radius = p5.random(3, 12);
-    p5.ellipse(bx + p5.random(-30, 30), by + p5.random(30, -30), radius);
+    p5.ellipse(bx + p5.random(-STIPPLE_DISTANCE, STIPPLE_DISTANCE), by + p5.random(STIPPLE_DISTANCE, -STIPPLE_DISTANCE), radius);
   }
 
   const setup = (p5, canvasParentRef) => {
@@ -72,6 +89,8 @@ export default (props) => {
     // setup noise
     p5.noiseSeed(seed !== null ? seed : p5.random(1, 1000));
     p5.noiseDetail(4, 0.5);
+    // set symmetry mode
+    symmetry = p5.noise(20) > 0.5 ? true : false;
     // setup color scheme
     p5.colorMode(p5.HSB, 360, 100, 100);
     const baseHue = p5.floor(p5.noise(1) * 360);
@@ -137,14 +156,16 @@ export default (props) => {
     if (p5.frameCount > 10) {
       drizzle(p5);
     }
-    brush.px = brush.x;
-    brush.py = brush.y;
-    if (p5.frameCount % 30 === 0) {
-      splatter(p5, brush.x, brush.y);
-      splatter(p5, p5.width - brush.x, p5.height - brush.y);
+    if (p5.frameCount % STIPPLE_FREQUENCY === 0) {
       stipple(p5, brush.x, brush.y, 0);
       stipple(p5, p5.width - brush.x, p5.height - brush.y, 255);
     }
+    if (p5.frameCount % SPLATTER_FREQUENCY === 0) {
+      splatter(p5, brush.x, brush.y);
+      splatter(p5, p5.width - brush.x, p5.height - brush.y);
+    }
+    brush.px = brush.x;
+    brush.py = brush.y;
     xoff = xoff + 0.01;
     i = i + 1;
     if (i > iterations) {

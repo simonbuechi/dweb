@@ -19,7 +19,7 @@ export const artworkIndex = [
     primary: "P5 Helper functions",
     secondary: "not really a piece of art...",
     date: new Date(2020, 11, 27),
-    content: <P5Helper />
+    content: <P5Helper />,
   },
   {
     id: "A001",
@@ -98,12 +98,13 @@ export const artworkIndex = [
   },
   {
     id: "A009",
-    primary: "Splatter",
-    secondary: "Based on openprocessing sketch 1015644",
+    primary: "Painting a painting",
+    secondary: "Brush on a perlin noise path",
     date: new Date(2021, 0, 22),
     content: <A009 />,
     link: "https://openprocessing.org/sketch/1015644",
     noise: true,
+    color: true,
   },
   {
     id: "A010",
