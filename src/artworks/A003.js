@@ -35,5 +35,12 @@ export default (props) => {
 
   const draw = (p5) => {};
 
-  return <Sketch setup={setup} draw={draw} />;
+  const keyPressed = (p5) => {
+    //save the canvas when press "s" or space
+    if (p5.keyCode === 83 || p5.keyCode === 32) {
+      p5.saveCanvas("simons_artwork", "jpg");
+    }
+  };
+
+  return <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />;
 };

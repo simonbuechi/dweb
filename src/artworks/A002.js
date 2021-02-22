@@ -12,7 +12,7 @@ export default (props) => {
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
-    p5.noiseSeed(seed !== null ? seed : Math.random()*100);
+    p5.noiseSeed(seed !== null ? seed : Math.random() * 100);
     p5.background(255);
 
     // only primary colors and white
@@ -48,5 +48,12 @@ export default (props) => {
 
   const draw = (p5) => {};
 
-  return <Sketch setup={setup} draw={draw} />;
+  const keyPressed = (p5) => {
+    //save the canvas when press "s" or space
+    if (p5.keyCode === 83 || p5.keyCode === 32) {
+      p5.saveCanvas("simons_artwork", "jpg");
+    }
+  };
+
+  return <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />;
 };
