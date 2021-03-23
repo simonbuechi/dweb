@@ -12,6 +12,9 @@ const A008 = lazy(() => import("../artworks/A008"));
 const A009 = lazy(() => import("../artworks/A009"));
 //const A010 = lazy(() => import("../artworks/A010"));
 const A011 = lazy(() => import("../artworks/A011"));
+const A012 = lazy(() => import("../artworks/A012"));
+const A013 = lazy(() => import("../artworks/A013"));
+const A014 = lazy(() => import("../artworks/A014"));
 
 export const artworkIndex = [
   {
@@ -95,6 +98,7 @@ export const artworkIndex = [
     date: new Date(2021, 0, 20),
     content: <A008 />,
     noise: true,
+    starred: true,
   },
   {
     id: "A009",
@@ -105,6 +109,7 @@ export const artworkIndex = [
     link: "https://openprocessing.org/sketch/1015644",
     noise: true,
     color: true,
+    starred: true,
   },
   {
     id: "A010",
@@ -117,8 +122,36 @@ export const artworkIndex = [
     id: "A011",
     primary: "A sunset",
     secondary: "Based on openprocessing sketch 624484",
-    date: new Date(2021, 2, 17),
+    date: new Date(2021, 2, 4),
     content: <A011 />,
     noise: true,
+  },
+  {
+    id: "A012",
+    primary: "Bezierchen",
+    secondary: "...",
+    date: new Date(2021, 2, 17),
+    content: <A012 />,
+    noise: true,
+    animated: true,
+    starred: true,
+  },
+  {
+    id: "A013",
+    primary: "Triangulation",
+    secondary: "...",
+    date: new Date(2021, 2, 23),
+    content: <A013 />,
+    noise: true,
+    animated: true,
+  },
+  {
+    id: "A014",
+    primary: "Smoke",
+    secondary: "...",
+    date: new Date(2021, 2, 24),
+    content: <A014 />,
+    noise: true,
+    animated: true,
   },
 ];
