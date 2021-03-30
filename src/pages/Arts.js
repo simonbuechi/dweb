@@ -32,7 +32,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import { Close, OpenInNew, Image, Check, Github, RadioboxBlank } from "mdi-material-ui";
 // custom
 import { artworkIndex } from "../artworks/ArtworkIndex";
-//lazy 
+//lazy
 const Web3 = lazy(() => import("../web3/Web3"));
 
 class Arts extends Component {
@@ -82,15 +82,15 @@ class Arts extends Component {
     this.setState({ dialogWeb3: false });
   };
   handleSwitch = (item) => {
-    if(item === "customCollapsed") {
+    if (item === "customCollapsed") {
       this.setState({
         signatureCollapsed: false,
-        customCollapsed: !this.state.customCollapsed
+        customCollapsed: !this.state.customCollapsed,
       });
     } else {
       this.setState({
         signatureCollapsed: !this.state.signatureCollapsed,
-        customCollapsed: false
+        customCollapsed: false,
       });
     }
   };
@@ -112,9 +112,7 @@ class Arts extends Component {
   handleCustomSeed = (event) => {
     this.setState({ customField: event.target.value });
   };
-  setSignature = () => {
-
-  };
+  setSignature = () => {};
   handleFilter = (filter) => {
     this.setState({ filter });
   };
@@ -141,31 +139,25 @@ class Arts extends Component {
             {t("arts.title")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {t("arts.about")} 
+            {t("arts.about")}
           </Typography>
           <Typography variant="body2" gutterBottom>
             {t("arts.draftsAbout")}
           </Typography>
           <Box mt={1} mb={3}>
-          <Button
-            color="primary"
-            variant="contained"
-            component="a"
-            href="https://github.com/simonbuechi/dweb/tree/master/src/artworks"
-            startIcon={<Github />}
-          >
-            Source Code
-          </Button>
-          &nbsp;
-          <Button
-            color="primary"
-            variant="contained"
-            component="a"
-            href="https://p5js.org"
-            startIcon={<OpenInNew />}
-          >
-            Learn about P5
-          </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              component="a"
+              href="https://github.com/simonbuechi/dweb/tree/master/src/artworks"
+              startIcon={<Github />}
+            >
+              Source Code
+            </Button>
+            &nbsp;
+            <Button color="primary" variant="contained" component="a" href="https://p5js.org" startIcon={<OpenInNew />}>
+              Learn about P5
+            </Button>
           </Box>
           <Tooltip title={t("arts.seedSwitchTooltip")}>
             <FormControlLabel
@@ -194,10 +186,10 @@ class Arts extends Component {
                         {t("base.save")}
                       </Button>
                     ) : (
-                        <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
-                          {t("base.remove")}
-                        </Button>
-                      )}
+                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                        {t("base.remove")}
+                      </Button>
+                    )}
                   </InputAdornment>
                 ),
               }}
@@ -206,7 +198,7 @@ class Arts extends Component {
           <Tooltip title={t("arts.cryptoSeedSwitchTooltip")}>
             <FormControlLabel
               value="end"
-              control={<Switch color="primary" checked={signatureCollapsed}  onClick={() => this.handleSwitch("signatureCollapsed")} />}
+              control={<Switch color="primary" checked={signatureCollapsed} onClick={() => this.handleSwitch("signatureCollapsed")} />}
               label={t("arts.cryptoSeedSwitchLabel")}
               labelPlacement="end"
             />
@@ -224,14 +216,14 @@ class Arts extends Component {
                 endAdornment: (
                   <InputAdornment position="end">
                     {seed === null ? (
-                      <Button color="primary" variant="contained"  onClick={this.handleDialogWeb3Open}>
+                      <Button color="primary" variant="contained" onClick={this.handleDialogWeb3Open}>
                         {t("arts.signWithWallet")}
                       </Button>
                     ) : (
-                        <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
-                          {t("base.remove")}
-                        </Button>
-                      )}
+                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                        {t("base.remove")}
+                      </Button>
+                    )}
                   </InputAdornment>
                 ),
               }}
@@ -317,31 +309,30 @@ class Arts extends Component {
             </List>
           </Box>
           <Dialog fullScreen onClose={this.handledialogClose} aria-labelledby="dialog" open={dialog}>
-            <AppBar color="transparent" position="relative">
+            <AppBar color="transparent" position="fixed">
               <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={this.handledialogClose} aria-label="close">
-                  <Close />
-                </IconButton>
-                <Typography variant="h2">{currentTitle}</Typography>
+                <Button startIcon={<Close />} color="primary" variant="contained" onClick={this.handledialogClose}>
+                  {currentTitle}
+                </Button>
               </Toolbar>
             </AppBar>
             <Suspense fallback={<CircularProgress color="primary" />}>{currentContent}</Suspense>
           </Dialog>
           <Dialog onClose={this.handleDialogWeb3Close} open={dialogWeb3} keepMounted maxWidth="lg">
-          <DialogContent>
-            <Typography variant="h2" gutterBottom>
-              Connect Wallet
-            </Typography>
-            <Suspense fallback={<CircularProgress color="primary" />}>
-              <Web3 />
-            </Suspense>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleDialogWeb3Close} variant="contained" color="primary">
-              {t("base.close")}
-            </Button>
-          </DialogActions>
-        </Dialog>
+            <DialogContent>
+              <Typography variant="h2" gutterBottom>
+                Connect Wallet
+              </Typography>
+              <Suspense fallback={<CircularProgress color="primary" />}>
+                <Web3 />
+              </Suspense>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleDialogWeb3Close} variant="contained" color="primary">
+                {t("base.close")}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Grid>
         <Grid item xs={12} md={4}>
           &nbsp;

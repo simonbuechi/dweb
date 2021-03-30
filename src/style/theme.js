@@ -49,6 +49,16 @@ const theme = createMuiTheme({
     fontWeight: 400,
   },
   overrides: {
+    MuiAppBar: {
+      colorTransparent: {
+        boxShadow: "none",
+      },
+    },
+    MuiDialog: {
+      paperFullScreen: {
+        overflow: "hidden",
+      },
+    },
     MuiTabs: {
       vertical: {
         borderRight: 0,
