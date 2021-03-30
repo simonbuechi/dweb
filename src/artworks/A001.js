@@ -3,8 +3,8 @@ import Sketch from "react-p5";
 
 export default (props) => {
   //global constants
-  const canvasWidth = window.innerWidth;
-  const canvasHeight = window.innerHeight;
+  const CANVAS_WIDTH = document.documentElement.clientWidth;
+  const CAVNAS_HEIGHT = document.documentElement.clientHeight;
   const seed = window.localStorage.getItem("signature");
   const COLOR_VARIANCE = 40;
   const COLOR_BRIGHTNESS_MIN = 40;
@@ -24,7 +24,7 @@ export default (props) => {
 */
   const setup = (p5, canvasParentRef) => {
     //setup canvas
-    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
+    p5.createCanvas(CANVAS_WIDTH, CAVNAS_HEIGHT).parent(canvasParentRef);
     p5.background(255);
     p5.colorMode(p5.HSB, 360, 100, 100);
     p5.strokeWeight(0);

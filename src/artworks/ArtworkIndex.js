@@ -15,6 +15,8 @@ const A011 = lazy(() => import("../artworks/A011"));
 const A012 = lazy(() => import("../artworks/A012"));
 const A013 = lazy(() => import("../artworks/A013"));
 const A014 = lazy(() => import("../artworks/A014"));
+const A015 = lazy(() => import("../artworks/A015"));
+const A016 = lazy(() => import("../artworks/A016"));
 
 export const artworkIndex = [
   {
@@ -153,5 +155,24 @@ export const artworkIndex = [
     content: <A014 />,
     noise: true,
     animated: true,
+  },
+  {
+    id: "A015",
+    primary: "Wildline",
+    secondary: "inspired by okazz",
+    link: "https://openprocessing.org/sketch/1149962",
+    date: new Date(2021, 2, 27),
+    content: <A015 />,
+    noise: true,
+    starred: true,
+  },
+  {
+    id: "A016",
+    primary: "Blazing",
+    secondary: "inspired by okazz",
+    link: "https://openprocessing.org/sketch/1034762",
+    date: new Date(2021, 2, 30),
+    content: <A016 />,
+    noise: true,
   },
 ];
