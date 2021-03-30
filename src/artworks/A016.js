@@ -103,7 +103,9 @@ export default (props) => {
   const keyPressed = (p5) => {
     //save the canvas when press "s" or space
     if (p5.keyCode === 83 || p5.keyCode === 32) {
-      p5.saveCanvas("simons_artwork", "jpg");
+      let fileName = "SimonBuechi" + window.location.hash;
+      fileName.replace(/[^a-zA-Z0-9]/g, "");
+      p5.saveCanvas(fileName, "jpg");
     }
   };
 
