@@ -6,35 +6,28 @@ export default (props) => {
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
   //const seed = "adsfasdf234234";
-  var gl, noctaves, c;
-  var test;
-
-  function initc(p5) {
-    for (var i = 0; i < 22; i++) {
-      c[i] = p5.random(-5, 5);
-    }
-  }
+  const noctaves = 4;
+  let gl;
+  let c = [];
+  let shader;
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(canvasWidth, canvasHeight, p5.WEBGL).parent(canvasParentRef);
-
     gl = p5.canvas.getContext("webgl");
     gl.disable(gl.DEPTH_TEST);
-    noctaves = 4;
-    c = [];
-    initc(p5);
-    test = new Shader(p5._renderer, vert, frag); //shaders are loaded
-    console.log(test);
-    p5.shader(test); //p5.s are applied
+    for (let i = 0; i < 22; i++) {
+      c[i] = p5.random(-5, 5);
+    }
+    shader = new Shader(p5._renderer, vert, frag); //shaders are loaded
+    p5.shader(shader); //p5.s are applied
   };
 
   const draw = (p5) => {
-    test.setUniform("iResolution", [p5.width, p5.height]); //pass some values to the shader
-    test.setUniform("iTime", p5.millis() * 0.001);
-    // test.setUniform("iMouse", [mouseX, mouseY]);
-    test.setUniform("noctaves", noctaves);
-    test.setUniform("c", c);
-    p5.shader(test);
+    shader.setUniform("iResolution", [p5.width, p5.height]); //pass some values to the shader
+    shader.setUniform("iTime", p5.millis() * 0.0005);
+    shader.setUniform("noctaves", noctaves);
+    shader.setUniform("c", c);
+    p5.shader(shader);
     p5.box(p5.width / 2);
   };
 
@@ -56,11 +49,9 @@ precision mediump float;
 #endif
 
 uniform vec2 iResolution;
-uniform vec2 iMouse;
 uniform float iTime;
 uniform int noctaves;
 uniform float c[22];
-float mousefactor;
 
 float noise( in vec2 x )
 {
@@ -82,7 +73,6 @@ float fbm ( in vec2 _st) {
 }
 
 void main() {
-		vec2 mouse=iMouse/iResolution;
     vec2 st =(-iResolution.xy+2.0*gl_FragCoord.xy)/iResolution.y;//(gl_FragCoord.xy/iResolution.xy);//
     vec3 color = vec3(0.);
     vec2 q = vec2(0.);
@@ -91,8 +81,8 @@ void main() {
     vec2 r = vec2(0.);
 
 //play with the values here!
-		r.x = fbm( st+ (3.0*mouse.x+0.4)*q+vec2(c[5],c[6]));
-    r.y = fbm( st+ (6.0*mouse.y+0.5)*q*sin(.01*iTime)+vec2(c[8]*.05*iTime,c[9]));
+		r.x = fbm( st+ (3.0+0.4)*q+vec2(c[5],c[6]));
+    r.y = fbm( st+ (6.0+0.5)*q*sin(.01*iTime)+vec2(c[8]*.05*iTime,c[9]));
     float f = fbm(st+c[10]*(r+length(q) ));
     color = smoothstep(vec3(0.101961,0.19608,0.666667),vec3(0.666667,0.666667,0.98039),color);
     color = mix(color,vec3(1.856,.05*(1.0+cos(1.5+.2*iTime)),0.164706),r.y+length(q));//
@@ -101,8 +91,6 @@ void main() {
 		color*=(1.5*f*f*f+1.8*f*f+1.7*f);
 		color+=.4*vec3(1.8+r.x,0.7+q);
 		color=pow(color, vec3(.5));
-//
-
     gl_FragColor = vec4(color,1.);
 }
 

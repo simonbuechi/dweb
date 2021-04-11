@@ -17,6 +17,9 @@ const A013 = lazy(() => import("../artworks/A013"));
 const A014 = lazy(() => import("../artworks/A014"));
 const A015 = lazy(() => import("../artworks/A015"));
 const A016 = lazy(() => import("../artworks/A016"));
+//const A017 = lazy(() => import("../artworks/A017"));
+const A018 = lazy(() => import("../artworks/A018"));
+const A019 = lazy(() => import("../artworks/A019"));
 
 export const artworkIndex = [
   {
@@ -173,6 +176,32 @@ export const artworkIndex = [
     link: "https://openprocessing.org/sketch/1034762",
     date: new Date(2021, 2, 30),
     content: <A016 />,
+    noise: true,
+  },
+  {
+    id: "A018",
+    primary: "Cube",
+    secondary: "inspired by ...",
+    link: "https://openprocessing.org/sketch/1117787",
+    date: new Date(2021, 3, 4),
+    content: <A018 />,
+    noise: true,
+  },
+  {
+    id: "A018",
+    primary: "Cube",
+    secondary: "inspired by ...",
+    link: "https://openprocessing.org/sketch/1117787",
+    date: new Date(2021, 3, 4),
+    content: <A018 />,
+    noise: true,
+  },
+  {
+    id: "A019",
+    primary: "...",
+    secondary: "...",
+    date: new Date(2021, 3, 8),
+    content: <A019 />,
     noise: true,
   },
 ];
