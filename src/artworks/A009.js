@@ -21,7 +21,7 @@ export default (props) => {
   const SPLATTER_LEVELS = 6;
   const SPLATTER_FREQUENCY = 35;
   const SPLATTER_SIZE_MAX = 20;
-  const SPLATTER_OPACITY = 0.8;
+  const SPLATTER_OPACITY = 0.4;
   //global variables
   let colors = [];
   let brush = { x: 0, y: 0, px: 0, py: 0 };
@@ -82,8 +82,8 @@ export default (props) => {
       let num = p5.random(2, 5);
       for (let i = 0; i < num; i++) {
         let a = p5.random(0, p5.TWO_PI);
-        let nx = x + (p5.cos(a) * level * SPLATTER_SIZE_MAX) / 3;
-        let ny = y + (p5.sin(a) * level * SPLATTER_SIZE_MAX) / 3;
+        let nx = x + (p5.cos(a) * level * SPLATTER_SIZE_MAX) / 6;
+        let ny = y + (p5.sin(a) * level * SPLATTER_SIZE_MAX) / 6;
         splatter(p5, nx, ny, radius / 2, level);
       }
     }
