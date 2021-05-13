@@ -13,11 +13,11 @@ export default (props) => {
   const XOFF_STEP = 0.006;
   const COLOROFF_STEP = 0.002;
   const MAX_ITERATIONS = 15;
-  const SATURATION = 100;
-  const BRIGHTNESS = 90;
+  const SATURATION = 22;
+  const BRIGHTNESS = 100;
   const ALPHA = 0.03;
   const BIG = 500;
-  const BACKGROUND_SATURATION = 60;
+  const BACKGROUND_SATURATION = 30;
   const BACKGROUND_BRIGHTNESS = 10;
   const BACKGROUND_BRIGHTNESS_LIGHTEN = 25;
   let bodies = [];
@@ -30,8 +30,8 @@ export default (props) => {
 
   class ball {
     constructor(p5, mX, mY) {
-      this.X = p5.random(mX - 20, mX + 20);
-      this.Y = p5.random(mY - 20, mY + 20);
+      this.X = p5.random(mX - 5, mX + 5);
+      this.Y = p5.random(mY - 5, mY + 5);
       this.w = p5.random(1 / THOLD, THOLD);
       this.Xv = 0;
       this.Yv = 0;

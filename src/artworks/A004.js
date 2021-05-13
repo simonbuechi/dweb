@@ -3,9 +3,10 @@ import Sketch from "react-p5";
 //import { TerrainType } from "p5";
 
 export default (props) => {
-  const canvasWidth = window.innerWidth;
-  const canvasHeight = window.innerHeight;
-  const seed = "adsfasdf234234";
+  //global constants
+  const CANVAS_WIDTH = window.localStorage.getItem("customWidth") ? window.localStorage.getItem("customWidth") : window.innerWidth;
+  const CANVAS_HEIGHT = window.localStorage.getItem("customHeight") ? window.localStorage.getItem("customHeight") : window.innerHeight;
+  const SEED = window.localStorage.getItem("signature");
   const mode = "terrain"; // terrain | height | greyscale
   const noiseScale = 0.01; // range between 0-0.03
   const octaves = 4; // range between 1-5
@@ -17,24 +18,18 @@ export default (props) => {
   class MapGenerator {
     generateMap(p5, width, height, noiseScale, octaves, persistance, lacunarity) {
       this.noiseMap = Noise.generateNoiseMap(p5, width, height, noiseScale, octaves, persistance, lacunarity);
-
       if (mode === "terrain") return MapGenerator.convertNoiseToTerrainMap(this.noiseMap);
       else if (mode === "height") return MapGenerator.convertNoiseToHeightMap(p5, this.noiseMap);
       else if (mode === "greyscale") return MapGenerator.convertNoiseToGreyscaleMap(p5, this.noiseMap);
     }
-
     static convertNoiseToTerrainMap(noiseMap) {
       let terrainMap = [];
-
       let height = noiseMap.length;
       let width = noiseMap[0].length;
-
       let currentHeight;
-
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
           currentHeight = noiseMap[y][x];
-
           for (let i = 0; i < regions.length; i++) {
             if (currentHeight <= regions[i].height) {
               terrainMap.push(regions[i].clr);
@@ -45,15 +40,11 @@ export default (props) => {
       }
       return terrainMap;
     }
-
     static convertNoiseToHeightMap(p5, noiseMap) {
       let heightMap = [];
-
       let height = noiseMap.length;
       let width = noiseMap[0].length;
-
       let currentHeight, discretizedHeight;
-
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
           currentHeight = noiseMap[y][x];
@@ -63,15 +54,11 @@ export default (props) => {
       }
       return heightMap;
     }
-
     static convertNoiseToGreyscaleMap(p5, noiseMap) {
       let greyscaleMap = [];
-
       let height = noiseMap.length;
       let width = noiseMap[0].length;
-
       let clr;
-
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
           clr = p5.color(p5.round(p5.map(noiseMap[y][x], 0, 1, 0, 255)));
@@ -85,44 +72,31 @@ export default (props) => {
   class Noise {
     static generateNoiseMap(p5, mapWidth, mapHeight, scale, octaves, persistance, lacunarity) {
       let noiseMap = [];
-
       if (scale <= 0) scale = 0.0001;
-
       let amplitude, frequency, noiseHeight, sampleX, sampleY, perlinValue;
-
       let maxNoiseHeight = -Infinity;
       let minNoiseHeight = Infinity;
-
       let halfWidth = mapWidth / 2;
       let halfHeight = mapHeight / 2;
-
       for (let y = 0; y < mapHeight; y++) {
         noiseMap[y] = [];
-
         for (let x = 0; x < mapWidth; x++) {
           amplitude = 1;
           frequency = 1;
           noiseHeight = 0;
-
           for (let i = 0; i < octaves; i++) {
             sampleX = (x - halfWidth) * scale * frequency + octaveOffsets[i].x;
             sampleY = (y - halfHeight) * scale * frequency + octaveOffsets[i].y;
-
             perlinValue = p5.noise(sampleX, sampleY) * 2 - 1;
-
             noiseHeight += perlinValue * amplitude;
-
             amplitude *= persistance;
             frequency *= lacunarity;
           }
-
           if (noiseHeight < minNoiseHeight) minNoiseHeight = noiseHeight;
           if (noiseHeight > maxNoiseHeight) maxNoiseHeight = noiseHeight;
-
           noiseMap[y].push(noiseHeight);
         }
       }
-
       for (let y = 0; y < mapHeight; y++) {
         for (let x = 0; x < mapWidth; x++) {
           noiseMap[y][x] = p5.map(noiseMap[y][x], minNoiseHeight, maxNoiseHeight, 0, 1);
@@ -140,7 +114,6 @@ export default (props) => {
       this.height = height;
       this.texture = p5.createImage(this.width, this.height);
     }
-
     init(p5) {
       this.noiseScale = noiseScale;
       this.octaves = octaves;
@@ -148,12 +121,10 @@ export default (props) => {
       this.lacunarity = lacunarity;
       this.data = generator.generateMap(p5, this.width, this.height, this.noiseScale, this.octaves, this.persistance, this.lacunarity);
     }
-
     createTexture(p5) {
       this.texture.loadPixels();
       let indPixels;
       let indData = 0;
-
       for (let y = 0; y < this.height; y++) {
         for (let x = 0; x < this.width; x++) {
           indPixels = (y * this.width + x) * 4;
@@ -188,44 +159,36 @@ export default (props) => {
   }
 
   function createRegions(p5) {
-    const deepWater = new TerrainType("deep water", 0.1, p5.color(50, 50, 150));
+    const deepWater = new TerrainType("deep water", 0.1, p5.color(97, 176, 221));
     regions.push(deepWater);
-
-    const mediumWater = new TerrainType("medium water", 0.3, p5.color(62, 62, 194));
+    const mediumWater = new TerrainType("medium water", 0.3, p5.color(162, 203, 229));
     regions.push(mediumWater);
-
-    const shallowWater = new TerrainType("shallow water", 0.5, p5.color(71, 71, 255));
+    const shallowWater = new TerrainType("shallow water", 0.5, p5.color(214, 231, 249));
     regions.push(shallowWater);
-
-    const beach = new TerrainType("beach", 0.55, p5.color(217, 224, 139));
+    const beach = new TerrainType("beach", 0.55, p5.color(241, 243, 242));
     regions.push(beach);
-
-    const grass = new TerrainType("grass", 0.67, p5.color(67, 204, 67));
+    const grass = new TerrainType("grass", 0.67, p5.color(189, 220, 178));
     regions.push(grass);
-
-    const forest = new TerrainType("forest", 0.75, p5.color(17, 99, 33));
+    const forest = new TerrainType("forest", 0.75, p5.color(160, 188, 145));
     regions.push(forest);
-
-    const dirt = new TerrainType("dirt", 0.82, p5.color(50, 54, 45));
+    const dirt = new TerrainType("dirt", 0.82, p5.color(181, 170, 162));
     regions.push(dirt);
-
-    const rock = new TerrainType("rock", 0.95, p5.color(48, 41, 41));
+    const rock = new TerrainType("rock", 0.95, p5.color(137, 129, 123));
     regions.push(rock);
-
     const snow = new TerrainType("snow", 1, p5.color(255));
     regions.push(snow);
-
     return regions;
   }
 
   const setup = (p5, canvasParentRef) => {
-    p5.noiseSeed(seed);
-    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
+    p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
+    p5.noiseSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
+    p5.randomSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
     p5.pixelDensity(1);
     octaveOffsets = generateOctaveOffsets(p5);
     regions = createRegions(p5);
     generator = new MapGenerator();
-    world = new Map(p5, 0, 0, canvasWidth, canvasHeight);
+    world = new Map(p5, 0, 0, p5.width, p5.height);
     world.init(p5);
     world.createTexture(p5);
   };
@@ -238,7 +201,9 @@ export default (props) => {
   const keyPressed = (p5) => {
     //save the canvas when press "s" or space
     if (p5.keyCode === 83 || p5.keyCode === 32) {
-      p5.saveCanvas("simons_artwork", "jpg");
+      let fileName = "SimonBuechi" + window.location.hash;
+      fileName.replace(/[^a-zA-Z0-9]/g, "");
+      p5.saveCanvas(fileName, "jpg");
     }
   };
 

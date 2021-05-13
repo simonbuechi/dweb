@@ -6,16 +6,11 @@ import { Helmet } from "react-helmet";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import Zoom from "@material-ui/core/Zoom";
 import Dialog from "@material-ui/core/Dialog";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -28,12 +23,18 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardHeader from "@material-ui/core/CardHeader";
 //icons
 import { Close, OpenInNew, Image, Check, Github, RadioboxBlank } from "mdi-material-ui";
 // custom
 import { artworkIndex } from "../artworks/ArtworkIndex";
 //lazy
 const Web3 = lazy(() => import("../web3/Web3"));
+
+const STATIC_IMAGE_URL = "https://gateway.pinata.cloud/ipfs/QmaQF2DBoFtsqZ7G3EmWghtt2REwYYCsyWUJ2jbouf39Xv/";
 
 class Arts extends Component {
   state = {
@@ -45,7 +46,7 @@ class Arts extends Component {
     customCollapsed: false,
     seed: null,
     customField: "",
-    filter: "all",
+    filter: "starred",
   };
 
   componentDidMount = () => {
@@ -116,8 +117,9 @@ class Arts extends Component {
   handleFilter = (filter) => {
     this.setState({ filter });
   };
-  checkFilter = (color, noise, animated) => {
+  checkFilter = (color, noise, animated, starred) => {
     while (this.state.filter === "all") return true;
+    while (this.state.filter === "starred" && starred) return true;
     while (this.state.filter === "noise" && noise) return true;
     while (this.state.filter === "color" && color) return true;
     while (this.state.filter === "animated" && animated) return true;
@@ -238,16 +240,25 @@ class Arts extends Component {
                 color={this.state.filter === "all" ? "primary" : "default"}
                 size="small"
                 label="All"
-                variant="outlined"
+                variant={this.state.filter === "all" ? "default" : "outlined"}
                 clickable
                 onClick={() => this.handleFilter("all")}
                 icon={this.state.filter === "all" ? <Check /> : <RadioboxBlank />}
               />
               <Chip
+                color={this.state.filter === "starred" ? "primary" : "default"}
+                size="small"
+                label="Starred"
+                variant={this.state.filter === "starred" ? "default" : "outlined"}
+                clickable
+                onClick={() => this.handleFilter("starred")}
+                icon={this.state.filter === "starred" ? <Check /> : <RadioboxBlank />}
+              />
+              <Chip
                 color={this.state.filter === "noise" ? "primary" : "default"}
                 size="small"
                 label="Seed Supported"
-                variant="outlined"
+                variant={this.state.filter === "noise" ? "default" : "outlined"}
                 clickable
                 onClick={() => this.handleFilter("noise")}
                 icon={this.state.filter === "noise" ? <Check /> : <RadioboxBlank />}
@@ -256,7 +267,7 @@ class Arts extends Component {
                 color={this.state.filter === "color" ? "primary" : "default"}
                 size="small"
                 label="Color Theory"
-                variant="outlined"
+                variant={this.state.filter === "color" ? "default" : "outlined"}
                 clickable
                 onClick={() => this.handleFilter("color")}
                 icon={this.state.filter === "color" ? <Check /> : <RadioboxBlank />}
@@ -265,48 +276,53 @@ class Arts extends Component {
                 color={this.state.filter === "animated" ? "primary" : "default"}
                 size="small"
                 label="Animated"
-                variant="outlined"
+                variant={this.state.filter === "animated" ? "default" : "outlined"}
                 clickable
                 onClick={() => this.handleFilter("animated")}
                 icon={this.state.filter === "animated" ? <Check /> : <RadioboxBlank />}
               />
             </Box>
-            <List dense>
+            <Grid container spacing={4}>
               {artworkIndex.map(
                 (item, index) =>
-                  this.checkFilter(item.color, item.noise, item.animated) && (
+                  this.checkFilter(item.color, item.noise, item.animated, item.starred) && (
                     <Zoom in key={index}>
-                      <div>
-                        <ListItem button component={Link} to={"/arts/" + item.id}>
-                          <Tooltip title={t("arts.artworkTooltipShow")}>
-                            <ListItemAvatar color="secondary">
-                              <Avatar>{index}</Avatar>
-                            </ListItemAvatar>
-                          </Tooltip>
-                          <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
-
-                          <ListItemSecondaryAction>
-                            {item.staticImage && (
-                              <Tooltip title={t("arts.artworkTooltipImage")}>
-                                <IconButton edge="end" href={item.staticImage}>
-                                  <Image />
-                                </IconButton>
-                              </Tooltip>
-                            )}
-                            {item.link && (
-                              <Tooltip title={t("arts.artworkTooltipLink")}>
-                                <IconButton edge="end" href={item.link}>
-                                  <OpenInNew />
-                                </IconButton>
-                              </Tooltip>
-                            )}
-                          </ListItemSecondaryAction>
-                        </ListItem>
-                      </div>
+                      <Grid item xl={6} lg={6} md={12}>
+                        <Card>
+                          <CardActionArea component={Link} to={"/arts/" + item.id}>
+                            <Tooltip title={t("arts.artworkTooltipShow")}>
+                              <CardMedia image={STATIC_IMAGE_URL + "small/" + item.id + ".jpg"} style={{ height: "160px" }} />
+                            </Tooltip>
+                          </CardActionArea>
+                          <CardHeader
+                            avatar={<Avatar color="secondary">{index}</Avatar>}
+                            action={
+                              <>
+                                {item.staticImage && (
+                                  <Tooltip title={t("arts.artworkTooltipImage")}>
+                                    <IconButton edge="end" href={STATIC_IMAGE_URL + "large/" + item.id + ".jpg"} target="_blank">
+                                      <Image />
+                                    </IconButton>
+                                  </Tooltip>
+                                )}
+                                {item.link && (
+                                  <Tooltip title={t("arts.artworkTooltipLink")}>
+                                    <IconButton edge="end" href={item.link}>
+                                      <OpenInNew />
+                                    </IconButton>
+                                  </Tooltip>
+                                )}
+                              </>
+                            }
+                            title={item.primary + " | " + this.formatDate(item.date)}
+                            subheader={item.secondary}
+                          />
+                        </Card>
+                      </Grid>
                     </Zoom>
                   )
               )}
-            </List>
+            </Grid>
           </Box>
           <Dialog fullScreen onClose={this.handledialogClose} aria-labelledby="dialog" open={dialog}>
             <AppBar color="transparent" position="fixed">

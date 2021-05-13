@@ -11,7 +11,9 @@ import { ApolloProvider } from "react-apollo";
 import { TestQuery } from "../graphql/testQuery";
 
 const apolloClient = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/ensdomains/ens",
+  uri: "http://185.25.224.124:8000",
+  credentials: "same-origin",
+  //skipSSLValidation: true,
 });
 
 class Queries extends Component {

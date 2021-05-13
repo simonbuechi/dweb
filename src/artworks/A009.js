@@ -9,18 +9,18 @@ export default (props) => {
   const ITERATIONS_MINIMUM = 200;
   const ITERATIONS_MULTIPLIER = 800;
   const BRUSH_EXTENSION = 1.2; // make sure to fill in edges of canvas
-  const BRUSH_THICKNESS = 50;
-  const BRUSH_THICKNESS_MAX = 15;
+  const BRUSH_THICKNESS = 90;
+  const BRUSH_THICKNESS_MAX = 22;
   const COLOR_VARIANCE = 8;
   const BACKGROUND_SATURATION = 40;
   const BACKGROUND_BRIGHTNESS = 50;
   const BACKGROUND_BRIGHTNESS_LIGHTEN = 30;
   const STIPPLE_DISTANCE = 10;
-  const STIPPLE_FREQUENCY = 20;
+  const STIPPLE_FREQUENCY = 12;
   const STIPPLE_OPACITY = 0.6;
   const SPLATTER_LEVELS = 6;
   const SPLATTER_FREQUENCY = 35;
-  const SPLATTER_SIZE_MAX = 20;
+  const SPLATTER_SIZE_MAX = 25;
   const SPLATTER_OPACITY = 0.4;
   //global variables
   let colors = [];
@@ -108,7 +108,7 @@ export default (props) => {
     // set symmetry mode
     symmetry = p5.random() > 0.5 ? true : false;
     //set background
-    const backgroundHue = p5.floor(p5.random() * 100);
+    const backgroundHue = p5.floor(p5.random(0, 100));
     p5.background(p5.color(backgroundHue, BACKGROUND_SATURATION, BACKGROUND_BRIGHTNESS));
     p5.noStroke();
     for (let i = Math.max(p5.width, p5.height); i > 0; i--) {

@@ -2,9 +2,10 @@ import React from "react";
 import Sketch from "react-p5";
 
 export default (props) => {
-  const canvasWidth = window.innerWidth;
-  const canvasHeight = window.innerHeight;
-  const seed = "adsfasdf234234";
+  //global constants
+  const CANVAS_WIDTH = window.localStorage.getItem("customWidth") ? window.localStorage.getItem("customWidth") : window.innerWidth;
+  const CANVAS_HEIGHT = window.localStorage.getItem("customHeight") ? window.localStorage.getItem("customHeight") : window.innerHeight;
+  const SEED = window.localStorage.getItem("signature");
 
   var particles_a = [];
   var particles_b = [];
@@ -42,8 +43,9 @@ export default (props) => {
   }
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
-    p5.noiseSeed(seed);
+    p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
+    p5.noiseSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
+    p5.randomSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
     p5.background(21, 8, 50);
     for (var i = 0; i < nums; i++) {
       particles_a[i] = new Particle(p5, p5.random(0, p5.width), p5.random(0, p5.height));
