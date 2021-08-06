@@ -21,6 +21,13 @@ const A017 = lazy(() => import("../artworks/A017"));
 const A018 = lazy(() => import("../artworks/A018"));
 const A019 = lazy(() => import("../artworks/A019"));
 const A020 = lazy(() => import("../artworks/A020"));
+const A021 = lazy(() => import("../artworks/A021"));
+const A022 = lazy(() => import("../artworks/A022"));
+const A023 = lazy(() => import("../artworks/A023"));
+const A024 = lazy(() => import("../artworks/A024"));
+const A025 = lazy(() => import("../artworks/A025"));
+// const A026 = lazy(() => import("../artworks/A026"));
+const A027 = lazy(() => import("../artworks/A027"));
 
 export const artworkIndex = [
   {
@@ -253,5 +260,88 @@ export const artworkIndex = [
     content: <A020 />,
     noise: true,
     color: true,
+  },
+  {
+    id: "A021",
+    primary: "Voronoien I",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 4, 7),
+    content: <A021 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A022",
+    primary: "Voronoien II",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 4, 7),
+    content: <A022 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A023",
+    primary: "Pencil Sketch",
+    secondary: "inspired by sketch 893302",
+    staticImage: false,
+    date: new Date(2021, 7, 2),
+    content: <A023 />,
+    link: "https://openprocessing.org/sketch/893302",
+    noise: true,
+    draft: true,
+  },
+  {
+    id: "A024",
+    primary: "Triposkop",
+    secondary: "inspired by sketch 940954",
+    staticImage: false,
+    date: new Date(2021, 7, 4),
+    content: <A024 />,
+    link: "https://openprocessing.org/sketch/940954",
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A025",
+    primary: "Rorschaching",
+    secondary: "inspired by sketch 476860",
+    staticImage: false,
+    date: new Date(2021, 7, 5),
+    content: <A025 />,
+    link: "https://openprocessing.org/sketch/476860",
+    noise: true,
+    color: false,
+    starred: true,
+  },
+  /*
+  // not working --> abandon
+  {
+    id: "A026",
+    primary: "Perpetual Rorschach",
+    secondary: "inspired by sketch 4675",
+    staticImage: false,
+    date: new Date(2021, 7, 6),
+    content: <A026 />,
+    link: "https://openprocessing.org/sketch/4675",
+    noise: true,
+    color: false,
+    draft: true,
+  },
+  */
+  {
+    id: "A027",
+    primary: "A tree",
+    secondary: "just a tree",
+    staticImage: false,
+    date: new Date(2021, 7, 7),
+    content: <A027 />,
+    noise: true,
+    color: true,
+    starred: false,
   },
 ];

@@ -25,7 +25,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
+import CardActions from "@material-ui/core/CardActions";
 import CardHeader from "@material-ui/core/CardHeader";
 //icons
 import { Close, OpenInNew, Image, Check, Github, RadioboxBlank } from "mdi-material-ui";
@@ -282,22 +282,25 @@ class Arts extends Component {
                 icon={this.state.filter === "animated" ? <Check /> : <RadioboxBlank />}
               />
             </Box>
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
               {artworkIndex.map(
                 (item, index) =>
                   this.checkFilter(item.color, item.noise, item.animated, item.starred) && (
                     <Zoom in key={index}>
                       <Grid item xl={6} lg={6} md={12}>
                         <Card>
+                        <Tooltip title={t("arts.artworkTooltipShow")}>
                           <CardActionArea component={Link} to={"/arts/" + item.id}>
-                            <Tooltip title={t("arts.artworkTooltipShow")}>
-                              <CardMedia image={STATIC_IMAGE_URL + "small/" + item.id + ".jpg"} style={{ height: "160px" }} />
-                            </Tooltip>
-                          </CardActionArea>
+                          
                           <CardHeader
                             avatar={<Avatar color="secondary">{index}</Avatar>}
-                            action={
-                              <>
+                            title={item.primary + " | " + this.formatDate(item.date)}
+                            subheader={item.secondary}
+                          />
+                          
+                           </CardActionArea>
+                           </Tooltip>
+                           <CardActions disableSpacing>
                                 {item.staticImage && (
                                   <Tooltip title={t("arts.artworkTooltipImage")}>
                                     <IconButton edge="end" href={STATIC_IMAGE_URL + "large/" + item.id + ".jpg"} target="_blank">
@@ -312,11 +315,7 @@ class Arts extends Component {
                                     </IconButton>
                                   </Tooltip>
                                 )}
-                              </>
-                            }
-                            title={item.primary + " | " + this.formatDate(item.date)}
-                            subheader={item.secondary}
-                          />
+                          </CardActions>
                         </Card>
                       </Grid>
                     </Zoom>
