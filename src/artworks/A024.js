@@ -6,11 +6,13 @@ export default (props) => {
   const CANVAS_WIDTH = window.localStorage.getItem("customWidth") ? window.localStorage.getItem("customWidth") : window.innerWidth;
   const CANVAS_HEIGHT = window.localStorage.getItem("customHeight") ? window.localStorage.getItem("customHeight") : window.innerHeight;
   const SEED = window.localStorage.getItem("signature");
-  const COLORS = ["#ff0000", "#feb30f", "#0aa4f7", "#000000", "#ffffff"];
+  //const COLORS = ["#ff0000", "#feb30f", "#0aa4f7", "#000000", "#ffffff"];
   const NUMBER_OF_AGENTS = 300;
   const BORDER =-50;
-
+  const NUMBER_OF_COLORS = 8;
+  const COLOR_VARIANCE = 50;
   let agent = [];
+  let colors =  [];
   
   class Agent {
     constructor(p5) {
@@ -19,13 +21,16 @@ export default (props) => {
       this.pOld = p5.createVector(this.p.x, this.p.y);
       this.step = 0.5;
       this.scale = 5;
-      let temp = p5.random(COLORS);
+      let temp = p5.random(colors);
+      this.color = temp;
+      /*
       this.color = p5.color(
         p5.hue(temp) + p5.randomGaussian()*10,
         p5.saturation(temp) + p5.randomGaussian()*10,
         p5.brightness(temp) * 0.75, 
         p5.random(0,50)
         );
+        */
       if(p5.random(0,1) > 0.5)
       {
         this.direction = 1;
@@ -33,22 +38,15 @@ export default (props) => {
       {
         this.direction = -1;
       }
-      this.strokeWidth = p5.random(1,2);
-    }
-    getPartner() {
-      return this.partner;
-    }
-    getP() {
-      return this.p;
-    }
-    getColor(){
-      return this.color;
+      this.strokeWidth = 2; //p5.random(1,2);
     }
     update(p5) {
+      /*
       if (p5.random(0,1) < 1.0e-4)
       {
         this.direction *= -1;
       }
+      */
       this.p.x += this.direction * vector_field(p5, this.p.x, this.p.y,this.scale).x * this.step;
       this.p.y += this.direction * vector_field(p5, this.p.x, this.p.y,this.scale).y * this.step;
       p5.strokeWeight(this.strokeWidth);
@@ -66,8 +64,8 @@ export default (props) => {
     y = p5.map(y, 0, p5.height, -myScale, myScale);
     let k1 = 5;
     let k2 = 3;
-    //let u = p5.sin(k1 * y) + p5.cos(k2 * y) + p5.map(noise(x,y),0,1,-1,1);
-    //let v = p5.sin(k2 * x) - p5.cos(k1 * x) + p5.map(noise(x,y),0,1,-1,1);
+    //let u = p5.sin(k1 * y) + p5.cos(k2 * y) + p5.map(p5.noise(x,y),0,1,-1,1);
+    //let v = p5.sin(k2 * x) - p5.cos(k1 * x) + p5.map(p5.noise(x,y),0,1,-1,1);
     let u = p5.sin(k1 * y) + p5.cos(k2 * y);
     let v = p5.sin(k2 * x) - p5.cos(k1 * x);
     return p5.createVector(u,v);
@@ -78,12 +76,19 @@ export default (props) => {
     p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
     p5.noiseSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
     p5.randomSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
-
     p5.colorMode(p5.HSB, 360, 100, 100, 100);
-    //blendMode(DIFFERENCE);
-    //rectMode(CENTER);
-    p5.strokeCap(p5.SQUARE);
+
+    //set colors
+    let baseHue = p5.floor(p5.random(0,360));
+    colors.push(p5.color(1,0,0, 50)); // add black
+    colors.push(p5.color(1,0,100, 50)); // add white
+    for (let i = 0; i < NUMBER_OF_COLORS -2; i++) {
+      colors.push(p5.color((baseHue + i*COLOR_VARIANCE) % 360, 80, 80, 20));
+    }
     p5.background(0,0,0);
+    //p5.blendMode(p5.DIFFERENCE);
+    //p5.rectMode(p5.CENTER);
+    p5.strokeCap(p5.SQUARE);
     for (let i = 0; i < NUMBER_OF_AGENTS; i++) {
       agent.push(new Agent(p5));
     }

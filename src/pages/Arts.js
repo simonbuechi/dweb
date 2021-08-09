@@ -23,10 +23,12 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardHeader from "@material-ui/core/CardHeader";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import Paper from "@material-ui/core/Paper";
 //icons
 import { Close, OpenInNew, Image, Check, Github, RadioboxBlank } from "mdi-material-ui";
 // custom
@@ -235,7 +237,8 @@ class Arts extends Component {
             <Typography variant="h2" gutterBottom>
               {t("arts.draftsTitle")}
             </Typography>
-            <Box my={1}>
+            <Paper>
+            <Box py={2} px={2}>
               <Chip
                 color={this.state.filter === "all" ? "primary" : "default"}
                 size="small"
@@ -248,7 +251,7 @@ class Arts extends Component {
               <Chip
                 color={this.state.filter === "starred" ? "primary" : "default"}
                 size="small"
-                label="Starred"
+                label="Faves"
                 variant={this.state.filter === "starred" ? "default" : "outlined"}
                 clickable
                 onClick={() => this.handleFilter("starred")}
@@ -282,46 +285,43 @@ class Arts extends Component {
                 icon={this.state.filter === "animated" ? <Check /> : <RadioboxBlank />}
               />
             </Box>
-            <Grid container spacing={2}>
-              {artworkIndex.map(
+            <List dense>
+            {artworkIndex.map(
                 (item, index) =>
                   this.checkFilter(item.color, item.noise, item.animated, item.starred) && (
                     <Zoom in key={index}>
-                      <Grid item xl={6} lg={6} md={12}>
-                        <Card>
-                        <Tooltip title={t("arts.artworkTooltipShow")}>
-                          <CardActionArea component={Link} to={"/arts/" + item.id}>
-                          
-                          <CardHeader
-                            avatar={<Avatar color="secondary">{index}</Avatar>}
-                            title={item.primary + " | " + this.formatDate(item.date)}
-                            subheader={item.secondary}
-                          />
-                          
-                           </CardActionArea>
-                           </Tooltip>
-                           <CardActions disableSpacing>
-                                {item.staticImage && (
-                                  <Tooltip title={t("arts.artworkTooltipImage")}>
-                                    <IconButton edge="end" href={STATIC_IMAGE_URL + "large/" + item.id + ".jpg"} target="_blank">
-                                      <Image />
-                                    </IconButton>
-                                  </Tooltip>
-                                )}
-                                {item.link && (
-                                  <Tooltip title={t("arts.artworkTooltipLink")}>
-                                    <IconButton edge="end" href={item.link}>
-                                      <OpenInNew />
-                                    </IconButton>
-                                  </Tooltip>
-                                )}
-                          </CardActions>
-                        </Card>
-                      </Grid>
+                      <div>
+                        <ListItem button component={Link} to={"/arts/" + item.id}>
+                          <Tooltip title={t("arts.artworkTooltipShow")}>
+                            <ListItemAvatar color="secondary">
+                              <Avatar>{index}</Avatar>
+                            </ListItemAvatar>
+                          </Tooltip>
+                          <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
+
+                          <ListItemSecondaryAction>
+                            {item.staticImage && (
+                              <Tooltip title={t("arts.artworkTooltipImage")}>
+                                <IconButton edge="end" href={STATIC_IMAGE_URL + "large/" + item.id + ".jpg"} target="_blank">
+                                  <Image />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                            {item.link && (
+                              <Tooltip title={t("arts.artworkTooltipLink")}>
+                                <IconButton edge="end" href={item.link}  target="_blank">
+                                  <OpenInNew />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      </div>
                     </Zoom>
                   )
               )}
-            </Grid>
+            </List>
+            </Paper>     
           </Box>
           <Dialog fullScreen onClose={this.handledialogClose} aria-labelledby="dialog" open={dialog}>
             <AppBar color="transparent" position="fixed">

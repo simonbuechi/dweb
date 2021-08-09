@@ -297,7 +297,7 @@ export const artworkIndex = [
   {
     id: "A024",
     primary: "Triposkop",
-    secondary: "inspired by sketch 940954",
+    secondary: "Colorful kaleidoscope",
     staticImage: false,
     date: new Date(2021, 7, 4),
     content: <A024 />,
@@ -308,14 +308,14 @@ export const artworkIndex = [
   },
   {
     id: "A025",
-    primary: "Rorschaching",
-    secondary: "inspired by sketch 476860",
+    primary: "Rorschach on Eleven",
+    secondary: "A colorful Rorschach test",
     staticImage: false,
     date: new Date(2021, 7, 5),
     content: <A025 />,
     link: "https://openprocessing.org/sketch/476860",
     noise: true,
-    color: false,
+    color: true,
     starred: true,
   },
   /*
@@ -342,6 +342,6 @@ export const artworkIndex = [
     content: <A027 />,
     noise: true,
     color: true,
-    starred: false,
+    draft: true,
   },
 ];

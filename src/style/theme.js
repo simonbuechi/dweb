@@ -180,7 +180,8 @@ const theme = createMuiTheme({
     },
     MuiChip: {
       root: {
-        marginRight: 3,
+        marginRight: 5,
+        marginBottom: 5,
         backgroundColor: brown[100],
       },
     },
