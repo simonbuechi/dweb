@@ -87,7 +87,7 @@ class Offering extends Component {
     ];
 
     return (
-      <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
+      <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={4}>
         <Grid item xs={12} md={8}>
           <Typography variant="h2" gutterBottom>
             {t("offering.title")}

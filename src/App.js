@@ -43,7 +43,7 @@ class App extends Component {
           <title>Simon Buechi</title>
           <meta name="description" content="Website of Simon Buechi" />
         </Helmet>
-        <Grid container direction="row" justify="center" alignItems="flex-start" spacing={0}>
+        <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={0}>
           <Header handleChange={handleChange} />
           <Grid item xs={12} sm={3} lg={3} xl={3}>
             <Hidden xsDown>

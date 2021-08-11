@@ -1,6 +1,6 @@
 import { blueGrey, brown } from "@material-ui/core/colors";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
+import { createTheme } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles/colorManipulator";
 //import logo from '../assets/logo.svg';
 
 const black = "#000";
@@ -8,7 +8,7 @@ const fontBrown = "#604941";
 const iconBrown = "#776A67";
 
 // A custom theme for this app
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: "light",
     common: {
@@ -113,7 +113,7 @@ const theme = createMuiTheme({
       containedPrimary: {
         color: "#000",
         backgroundColor: "#fff",
-        backgroundImage: "linear-gradient(to right, " + fade(brown[200], 1) + " 0%, " + fade(brown[200], 0.7) + " 100%) ",
+        backgroundImage: "linear-gradient(to right, " + alpha(brown[200], 1) + " 0%, " + alpha(brown[200], 0.7) + " 100%) ",
       },
     },
     MuiRating: {

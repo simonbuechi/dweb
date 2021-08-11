@@ -133,7 +133,7 @@ class Arts extends Component {
     const { dialog, currentContent, currentTitle, signatureCollapsed, seed, customCollapsed, customField, dialogWeb3 } = this.state;
 
     return (
-      <Grid container direction="row" justify="center" alignItems="flex-start" spacing={4}>
+      <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={4}>
         <Helmet>
           <title>Simon Buechi Artworks</title>
           <meta name="description" content="Generative artworks created with p5.js and crypto signatures" />
