@@ -251,7 +251,7 @@ class Arts extends Component {
               <Chip
                 color={this.state.filter === "starred" ? "primary" : "default"}
                 size="small"
-                label="Faves"
+                label="Favorites"
                 variant={this.state.filter === "starred" ? "default" : "outlined"}
                 clickable
                 onClick={() => this.handleFilter("starred")}

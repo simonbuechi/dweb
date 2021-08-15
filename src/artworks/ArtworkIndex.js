@@ -28,6 +28,9 @@ const A024 = lazy(() => import("../artworks/A024"));
 const A025 = lazy(() => import("../artworks/A025"));
 // const A026 = lazy(() => import("../artworks/A026"));
 const A027 = lazy(() => import("../artworks/A027"));
+//const A028 = lazy(() => import("../artworks/A028"));
+const A029 = lazy(() => import("../artworks/A029"));
+const A030 = lazy(() => import("../artworks/A030"));
 
 export const artworkIndex = [
   {
@@ -342,6 +345,41 @@ export const artworkIndex = [
     content: <A027 />,
     noise: true,
     color: true,
+    draft: true,
+  },
+  /*
+  {
+    id: "A028",
+    primary: "A tree",
+    secondary: "just a tree",
+    staticImage: false,
+    date: new Date(2021, 7, 7),
+    content: <A028 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  */
+  {
+    id: "A029",
+    primary: "A029",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 7, 13),
+    content: <A029 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A030",
+    primary: "A030",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 7, 14),
+    content: <A030 />,
+    noise: true,
+    color: false,
     draft: true,
   },
 ];

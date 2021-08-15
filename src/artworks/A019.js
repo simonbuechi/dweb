@@ -6,46 +6,50 @@ export default (props) => {
   const CANVAS_WIDTH = window.localStorage.getItem("customWidth") ? window.localStorage.getItem("customWidth") : window.innerWidth;
   const CANVAS_HEIGHT = window.localStorage.getItem("customHeight") ? window.localStorage.getItem("customHeight") : window.innerHeight;
   const SEED = window.localStorage.getItem("signature");
-
-  const THOLD = 20;
-  const DRAG = 0.001;
-  const spifac = 1.05;
+  // shape and form
+  const NUMBER_OF_LINES = 300;
+  const DURATION = 1500;
+  const THOLD = 20; //100;
+  const DRAG = 0.01; //0.001;
+  const SPIFAC = 1.05;
+  const SPLIT_FACTOR = 0.25;
   const XOFF_STEP = 0.006;
-  const COLOROFF_STEP = 0.002;
-  const MAX_ITERATIONS = 15;
-  const SATURATION = 22;
-  const BRIGHTNESS = 100;
-  const ALPHA = 0.03;
-  const BIG = 500;
+  // colors
+  //const COLOR_VARIANCE = 15;
+  const SATURATION_BRIGHT = 30;
+  const BRIGHTNESS_BRIGHT = 100;
+  const SATURATION_DARK = 90;
+  const BRIGHTNESS_DARK = 20;
+  const ALPHA = .1; //0.15;
   const BACKGROUND_SATURATION = 30;
-  const BACKGROUND_BRIGHTNESS = 10;
+  const BACKGROUND_BRIGHTNESS = 40;
   const BACKGROUND_BRIGHTNESS_LIGHTEN = 25;
+  // variables
   let bodies = [];
   let mX;
   let mY;
   let xoff = 0;
-  let coloroff = 100;
   let baseHue;
-  let hue1, hue2;
+  //let hue1, hue2;
 
   class ball {
     constructor(p5, mX, mY) {
-      this.X = p5.random(mX - 5, mX + 5);
-      this.Y = p5.random(mY - 5, mY + 5);
+      this.X = mX;
+      this.Y = mY;
       this.w = p5.random(1 / THOLD, THOLD);
       this.Xv = 0;
       this.Yv = 0;
       this.pX = this.X;
       this.pY = this.Y;
     }
-    render(p5, mX, mY, hue) {
-      this.Xv /= spifac;
-      this.Yv /= spifac;
+    render(p5, mX, mY, hue, saturation, brightness) {
+      this.Xv /= SPIFAC;
+      this.Yv /= SPIFAC;
       this.Xv += DRAG * (mX - this.X) * this.w;
       this.Yv += DRAG * (mY - this.Y) * this.w;
       this.X += this.Xv;
       this.Y += this.Yv;
-      p5.stroke(hue, SATURATION, BRIGHTNESS, ALPHA);
+      p5.stroke(hue, saturation, brightness, ALPHA);
       p5.line(this.X, this.Y, this.pX, this.pY);
       this.pX = this.X;
       this.pY = this.Y;
@@ -60,8 +64,10 @@ export default (props) => {
     p5.colorMode(p5.HSB, 100, 100, 100);
     p5.smooth();
     p5.strokeWeight(1);
-    //set background
-    baseHue = p5.floor(p5.noise(1000) * 100);
+    //set colors
+    baseHue = p5.floor(p5.random(0,100));
+    //hue1 = baseHue + COLOR_VARIANCE % 100; 
+    //hue2 = baseHue - COLOR_VARIANCE % 100;
     p5.background(p5.color(baseHue, BACKGROUND_SATURATION, BACKGROUND_BRIGHTNESS));
     p5.noStroke();
     for (let i = Math.max(p5.width, p5.height); i > 0; i--) {
@@ -76,30 +82,24 @@ export default (props) => {
     }
     p5.noFill();
     // setup balls and position
-    mX = p5.width * p5.noise(xoff);
-    mY = p5.height * p5.noise(xoff + 5);
-    for (let i = 0; i < BIG; i++) {
+    mX = p5.width * p5.noise(xoff) * (1 - SPLIT_FACTOR) + SPLIT_FACTOR * p5.width;
+    mY = p5.height * p5.noise(xoff + 5) * (1 - SPLIT_FACTOR)  + SPLIT_FACTOR * p5.height;
+    for (let i = 0; i < NUMBER_OF_LINES; i++) {
       bodies[i] = new ball(p5, mX, mY);
-      bodies[i + BIG] = new ball(p5, p5.width - mX, p5.height - mY);
+      bodies[i + NUMBER_OF_LINES] = new ball(p5, p5.width - mX, p5.height - mY);
     }
   };
 
   const draw = (p5) => {
-    mX = p5.width * p5.noise(xoff);
-    mY = p5.height * p5.noise(xoff + 5);
-    // p5.stroke(p5.map(p5.noise(coloroff), 0, 1, 0, 100), SATURATION, BRIGHTNESS, ALPHA);
-    // p5.stroke(p5.constrain(baseHue + (p5.noise(coloroff) - 0.5) * 20, 0, 100), SATURATION, BRIGHTNESS, ALPHA);
-    //hue1 = p5.constrain(baseHue + (p5.noise(coloroff) - 0.5) * 20, 0, 100);
-    //hue2 = hue1 + 30 > 100 ? hue1 + 30 - 100 : hue1 + 30;
-    hue1 = p5.abs(baseHue + 20 + (p5.noise(coloroff) - 0.5) * 20) % 100;
-    hue2 = p5.abs(baseHue - 20 + (p5.noise(coloroff + 100) - 0.5) * 20) % 100;
-    for (let i = 0; i < BIG; i++) {
-      bodies[i].render(p5, mX, mY, hue1);
-      bodies[i + BIG].render(p5, p5.width - mX, p5.height - mY, hue2);
+    //p5.strokeWeight(4);
+    mX = p5.width * p5.noise(xoff)* (1-SPLIT_FACTOR) + SPLIT_FACTOR * p5.width;
+    mY = p5.height * p5.noise(xoff + 5)* (1-SPLIT_FACTOR)  + SPLIT_FACTOR * p5.height;
+    for (let i = 0; i < NUMBER_OF_LINES; i++) {
+      bodies[i].render(p5, mX, mY, baseHue, SATURATION_DARK, BRIGHTNESS_DARK);
+      bodies[i + NUMBER_OF_LINES].render(p5, p5.width - mX, p5.height - mY, baseHue, SATURATION_BRIGHT, BRIGHTNESS_BRIGHT);
     }
     xoff += XOFF_STEP;
-    coloroff += COLOROFF_STEP;
-    if (xoff >= MAX_ITERATIONS) {
+    if (p5.frameCount > DURATION) {
       p5.noLoop();
     }
   };
