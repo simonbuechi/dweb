@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import theme from "./style/theme";
 import "./i18n/i18n";
 import SplashScreen from "./structure/SplashScreen";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
 //lazy load
 const ThemeProvider = lazy(() => import("./utils/ThemeProvider"));
 const Router = lazy(() => import("./utils/Router"));
@@ -22,7 +23,5 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorkerRegistration.register();
+reportWebVitals(console.log);

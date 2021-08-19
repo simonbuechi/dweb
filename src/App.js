@@ -22,7 +22,7 @@ const Offering = lazy(() => import("./pages/Offering"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Wall = lazy(() => import("./pages/Wall"));
 const Blog = lazy(() => import("./pages/Blog"));
-const Queries = lazy(() => import("./pages/Queries"));
+//const Queries = lazy(() => import("./pages/Queries"));
 const Arts = lazy(() => import("./pages/Arts"));
 
 class App extends Component {
@@ -72,7 +72,6 @@ class App extends Component {
                 <Route exact path="/projects" component={Projects} />
                 <Route exact path="/blog" component={Blog} />
                 <Route exact path="/wall" component={Wall} />
-                <Route exact path="/queries" component={Queries} />
                 <Route exact path="/arts/:id" component={Arts} />
                 <Route exact path="/arts" component={Arts} />
               </Switch>

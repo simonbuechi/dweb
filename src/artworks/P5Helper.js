@@ -16,7 +16,7 @@ function normDist(u = 0, v = 0) {
 }
 */
 
-export default (props) => {
+const Artwork = (props) => {
   const setup = (p5, canvasParentRef) => {
     //setup canvas
     p5.createCanvas(canvasWidth, 1000).parent(canvasParentRef);
@@ -76,3 +76,5 @@ export default (props) => {
 
   return <Sketch setup={setup} draw={draw} />;
 };
+
+export default Artwork;
