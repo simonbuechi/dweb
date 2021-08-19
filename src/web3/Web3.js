@@ -80,15 +80,6 @@ function getLibrary(provider) {
   return library
 }
 
-export default function () {
-  return (
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <App />
-    </Web3ReactProvider>
-  )
-}
-
-
 function Header() {
   const { active, error, chainId, account, library } = useWeb3React()
   const [balance, setBalance] = React.useState();
@@ -286,3 +277,13 @@ function App() {
     </>
   )
 }
+
+const Web3 = () => {
+  return (
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <App />
+    </Web3ReactProvider>
+  )
+}
+
+export default Web3;

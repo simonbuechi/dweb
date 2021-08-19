@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default (props) => {
+export const Artwork = (props) => {
   //global constants
   const CANVAS_WIDTH = document.documentElement.clientWidth;
   const CAVNAS_HEIGHT = document.documentElement.clientHeight;

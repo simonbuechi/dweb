@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default (props) => {
+export const Artwork = (props) => {
   const CANVAS_WIDTH = window.localStorage.getItem("customWidth") ? window.localStorage.getItem("customWidth") : window.innerWidth;
   const CANVAS_HEIGHT = window.localStorage.getItem("customHeight") ? window.localStorage.getItem("customHeight") : window.innerHeight;
   const SEED = window.localStorage.getItem("signature");

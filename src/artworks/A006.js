@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import { Shader } from "p5";
 
-export default (props) => {
+export const Artwork = (props) => {
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
   //const seed = "adsfasdf234234";

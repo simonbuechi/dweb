@@ -1,13 +1,11 @@
 import React from "react";
 import Sketch from "react-p5";
 
-const seed = window.localStorage.getItem("signature");
-const canvasWidth = window.innerWidth;
-const canvasHeight = window.innerHeight;
-const sizes = [25, 60, 100, 200, 300, 400];
-
-export default (props) => {
-  //const seed = "12j34h12j4khl2j3k";
+export const Artwork = (props) => {
+  const seed = window.localStorage.getItem("signature");
+  const canvasWidth = window.innerWidth;
+  const canvasHeight = window.innerHeight;
+  const sizes = [25, 60, 100, 200, 300, 400];
   let colors;
 
   const setup = (p5, canvasParentRef) => {

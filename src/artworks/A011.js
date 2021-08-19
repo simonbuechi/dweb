@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default (props) => {
+export const Artwork = (props) => {
   // get seed from localstorage
   const seed = window.localStorage.getItem("signature");
   // set size to fullscreen

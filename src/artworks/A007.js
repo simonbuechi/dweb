@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default (props) => {
+export const Artwork = (props) => {
   const CRYSTAL_SIZE = 150;
   const SIDES = 6;
   // layout

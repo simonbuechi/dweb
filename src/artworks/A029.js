@@ -4,7 +4,7 @@ import Sketch from "react-p5";
 // see https://openprocessing.org/sketch/383911 for further optimization
 
 
-export default (props) => {
+export const Artwork = (props) => {
   //global constants
   const CANVAS_WIDTH = window.localStorage.getItem("customWidth") ? window.localStorage.getItem("customWidth") : window.innerWidth;
   const CANVAS_HEIGHT = window.localStorage.getItem("customHeight") ? window.localStorage.getItem("customHeight") : window.innerHeight;

@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default (props) => {
+export const Artwork = (props) => {
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
   const N = 3; //number of recursive steps
