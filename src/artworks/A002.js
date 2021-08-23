@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export const Artwork = (props) => {
+const Artwork = (props) => {
   const seed = window.localStorage.getItem("signature");
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
@@ -55,3 +55,5 @@ export const Artwork = (props) => {
 
   return <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />;
 };
+
+export default Artwork;

@@ -3,7 +3,7 @@ import Sketch from "react-p5";
 
 // inspired by https://openprocessing.org/sketch/1006142
 
-export const Artwork = (props) => {
+const Artwork = (props) => {
   // get seed from localstorage
   const seed = window.localStorage.getItem("signature");
   // set size to fullscreen
@@ -95,3 +95,5 @@ export const Artwork = (props) => {
 
   return <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />;
 };
+
+export default Artwork;

@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import { Shader } from "p5";
 
-export const Artwork = (props) => {
+const Artwork = (props) => {
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
   //const seed = "adsfasdf234234";
@@ -128,3 +128,5 @@ var vert = `
       var_vertTexCoord = aTexCoord;
     }
 `;
+
+export default Artwork;

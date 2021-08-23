@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import { Vector } from "p5";
 
-export const Artwork = (props) => {
+const Artwork = (props) => {
   //global constants
   const canvasWidth = window.innerWidth;
   const canvasHeight = window.innerHeight;
@@ -341,3 +341,5 @@ Delaunay = {
     return [u, v];
   },
 };
+
+export default Artwork;

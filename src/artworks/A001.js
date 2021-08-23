@@ -1,7 +1,7 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export const Artwork = (props) => {
+const Artwork = (props) => {
   //global constants
   const CANVAS_WIDTH = document.documentElement.clientWidth;
   const CAVNAS_HEIGHT = document.documentElement.clientHeight;
@@ -100,3 +100,5 @@ export const Artwork = (props) => {
 
   return <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />;
 };
+
+export default Artwork;
