@@ -4,7 +4,7 @@ import theme from "./style/theme";
 import "./i18n/i18n";
 import SplashScreen from "./structure/SplashScreen";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+//import reportWebVitals from './reportWebVitals';
 //lazy load
 const ThemeProvider = lazy(() => import("./utils/ThemeProvider"));
 const Router = lazy(() => import("./utils/Router"));
@@ -24,4 +24,4 @@ ReactDOM.render(
 );
 
 serviceWorkerRegistration.register();
-reportWebVitals(console.log);
+//reportWebVitals(console.log);
