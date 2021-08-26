@@ -124,11 +124,11 @@ export const artworkIndex = [
     primary: "Rosette",
     secondary: "A single rosette",
     staticImage: true,
-    date: new Date(2021, 0, 20),
+    date: new Date(2021, 8, 25),
     content: <A008 />,
     noise: true,
     starred: false,
-    draft: true,
+    color: true,
   },
   {
     id: "A009",
