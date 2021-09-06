@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 import { getThread, listSpaces, getProfile } from "3box/lib/api";
 //material-ui
 import Typography from "@material-ui/core/Typography";
@@ -72,6 +73,10 @@ class Wall extends Component {
 
     return (
       <Grid item xs={12} lg={12}>
+                <Helmet>
+          <title>Simon Buechi | Wall</title>
+          <meta name="description" content="Simon Buechi Büchi wall" />
+        </Helmet>
         <Typography variant="h2" gutterBottom>
           {t("wall.title")}
         </Typography>

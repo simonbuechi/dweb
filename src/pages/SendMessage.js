@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -12,6 +13,10 @@ class SendMessage extends Component {
 
     return (
       <>
+              <Helmet>
+          <title>Simon Buechi | Send message</title>
+          <meta name="description" content="Simon Buechi Büchi" />
+        </Helmet>
         <Typography variant="h2" gutterBottom>
           {t("sendMessage.title")}
         </Typography>    

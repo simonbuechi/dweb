@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 //material-ui
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -89,6 +90,10 @@ class Offering extends Component {
     return (
       <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={4}>
         <Grid item xs={12} md={8}>
+          <Helmet>
+            <title>Simon Buechi | Services</title>
+            <meta name="description" content="Simon Buechi Büchi services skills" />
+          </Helmet>
           <Typography variant="h2" gutterBottom>
             {t("offering.title")}
           </Typography>

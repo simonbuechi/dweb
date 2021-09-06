@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 //material-ui
 import Typography from "@material-ui/core/Typography";
@@ -107,6 +108,10 @@ class About extends Component {
 
     return (
       <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={4}>
+        <Helmet>
+          <title>Simon Buechi | About</title>
+          <meta name="description" content="Simon Buechi Büchi about" />
+        </Helmet>
         <Grid item xs={12} md={12}>
           <Typography variant="h2" gutterBottom>
             {t("about.title")}

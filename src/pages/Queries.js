@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 //material-ui
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -22,6 +23,10 @@ class Queries extends Component {
 
     return (
       <>
+              <Helmet>
+          <title>Simon Buechi | Queries</title>
+          <meta name="description" content="Simon Buechi Büchi" />
+        </Helmet>
         <Typography variant="h2" gutterBottom>
           {t("queries.title")}
         </Typography>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 import { getThreadByAddress, listSpaces, getProfile } from "3box/lib/api";
 import Markdown from "react-showdown";
 import fm from "front-matter";
@@ -113,6 +114,10 @@ class Blog extends Component {
     //console.log(blogExpanded);
     return (
       <Grid item xs={12} lg={12}>
+        <Helmet>
+          <title>Simon Buechi | Blog</title>
+          <meta name="description" content="Simon Buechi Büchi blog" />
+        </Helmet>
         <Typography variant="h2" gutterBottom>
           {t("blog.title")}
         </Typography>
