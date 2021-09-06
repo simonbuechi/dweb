@@ -33,6 +33,9 @@ const A029 = lazy(() => import("../artworks/A029"));
 const A030 = lazy(() => import("../artworks/A030"));
 const A031 = lazy(() => import("../artworks/A031"));
 const A032 = lazy(() => import("../artworks/A032"));
+const A033 = lazy(() => import("../artworks/A033"));
+const A034 = lazy(() => import("../artworks/A034"));
+const A035 = lazy(() => import("../artworks/A035"));
 
 export const artworkIndex = [
   {
@@ -402,6 +405,39 @@ export const artworkIndex = [
     staticImage: false,
     date: new Date(2021, 7, 25),
     content: <A032 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A033",
+    primary: "A033",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 7, 29),
+    content: <A033 />,
+    noise: true,
+    color: true,
+    starred: true,
+  },
+  {
+    id: "A034",
+    primary: "Bezier Brushes",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 8, 2),
+    content: <A034 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A035",
+    primary: "Hints of Sixties",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 8, 5),
+    content: <A035 />,
     noise: true,
     color: true,
     draft: true,
