@@ -69,7 +69,7 @@ const Artwork = (props) => {
   }
 
   function reset(p5) {
-    p5.background("#281A16");
+    p5.background("#FFFFFF");
   }
 
   const setup = (p5, canvasParentRef) => {

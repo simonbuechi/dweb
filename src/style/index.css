@@ -25,6 +25,7 @@
   font-weight: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Source Serif Pro";
   src: url("SourceSerifPro-SemiBold.ttf") format("truetype");
@@ -33,7 +34,7 @@
 }
 
 html {
-  background: url(../assets/bg.jpg) no-repeat right top fixed;
+  background: url(../assets/bg.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -43,7 +44,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  
+
 
   /* simple diamond pattern
   background-color: #ccc;
@@ -163,20 +164,21 @@ h6 {
 .eth {
   margin: auto;
   position: relative;
-/*
+  /*
   position: absolute;
   left: calc(50% - 10em / 2);
   top: calc(50% - 4em);
-*/  
+*/
   width: 10em;
   height: 10em;
   font-size: 0.22em;
 }
+
 .eth .top,
 .eth .bottom {
   width: 10em;
-  height: 10em; 
-  background: rgba(206,113,195, .9);
+  height: 10em;
+  background: rgba(206, 113, 195, .9);
   transform: rotateX(65deg) rotateZ(45deg);
   transform-style: preserve-3d;
   position: absolute;
@@ -206,7 +208,7 @@ h6 {
 .eth .top .right,
 .eth .bottom .right {
   border-left: 5em solid transparent;
-  border-right: 5em solid transparent; 
+  border-right: 5em solid transparent;
   border-bottom: 15em solid rgba(255, 156, 146, 0.5);
   transform-origin: bottom;
 }
@@ -217,7 +219,7 @@ h6 {
 .eth .bottom .down {
   transform-origin: bottom right;
   border-top: 5em solid transparent;
-  border-right: 15em solid rgba(255,233,77, 0.5);
+  border-right: 15em solid rgba(255, 233, 77, 0.5);
   border-bottom: 5em solid transparent;
   border-left: none;
   top: 0em;
@@ -253,18 +255,20 @@ h6 {
   left: 0;
   top: 0;
 }
+
 .eth .bottom {
   left: 0;
   top: 1.5em;
-  background: rgba(83,211,224, 0.9);
+  background: rgba(83, 211, 224, 0.9);
 }
+
 .eth .bottom .left,
-.eth .bottom .right { 
-  border-bottom: 15em solid rgba(136,216,72, 0.5);
+.eth .bottom .right {
+  border-bottom: 15em solid rgba(136, 216, 72, 0.5);
 }
 
 .eth .bottom .up,
-.eth .bottom .down { 
+.eth .bottom .down {
   border-right: 15em solid rgba(90, 157, 237, 0.5);
 }
 
@@ -288,6 +292,7 @@ h6 {
   from {
     transform: rotateX(65deg) rotateZ(0deg);
   }
+
   to {
     transform: rotateX(65deg) rotateZ(360deg);
   }
