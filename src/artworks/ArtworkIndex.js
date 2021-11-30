@@ -36,6 +36,7 @@ const A032 = lazy(() => import("../artworks/A032"));
 const A033 = lazy(() => import("../artworks/A033"));
 const A034 = lazy(() => import("../artworks/A034"));
 const A035 = lazy(() => import("../artworks/A035"));
+const A036 = lazy(() => import("../artworks/A036"));
 
 export const artworkIndex = [
   {
@@ -438,6 +439,17 @@ export const artworkIndex = [
     staticImage: false,
     date: new Date(2021, 8, 5),
     content: <A035 />,
+    noise: true,
+    color: true,
+    draft: true,
+  },
+  {
+    id: "A036",
+    primary: "blurry background",
+    secondary: "...",
+    staticImage: false,
+    date: new Date(2021, 11, 5),
+    content: <A036 />,
     noise: true,
     color: true,
     draft: true,
