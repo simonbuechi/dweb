@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n/i18n";
 //material-ui
@@ -15,7 +15,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 //import { InformationOutline, AccountBox } from "@mdi/js";
 //import Brightness6 from 'mdi-material-ui/Brightness6';
 //custom
-//const Web3 = lazy(() => import("../web3/Web3"));
+const Web3 = lazy(() => import("../web3/Web3"));
 
 function Settings() {
   const { t } = useTranslation();
@@ -71,7 +71,9 @@ function Settings() {
           <Typography variant="h2" gutterBottom>
             Connect Wallet
           </Typography>
-          <Suspense fallback={<CircularProgress color="primary" />}></Suspense>
+          <Suspense fallback={<CircularProgress color="primary" />}>
+            <Web3 />
+          </Suspense>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogWeb3Close} variant="contained" color="primary">
