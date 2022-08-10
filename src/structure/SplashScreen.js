@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 class SplashScreen extends Component {
   render() {
-
     const styleWrapper = {
       textAlign: "center",
       position: "absolute",
       top: "50%",
       left: "50%",
-      transform: "translate(-50%, -50%)"
-    }
+      transform: "translate(-50%, -50%)",
+    };
     /*
     const styleDiv  = {
       backgroundImage: "linear-gradient(90deg, #a1887f, #bcaaa4 )",

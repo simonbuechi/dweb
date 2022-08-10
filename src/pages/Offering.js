@@ -2,37 +2,38 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 //material-ui
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import Divider from "@material-ui/core/Divider";
-import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Avatar from "@mui/material/Avatar";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import Divider from "@mui/material/Divider";
+import Tooltip from "@mui/material/Tooltip";
 import Rating from "@material-ui/lab/Rating";
-import Zoom from "@material-ui/core/Zoom";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import Hidden from "@material-ui/core/Hidden";
+import Zoom from "@mui/material/Zoom";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Hidden from "@mui/material/Hidden";
 //icons
+import Icon from "../utils/Icon";
 import {
-  ChevronDown,
-  Ethereum,
-  Bitcoin,
-  AccountGroup,
-  FeatureSearch,
-  GoogleAnalytics,
-  RulerSquare,
-  SignatureFreehand,
-  LanguageHtml5,
-  Teach,
-} from "mdi-material-ui";
+  mdiChevronDown,
+  mdiEthereum,
+  mdiBitcoin,
+  mdiAccountGroup,
+  mdiFeatureSearch,
+  mdiGoogleAnalytics,
+  mdiRulerSquare,
+  mdiSignatureFreehand,
+  mdiLanguageHtml5,
+  mdiAccountVoice,
+} from "@mdi/js";
 //icons & images
 import drizzle from "../assets/techicons/drizzle.jpg";
 // import ethereum from '../assets/techicons/ethereum.jpg';
@@ -64,22 +65,22 @@ class Offering extends Component {
   render() {
     const { t } = this.props;
     const skillsConsulting = [
-      { text: "Project management", img: <AccountGroup />, rating: 3 },
-      { text: "Lecture & public speaking", img: <Teach />, rating: 2 },
-      { text: "Analysis & Engineering", img: <GoogleAnalytics />, rating: 2 },
-      { text: "Research", img: <FeatureSearch />, rating: 2 },
-      { text: "Business model development", img: <RulerSquare />, rating: 2 },
+      { text: "Project management", img: <Icon path={mdiAccountGroup} />, rating: 3 },
+      { text: "Lecture & public speaking", img: <Icon path={mdiAccountVoice} />, rating: 2 },
+      { text: "Analysis & Engineering", img: <Icon path={mdiGoogleAnalytics} />, rating: 2 },
+      { text: "Research", img: <Icon path={mdiFeatureSearch} />, rating: 2 },
+      { text: "Business model development", img: <Icon path={mdiRulerSquare} />, rating: 2 },
     ];
     const skillsBlockchains = [
-      { text: "Ethereum", img: <Ethereum />, rating: 3 },
-      { text: "Bitcoin", img: <Bitcoin />, rating: 2 },
-      { text: "Decentralized autonomous organizations (DAOs)", img: <AccountGroup />, rating: 3 },
-      { text: "Multi-signature wallets", img: <SignatureFreehand />, rating: 2 },
+      { text: "Ethereum", img: <Icon path={mdiEthereum} />, rating: 3 },
+      { text: "Bitcoin", img: <Icon path={mdiBitcoin} />, rating: 2 },
+      { text: "Decentralized autonomous organizations (DAOs)", img: <Icon path={mdiAccountGroup} />, rating: 3 },
+      { text: "Multi-signature wallets", img: <Icon path={mdiSignatureFreehand} />, rating: 2 },
     ];
     const skillsCoding = [
       { text: "React", img: react, rating: 3 },
       { text: "Web3js", img: web3js, rating: 3 },
-      { text: "HTML, CSS, JS", icon: <LanguageHtml5 />, rating: 2 },
+      { text: "HTML, CSS, JS", icon: <Icon path={mdiLanguageHtml5} />, rating: 2 },
       { text: "Solidity", img: solidity, rating: 2 },
       { text: "Drizzle", img: drizzle, rating: 2 },
       { text: "Redux", img: redux, rating: 2 },
@@ -114,9 +115,13 @@ class Offering extends Component {
                         <div>
                           <ListItem>
                             <ListItemIcon>{item.img}</ListItemIcon>
-                            <ListItemText 
-                              primary={item.text} 
-                              secondary={<Hidden smUp><Rating name="read-only" value={item.rating} max={3} readOnly /></Hidden>} 
+                            <ListItemText
+                              primary={item.text}
+                              secondary={
+                                <Hidden smUp>
+                                  <Rating name="read-only" value={item.rating} max={3} readOnly />
+                                </Hidden>
+                              }
                             />
                             <Hidden xsDown>
                               <Tooltip title={ratingLabels[item.rating]}>
@@ -149,9 +154,13 @@ class Offering extends Component {
                         <div>
                           <ListItem>
                             <ListItemIcon>{item.img}</ListItemIcon>
-                            <ListItemText 
-                              primary={item.text} 
-                              secondary={<Hidden smUp><Rating name="read-only" value={item.rating} max={3} readOnly /></Hidden>} 
+                            <ListItemText
+                              primary={item.text}
+                              secondary={
+                                <Hidden smUp>
+                                  <Rating name="read-only" value={item.rating} max={3} readOnly />
+                                </Hidden>
+                              }
                             />
                             <Hidden xsDown>
                               <Tooltip title={ratingLabels[item.rating]}>
@@ -190,9 +199,13 @@ class Offering extends Component {
                               </ListItemAvatar>
                             )}
                             {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                            <ListItemText 
-                              primary={item.text} 
-                              secondary={<Hidden smUp><Rating name="read-only" value={item.rating} max={3} readOnly /></Hidden>} 
+                            <ListItemText
+                              primary={item.text}
+                              secondary={
+                                <Hidden smUp>
+                                  <Rating name="read-only" value={item.rating} max={3} readOnly />
+                                </Hidden>
+                              }
                             />
                             <Hidden xsDown>
                               <Tooltip title={ratingLabels[item.rating]}>

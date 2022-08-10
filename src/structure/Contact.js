@@ -1,40 +1,39 @@
-import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
+import React from "react";
+import { useTranslation } from "react-i18next";
 //material-ui
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { Whatsapp, Email, Linkedin } from "mdi-material-ui";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+//icons
+import Icon from "../utils/Icon";
+import { mdiWhatsapp, mdiEmail, mdiLinkedin } from "@mdi/js";
 
-class Contact extends Component {
-  render() {
-    const { t } = this.props;
-
-    return (
-      <React.Fragment>
-        <Typography variant="h2" gutterBottom>
-          {t("offering.reachoutTitle")}
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          {t("offering.reachoutDescription")}
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          <Button variant="contained" color="primary" href="mailto:simon.buechi@gmail.com" startIcon={<Email />}>
-            Email
-          </Button>
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          <Button variant="contained" color="primary" href="https://wa.me/41787401627" startIcon={<Whatsapp />}>
-            Whatsapp
-          </Button>
-        </Typography>
-        <Typography variant="body2" gutterBottom>
-          <Button variant="contained" color="primary" href="https://www.linkedin.com/in/simonbuechi" startIcon={<Linkedin />}>
-            LinkedIn
-          </Button>
-        </Typography>
-      </React.Fragment>
-    );
-  }
+function Contact() {
+  const { t } = useTranslation();
+  return (
+    <React.Fragment>
+      <Typography variant="h2" gutterBottom>
+        {t("offering.reachoutTitle")}
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        {t("offering.reachoutDescription")}
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        <Button variant="contained" color="primary" href="mailto:simon.buechi@gmail.com" startIcon={<Icon path={mdiEmail} />}>
+          Email
+        </Button>
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        <Button variant="contained" color="primary" href="https://wa.me/41787401627" startIcon={<Icon path={mdiWhatsapp} />}>
+          Whatsapp
+        </Button>
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        <Button variant="contained" color="primary" href="https://www.linkedin.com/in/simonbuechi" startIcon={<Icon path={mdiLinkedin} />}>
+          LinkedIn
+        </Button>
+      </Typography>
+    </React.Fragment>
+  );
 }
 
-export default withTranslation()(Contact);
+export default Contact;

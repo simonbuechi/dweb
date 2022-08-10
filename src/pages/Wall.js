@@ -3,24 +3,24 @@ import { withTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { getThread, listSpaces, getProfile } from "3box/lib/api";
 //material-ui
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Zoom from "@material-ui/core/Zoom";
-import Tooltip from "@material-ui/core/Tooltip";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Zoom from "@mui/material/Zoom";
+import Tooltip from "@mui/material/Tooltip";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 import Alert from "@material-ui/lab/Alert";
 //icons
-import { Account, Web, Twitter, Numeric3Box, Github, Email, OpenInNew, Information } from "mdi-material-ui";
+import { mdiAccount, mdiWeb, mdiTwitter, mdiNumeric3Box, mdiGithub, mdiEmail, mdiOpenInNew, mdiInformation } from "@mdi/js";
 // custom
 import config from "../config.json";
 
@@ -73,7 +73,7 @@ class Wall extends Component {
 
     return (
       <Grid item xs={12} lg={12}>
-                <Helmet>
+        <Helmet>
           <title>Simon Buechi | Wall</title>
           <meta name="description" content="Simon Buechi Büchi wall" />
         </Helmet>
@@ -81,16 +81,18 @@ class Wall extends Component {
           {t("wall.title")}
         </Typography>
         <Box my={2}>
-          <Alert variant="filled" severity="warning">{t("base.experimental")}</Alert>
+          <Alert variant="filled" severity="warning">
+            {t("base.experimental")}
+          </Alert>
         </Box>
         <Typography variant="body2" gutterBottom>
           {t("wall.description")} ( {t("wall.buttonWriteWallNote")} )
         </Typography>
-        <Button variant="contained" color="primary" href={"https://3box.io/" + config.ethereumAddress} startIcon={<OpenInNew />}>
+        <Button variant="contained" color="primary" href={"https://3box.io/" + config.ethereumAddress} startIcon={<mdiOpenInNew />}>
           {t("wall.buttonWriteWall")}
         </Button>
         &nbsp;
-        <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<Information />}>
+        <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<mdiInformation />}>
           {t("wall.dialogInfoButton")}
         </Button>
         {!ready ? (
@@ -109,7 +111,7 @@ class Wall extends Component {
                           <Avatar src={"https://ipfs.infura.io/ipfs/" + wallAuthors[item.author].image[0].contentUrl["/"]} />
                         ) : (
                           <Avatar>
-                            <Account />
+                            <mdiAccount />
                           </Avatar>
                         )}
                       </Tooltip>
@@ -119,28 +121,28 @@ class Wall extends Component {
                         {wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("website") && (
                           <Tooltip title="Website">
                             <IconButton href={wallAuthors[item.author].website}>
-                              <Web />
+                              <mdiWeb />
                             </IconButton>
                           </Tooltip>
                         )}
                         {wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("email") && (
                           <Tooltip title="Email">
                             <IconButton>
-                              <Email />
+                              <mdiEmail />
                             </IconButton>
                           </Tooltip>
                         )}
                         {wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("github") && (
                           <Tooltip title="Github">
                             <IconButton>
-                              <Github />
+                              <mdiGithub />
                             </IconButton>
                           </Tooltip>
                         )}
                         {wallAuthors.hasOwnProperty(item.author) && wallAuthors[item.author].hasOwnProperty("twitter") && (
                           <Tooltip title="Twitter">
                             <IconButton>
-                              <Twitter />
+                              <mdiTwitter />
                             </IconButton>
                           </Tooltip>
                         )}
@@ -162,7 +164,7 @@ class Wall extends Component {
         <Dialog onClose={this.handleDialogClose} aria-labelledby="simple-dialog-title" open={dialogOpen} maxWidth="xl">
           <DialogContent>
             {t("wall.dialogInfoTitle")}
-            <Button variant="outlined" color="primary" href="https://docs.3box.io/" startIcon={<Numeric3Box />}>
+            <Button variant="outlined" color="primary" href="https://docs.3box.io/" startIcon={<mdiNumeric3Box />}>
               {t("wall.dialogInfo3boxButton")}
             </Button>
           </DialogContent>

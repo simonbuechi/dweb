@@ -44,21 +44,23 @@ const Artwork = (props) => {
     toggle = p5.floor((p5.random(0,9)));
     p5.stroke(customColour[toggle]);
   }
-
+  function reset(p5) {
+    p5.background(p5.random(customColour));
+  }
   const setup = (p5, canvasParentRef) => {
     //setup canvas & basics
     p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
     p5.noiseSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
     p5.randomSeed(SEED !== null ? SEED : p5.floor(p5.random(1, 10000)));
+    reset(p5);
   };
 
   const draw = (p5) => {
-    p5.background(p5.random(customColour));
-    for (let i = 0; i < 20; i++) {
+   // for (let i = 0; i < 20; i++) {
       //p5.filter(p5.BLUR, 1);
-      let x = p5.random(p5.width);
-      let y = p5.random(p5.height);
-      let d = p5.random(p5.height/10,p5.height/2);
+      let x = p5.width / 2;
+      let y = p5.height / 2;
+      let d = p5.max(p5.height / 2, p5.width / 2);
       let c = p5.floor((p5.random(3, 22)));
       let s = p5.floor((p5.random(1, 7)));
       let cc = p5.floor((p5.random(1, 20)));
@@ -79,7 +81,7 @@ const Artwork = (props) => {
           rcolf(p5);
         form1(p5, x, y, dd, c, s);
       }
-    }
+   // }
     p5.noLoop();
   };
 
@@ -91,7 +93,9 @@ const Artwork = (props) => {
       p5.saveCanvas(fileName, "jpg");
     }
     if (p5.key === 'r') {
-      p5.background(customColour[1]);
+      p5.clear();
+      reset(p5);
+      p5.loop();
     }
   };
 

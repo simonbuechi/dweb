@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import * as serviceWorker from "../serviceWorker";
 import Alert from "@material-ui/lab/Alert";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 
 const ServiceWorkerWrapper = () => {
   const [showReload, setShowReload] = React.useState(false);
@@ -33,8 +33,7 @@ const ServiceWorkerWrapper = () => {
             <Button color="inherit" size="small" onClick={reloadPage}>
               Reload now
             </Button>
-          }
-        >
+          }>
           A new version of this site is available.
         </Alert>
       </Grid>

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 //material-ui
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -23,7 +23,7 @@ class Queries extends Component {
 
     return (
       <>
-              <Helmet>
+        <Helmet>
           <title>Simon Buechi | Queries</title>
           <meta name="description" content="Simon Buechi Büchi" />
         </Helmet>

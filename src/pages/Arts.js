@@ -1,40 +1,41 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { Component, Suspense } from "react";
 import { withTranslation } from "react-i18next";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 //material-ui
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
-import Zoom from "@material-ui/core/Zoom";
-import Dialog from "@material-ui/core/Dialog";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Switch from "@material-ui/core/Switch";
-import Collapse from "@material-ui/core/Collapse";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Tooltip from "@material-ui/core/Tooltip";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import Paper from "@material-ui/core/Paper";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Chip from "@mui/material/Chip";
+import Zoom from "@mui/material/Zoom";
+import Dialog from "@mui/material/Dialog";
+import CircularProgress from "@mui/material/CircularProgress";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Switch from "@mui/material/Switch";
+import Collapse from "@mui/material/Collapse";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import InputAdornment from "@mui/material/InputAdornment";
+import Tooltip from "@mui/material/Tooltip";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import Paper from "@mui/material/Paper";
 //icons
-import { Close, OpenInNew, Image, Check, Github, RadioboxBlank } from "mdi-material-ui";
+import Icon from "../utils/Icon";
+import { mdiClose, mdiOpenInNew, mdiImage, mdiCheck, mdiGithub, mdiRadioboxBlank } from "@mdi/js";
 // custom
 import { artworkIndex } from "../artworks/ArtworkIndex";
 //lazy
-const Web3 = lazy(() => import("../web3/Web3"));
+//const Web3 = lazy(() => import("../web3/Web3"));
 
 const STATIC_IMAGE_URL = "https://gateway.pinata.cloud/ipfs/QmaQF2DBoFtsqZ7G3EmWghtt2REwYYCsyWUJ2jbouf39Xv/";
 
@@ -154,12 +155,11 @@ class Arts extends Component {
               variant="contained"
               component="a"
               href="https://github.com/simonbuechi/dweb/tree/master/src/artworks"
-              startIcon={<Github />}
-            >
+              startIcon={<Icon path={mdiGithub} />}>
               Source Code
             </Button>
             &nbsp;
-            <Button color="primary" variant="contained" component="a" href="https://p5js.org" startIcon={<OpenInNew />}>
+            <Button color="primary" variant="contained" component="a" href="https://p5js.org" startIcon={<Icon path={mdiOpenInNew} />}>
               Learn about P5
             </Button>
           </Box>
@@ -190,7 +190,7 @@ class Arts extends Component {
                         {t("base.save")}
                       </Button>
                     ) : (
-                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Icon path={mdiClose} />}>
                         {t("base.remove")}
                       </Button>
                     )}
@@ -224,7 +224,7 @@ class Arts extends Component {
                         {t("arts.signWithWallet")}
                       </Button>
                     ) : (
-                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Close />}>
+                      <Button color="primary" variant="contained" onClick={this.removeSeed} startIcon={<Icon path={mdiClose} />}>
                         {t("base.remove")}
                       </Button>
                     )}
@@ -238,95 +238,95 @@ class Arts extends Component {
               {t("arts.draftsTitle")}
             </Typography>
             <Paper>
-            <Box py={2} px={2}>
-              <Chip
-                color={this.state.filter === "all" ? "primary" : "default"}
-                size="small"
-                label="All"
-                variant={this.state.filter === "all" ? "default" : "outlined"}
-                clickable
-                onClick={() => this.handleFilter("all")}
-                icon={this.state.filter === "all" ? <Check /> : <RadioboxBlank />}
-              />
-              <Chip
-                color={this.state.filter === "starred" ? "primary" : "default"}
-                size="small"
-                label="Favorites"
-                variant={this.state.filter === "starred" ? "default" : "outlined"}
-                clickable
-                onClick={() => this.handleFilter("starred")}
-                icon={this.state.filter === "starred" ? <Check /> : <RadioboxBlank />}
-              />
-              <Chip
-                color={this.state.filter === "noise" ? "primary" : "default"}
-                size="small"
-                label="Seed Supported"
-                variant={this.state.filter === "noise" ? "default" : "outlined"}
-                clickable
-                onClick={() => this.handleFilter("noise")}
-                icon={this.state.filter === "noise" ? <Check /> : <RadioboxBlank />}
-              />
-              <Chip
-                color={this.state.filter === "color" ? "primary" : "default"}
-                size="small"
-                label="Color Theory"
-                variant={this.state.filter === "color" ? "default" : "outlined"}
-                clickable
-                onClick={() => this.handleFilter("color")}
-                icon={this.state.filter === "color" ? <Check /> : <RadioboxBlank />}
-              />
-              <Chip
-                color={this.state.filter === "animated" ? "primary" : "default"}
-                size="small"
-                label="Animated"
-                variant={this.state.filter === "animated" ? "default" : "outlined"}
-                clickable
-                onClick={() => this.handleFilter("animated")}
-                icon={this.state.filter === "animated" ? <Check /> : <RadioboxBlank />}
-              />
-            </Box>
-            <List dense>
-            {artworkIndex.map(
-                (item, index) =>
-                  this.checkFilter(item.color, item.noise, item.animated, item.starred) && (
-                    <Zoom in key={index}>
-                      <div>
-                        <ListItem button component={Link} to={"/arts/" + item.id}>
-                          <Tooltip title={t("arts.artworkTooltipShow")}>
-                            <ListItemAvatar color="secondary">
-                              <Avatar>{index}</Avatar>
-                            </ListItemAvatar>
-                          </Tooltip>
-                          <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
+              <Box py={2} px={2}>
+                <Chip
+                  color={this.state.filter === "all" ? "primary" : "default"}
+                  size="small"
+                  label="All"
+                  variant={this.state.filter === "all" ? "default" : "outlined"}
+                  clickable
+                  onClick={() => this.handleFilter("all")}
+                  icon={this.state.filter === "all" ? <Icon path={mdiCheck} /> : <Icon path={mdiRadioboxBlank} />}
+                />
+                <Chip
+                  color={this.state.filter === "starred" ? "primary" : "default"}
+                  size="small"
+                  label="Favorites"
+                  variant={this.state.filter === "starred" ? "default" : "outlined"}
+                  clickable
+                  onClick={() => this.handleFilter("starred")}
+                  icon={this.state.filter === "starred" ? <Icon path={mdiCheck} /> : <Icon path={mdiRadioboxBlank} />}
+                />
+                <Chip
+                  color={this.state.filter === "noise" ? "primary" : "default"}
+                  size="small"
+                  label="Seed Supported"
+                  variant={this.state.filter === "noise" ? "default" : "outlined"}
+                  clickable
+                  onClick={() => this.handleFilter("noise")}
+                  icon={this.state.filter === "noise" ? <Icon path={mdiCheck} /> : <Icon path={mdiRadioboxBlank} />}
+                />
+                <Chip
+                  color={this.state.filter === "color" ? "primary" : "default"}
+                  size="small"
+                  label="Color Theory"
+                  variant={this.state.filter === "color" ? "default" : "outlined"}
+                  clickable
+                  onClick={() => this.handleFilter("color")}
+                  icon={this.state.filter === "color" ? <Icon path={mdiCheck} /> : <Icon path={mdiRadioboxBlank} />}
+                />
+                <Chip
+                  color={this.state.filter === "animated" ? "primary" : "default"}
+                  size="small"
+                  label="Animated"
+                  variant={this.state.filter === "animated" ? "default" : "outlined"}
+                  clickable
+                  onClick={() => this.handleFilter("animated")}
+                  icon={this.state.filter === "animated" ? <Icon path={mdiCheck} /> : <Icon path={mdiRadioboxBlank} />}
+                />
+              </Box>
+              <List dense>
+                {artworkIndex.map(
+                  (item, index) =>
+                    this.checkFilter(item.color, item.noise, item.animated, item.starred) && (
+                      <Zoom in key={index}>
+                        <div>
+                          <ListItem button component={Link} to={"/arts/" + item.id}>
+                            <Tooltip title={t("arts.artworkTooltipShow")}>
+                              <ListItemAvatar color="secondary">
+                                <Avatar>{index}</Avatar>
+                              </ListItemAvatar>
+                            </Tooltip>
+                            <ListItemText primary={item.primary + " (" + this.formatDate(item.date) + ")"} secondary={item.secondary} />
 
-                          <ListItemSecondaryAction>
-                            {item.staticImage && (
-                              <Tooltip title={t("arts.artworkTooltipImage")}>
-                                <IconButton edge="end" href={STATIC_IMAGE_URL + "large/" + item.id + ".jpg"} target="_blank">
-                                  <Image />
-                                </IconButton>
-                              </Tooltip>
-                            )}
-                            {item.link && (
-                              <Tooltip title={t("arts.artworkTooltipLink")}>
-                                <IconButton edge="end" href={item.link}  target="_blank">
-                                  <OpenInNew />
-                                </IconButton>
-                              </Tooltip>
-                            )}
-                          </ListItemSecondaryAction>
-                        </ListItem>
-                      </div>
-                    </Zoom>
-                  )
-              )}
-            </List>
-            </Paper>     
+                            <ListItemSecondaryAction>
+                              {item.staticImage && (
+                                <Tooltip title={t("arts.artworkTooltipImage")}>
+                                  <IconButton edge="end" href={STATIC_IMAGE_URL + "large/" + item.id + ".jpg"} target="_blank">
+                                    <Icon path={mdiImage} />
+                                  </IconButton>
+                                </Tooltip>
+                              )}
+                              {item.link && (
+                                <Tooltip title={t("arts.artworkTooltipLink")}>
+                                  <IconButton edge="end" href={item.link} target="_blank">
+                                    <Icon path={mdiOpenInNew} />
+                                  </IconButton>
+                                </Tooltip>
+                              )}
+                            </ListItemSecondaryAction>
+                          </ListItem>
+                        </div>
+                      </Zoom>
+                    )
+                )}
+              </List>
+            </Paper>
           </Box>
           <Dialog fullScreen onClose={this.handledialogClose} aria-labelledby="dialog" open={dialog}>
             <AppBar color="transparent" position="fixed">
               <Toolbar>
-                <Button startIcon={<Close />} color="primary" variant="contained" onClick={this.handledialogClose}>
+                <Button startIcon={<Icon path={mdiClose} />} color="primary" variant="contained" onClick={this.handledialogClose}>
                   {currentTitle}
                 </Button>
               </Toolbar>
@@ -338,9 +338,7 @@ class Arts extends Component {
               <Typography variant="h2" gutterBottom>
                 Connect Wallet
               </Typography>
-              <Suspense fallback={<CircularProgress color="primary" />}>
-                <Web3 />
-              </Suspense>
+              <Suspense fallback={<CircularProgress color="primary" />}></Suspense>
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleDialogWeb3Close} variant="contained" color="primary">
@@ -357,4 +355,4 @@ class Arts extends Component {
   }
 }
 
-export default withTranslation()(withRouter(Arts));
+export default withTranslation()(Arts);

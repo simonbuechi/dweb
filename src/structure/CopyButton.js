@@ -1,40 +1,38 @@
-import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 //material-ui
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
 //icons
-import { CheckboxMarkedCircle, ContentCopy } from "mdi-material-ui";
+import Icon from "../utils/Icon";
+import { mdiCheckboxMarkedCircle, mdiContentCopy } from "@mdi/js";
 
-class CopyButton extends Component {
-  state = {
-    success: null,
-  };
+function CopyButton(props) {
+  const { t } = useTranslation();
+  const [success, setSuccess] = useState(false);
 
-  handleCopyClick = () => {
-    if (!this.state.success) {
+  const handleCopyClick = () => {
+    if (!success) {
       this.setState({ success: true }, () => {
         this.timer = setTimeout(() => {
-          this.setState({ success: false });
+          setSuccess(false);
         }, 1000);
       });
     }
   };
 
-  render() {
-    const { t, text } = this.props;
+  const { text } = this.props;
 
-    return (
-      <Tooltip title={t("base.copyClipboard")} aria-label={t("base.copyClipboard")}>
-        <CopyToClipboard text={text} onCopy={this.handleCopyClick}>
-          <IconButton color="secondary" aria-label="Copy">
-            {this.state.success ? <CheckboxMarkedCircle fontSize="small" /> : <ContentCopy fontSize="small" />}
-          </IconButton>
-        </CopyToClipboard>
-      </Tooltip>
-    );
-  }
+  return (
+    <Tooltip title={t("base.copyClipboard")} aria-label={t("base.copyClipboard")}>
+      <CopyToClipboard text={text} onCopy={handleCopyClick}>
+        <IconButton color="secondary" aria-label="Copy">
+          {this.state.success ? <Icon path={mdiCheckboxMarkedCircle} fontSize="small" /> : <Icon path={mdiContentCopy} fontSize="small" />}
+        </IconButton>
+      </CopyToClipboard>
+    </Tooltip>
+  );
 }
 
-export default withTranslation()(CopyButton);
+export default CopyButton;

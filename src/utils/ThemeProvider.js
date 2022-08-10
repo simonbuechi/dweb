@@ -1,3 +1,3 @@
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 
 export default ThemeProvider;

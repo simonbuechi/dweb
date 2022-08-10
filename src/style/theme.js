@@ -1,6 +1,5 @@
-import { blueGrey, brown } from "@material-ui/core/colors";
-import { createTheme } from "@material-ui/core/styles";
-import { alpha } from "@material-ui/core/styles/colorManipulator";
+import { blueGrey, brown } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles";
 //import logo from '../assets/logo.svg';
 
 const black = "#000";
@@ -48,141 +47,173 @@ const theme = createTheme({
     fontFamily: ["Source Serif Pro", "serif"].join(","),
     fontWeight: 400,
   },
-  overrides: {
+  components: {
     MuiAppBar: {
-      colorTransparent: {
-        boxShadow: "none",
+      styleOverrides: {
+        colorTransparent: {
+          boxShadow: "none",
+        },
       },
     },
     MuiDialog: {
-      paperFullScreen: {
-        overflow: "hidden",
+      styleOverrides: {
+        paperFullScreen: {
+          overflow: "hidden",
+        },
       },
     },
     MuiTabs: {
-      vertical: {
-        borderRight: 0,
-        marginRight: 32,
+      styleOverrides: {
+        vertical: {
+          borderRight: 0,
+          marginRight: 32,
+        },
       },
     },
     MuiTab: {
-      root: {
-        textTransform: "none",
-        fontFamily: "Source Serif Pro",
-        fontWeight: 400,
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          fontFamily: "Source Serif Pro",
+          fontWeight: 400,
+        },
       },
     },
     MuiTypography: {
-      h1: {
-        lineHeight: "2.5",
-        fontSize: "1rem",
-        color: brown[900],
-        fontWeight: 400,
-      },
-      h2: {
-        display: "inline-block",
-        fontFamily: "Playfair Display",
-        fontStyle: "italic",
-        fontSize: "2rem",
-        lineHeight: "1.5",
-        fontWeight: 600,
-        backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
-        color: "transparent",
-        "-webkitBackgroundClip": "text",
-        backgroundClip: "text",
-        paddingLeft: 4,
-      },
-      h3: {
-        fontSize: "1.3rem",
-        fontWeight: 400,
-        backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
-        color: "transparent",
-        "-webkitBackgroundClip": "text",
-        lineHeight: "1.5",
-      },
-      body1: {
-        fontSize: "0.875rem",
+      styleOverrides: {
+        h1: {
+          lineHeight: "2.5",
+          fontSize: "1rem",
+          color: brown[900],
+          fontWeight: 400,
+        },
+        h2: {
+          display: "inline-block",
+          fontFamily: "Playfair Display",
+          fontStyle: "italic",
+          fontSize: "2rem",
+          lineHeight: "1.5",
+          fontWeight: 600,
+          backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
+          color: "transparent",
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          paddingLeft: 4,
+        },
+        h3: {
+          fontSize: "1.3rem",
+          fontWeight: 400,
+          backgroundImage: "linear-gradient(to right, " + black + ", " + fontBrown + ")",
+          color: "transparent",
+          WebkitBackgroundClip: "text",
+          lineHeight: "1.5",
+        },
+        body1: {
+          fontSize: "0.875rem",
+        },
       },
     },
     MuiButton: {
-      root: {
-        fontFamily: "Source Serif Pro",
-        textTransform: "none",
-        marginBottom: 4,
-      },
-      containedPrimary: {
-        color: "#000",
-        backgroundColor: "#fff",
-        backgroundImage: "linear-gradient(to right, " + alpha(brown[200], 1) + " 0%, " + alpha(brown[200], 0.7) + " 100%) ",
+      styleOverrides: {
+        root: {
+          fontFamily: "Source Serif Pro",
+          textTransform: "none",
+          marginBottom: 4,
+        },
+        containedPrimary: {
+          color: "#000",
+          backgroundColor: "#fff",
+          backgroundImage: "linear-gradient(to right, " + brown[400] + " 0%, " + brown[200] + " 100%) ",
+        },
       },
     },
     MuiRating: {
-      root: {
-        color: brown[600],
-      },
-      iconEmpty: {
-        color: brown[100],
+      styleOverrides: {
+        root: {
+          color: brown[600],
+        },
+        iconEmpty: {
+          color: brown[100],
+        },
       },
     },
     MuiPaper: {
-      root: {
-        //    backgroundColor: "rgba(255,255,255,0.5)",
-      },
-      outlined: {
-        backgroundColor: "rgba(255,255,255,0)",
-        borderColor: brown[300],
+      styleOverrides: {
+        root: {
+          //    backgroundColor: "rgba(255,255,255,0.5)",
+        },
+        outlined: {
+          backgroundColor: "rgba(255,255,255,0)",
+          borderColor: brown[300],
+        },
       },
     },
     MuiListItemSecondaryAction: {
-      root: {
-        display: "flex",
+      styleOverrides: {
+        root: {
+          display: "flex",
+        },
       },
     },
     MuiExpansionPanelDetails: {
-      root: {
-        display: "block",
+      styleOverrides: {
+        root: {
+          display: "block",
+        },
       },
     },
     MuiListItemIcon: {
-      root: {
-        color: iconBrown,
+      styleOverrides: {
+        root: {
+          color: iconBrown,
+        },
       },
     },
     MuiList: {
-      padding: {
-        paddingBottom: 24,
+      styleOverrides: {
+        padding: {
+          paddingBottom: 24,
+        },
       },
     },
     MuiGrid: {
-      "spacing-xs-3": {
-        margin: 0,
+      styleOverrides: {
+        "spacing-xs-3": {
+          margin: 0,
+        },
       },
     },
     MuiFab: {
-      root: {
-        position: "fixed",
-        zIndex: 1000,
-        bottom: 16,
-        right: 16,
-      },
-      primary: {
-        backgroundColor: brown[500],
-        "&:hover": {
-          backgroundColor: brown[600],
+      styleOverrides: {
+        root: {
+          position: "fixed",
+          zIndex: 1000,
+          bottom: 16,
+          right: 16,
+        },
+        primary: {
+          backgroundColor: brown[500],
+          "&:hover": {
+            backgroundColor: brown[600],
+          },
         },
       },
     },
     MuiAvatar: {
-      colorDefault: {
-        color: black,
-        backgroundColor: brown[100],
+      styleOverrides: {
+        colorDefault: {
+          color: black,
+          backgroundColor: brown[100],
+        },
       },
     },
     MuiChip: {
-      root: {
-        marginRight: 5,
-        marginBottom: 5,
-        backgroundColor: brown[100],
+      styleOverrides: {
+        root: {
+          marginRight: 5,
+          marginBottom: 5,
+          backgroundColor: brown[100],
+        },
       },
     },
   },

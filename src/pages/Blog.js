@@ -5,27 +5,27 @@ import { getThreadByAddress, listSpaces, getProfile } from "3box/lib/api";
 import Markdown from "react-showdown";
 import fm from "front-matter";
 //material-ui
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import IconButton from "@material-ui/core/IconButton";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Zoom from "@material-ui/core/Zoom";
-import Tooltip from "@material-ui/core/Tooltip";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Collapse from "@material-ui/core/Collapse";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardHeader from "@material-ui/core/CardHeader";
-import Avatar from "@material-ui/core/Avatar";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import IconButton from "@mui/material/IconButton";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Zoom from "@mui/material/Zoom";
+import Tooltip from "@mui/material/Tooltip";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import Collapse from "@mui/material/Collapse";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardHeader from "@mui/material/CardHeader";
+import Avatar from "@mui/material/Avatar";
 import Alert from "@material-ui/lab/Alert";
 //icons
-import { OpenInNew, InformationOutline, Message, Share, ChevronDown, Account } from "mdi-material-ui";
+import { mdiOpenInNew, mdiInformationOutline, mdiMessage, mdiShare, mdiChevronDown, mdiAccount } from "@mdi/js";
 //custom
 import config from "../config.json";
 import configShowdown from "../style/configShowdown.json";
@@ -122,20 +122,22 @@ class Blog extends Component {
           {t("blog.title")}
         </Typography>
         <Box my={2}>
-          <Alert variant="filled" severity="warning">{t("base.experimental")}</Alert>
+          <Alert variant="filled" severity="warning">
+            {t("base.experimental")}
+          </Alert>
         </Box>
         <Typography variant="body2" gutterBottom>
           {t("blog.description")}
         </Typography>
-        <Button variant="outlined" color="secondary" href="/" startIcon={<OpenInNew />} disabled>
+        <Button variant="outlined" color="secondary" href="/" startIcon={<mdiOpenInNew />} disabled>
           {t("blog.linkMain")}
         </Button>
         &nbsp;
-        <Button variant="outlined" color="secondary" href="https://medium.com/@simonbuechi" startIcon={<OpenInNew />}>
+        <Button variant="outlined" color="secondary" href="https://medium.com/@simonbuechi" startIcon={<mdiOpenInNew />}>
           {t("blog.linkMedium")}
         </Button>
         &nbsp;
-        <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<InformationOutline />}>
+        <Button variant="outlined" color="primary" onClick={this.handleDialogOpen} startIcon={<mdiInformationOutline />}>
           {t("blog.dialogButton")}
         </Button>
         {!ready ? (
@@ -154,7 +156,7 @@ class Blog extends Component {
                           <Avatar src={"https://ipfs.infura.io/ipfs/" + blogAuthors[item.author].image[0].contentUrl["/"]} />
                         ) : (
                           <Avatar>
-                            <Account />
+                            <mdiAccount />
                           </Avatar>
                         )
                       }
@@ -170,27 +172,27 @@ class Blog extends Component {
                   <CardActions disableSpacing>
                     <Tooltip title="Read more">
                       <IconButton onClick={this.handleExpandClick(index)}>
-                        <ChevronDown />
+                        <mdiChevronDown />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Share">
                       <IconButton>
-                        <Share />
+                        <mdiShare />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Copy full message">
                       <IconButton>
-                        <Message />
+                        <mdiMessage />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Copy ID">
                       <IconButton>
-                        <Share />
+                        <mdiShare />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title={"Post ID is " + item.postId + ", created by " + item.author}>
                       <IconButton>
-                        <InformationOutline />
+                        <mdiInformationOutline />
                       </IconButton>
                     </Tooltip>
                   </CardActions>
