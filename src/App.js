@@ -18,7 +18,7 @@ import Settings from "./structure/Settings";
 // pages (lazy loaded)
 const Start = lazy(() => import("./pages/Start"));
 const About = lazy(() => import("./pages/About"));
-//const Offering = lazy(() => import("./pages/Offering"));
+const Offering = lazy(() => import("./pages/Offering"));
 const Projects = lazy(() => import("./pages/Projects"));
 //const Wall = lazy(() => import("./pages/Wall"));
 //const Blog = lazy(() => import("./pages/Blog"));
@@ -52,8 +52,6 @@ function App() {
                 <Tab label={t("base.navOffering")} component={Link} to="/services" />
                 <Tab label={t("base.navProjects")} component={Link} to="/projects" />
                 <Tab label={t("base.navArts")} component={Link} to="/arts" />
-                <Tab label={t("base.navBlog")} component={Link} to="/blog" />
-                <Tab label={t("base.navWall")} component={Link} to="/wall" />
               </Tabs>
               <Box textAlign="center" mr={4} mt={2}>
                 <Settings />
@@ -66,10 +64,8 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Start />} />
               <Route exact path="/about" element={<About />} />
-              <Route exact path="/services" element={<Start />} />
+              <Route exact path="/services" element={<Offering />} />
               <Route exact path="/projects" element={<Projects />} />
-              <Route exact path="/blog" element={<Start />} />
-              <Route exact path="/wall" element={<Start />} />
               <Route exact path="/arts/:id" element={<Arts />} />
               <Route exact path="/arts" element={<Arts />} />
             </Routes>

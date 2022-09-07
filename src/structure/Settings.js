@@ -84,13 +84,13 @@ function Settings() {
       <Dialog onClose={handleDialogDisclaimerClose} aria-labelledby="dialogDisclaimer" open={dialogDisclaimer}>
         <DialogContent>
           <Typography variant="h2" gutterBottom>
-            {t("base.dialogDisclaimerTitle")}
+            {t("base.dialogFooterTitle")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {t("base.dialogDisclaimerBody")}
+            {t("base.dialogFooterBody")}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {t("base.dialogDisclaimerBody2")}
+            {t("base.dialogFooterBody2")}
           </Typography>
           <Typography variant="body2" gutterBottom>
             © Copyright {new Date().getFullYear()} Simon Buechi

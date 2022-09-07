@@ -30,10 +30,11 @@ function Start() {
     setDialogPortrait(false);
   };
   const myJobs = [
-    { primary: "SWIC Digital", secondary: "CTO", link: "https://swic.digital", icon: <Icon path={mdiOpenInNew} /> },
+    { primary: "CROWDLITOKEN", secondary: "CTO", link: "https://crowdlitoken.com", icon: <Icon path={mdiOpenInNew} /> },
     { primary: "Voveo", secondary: "Founder & Developer", link: "https://voveo.ch", icon: <Icon path={mdiOpenInNew} /> },
     { primary: "Pacta", secondary: "Founder", link: "https://pacta.app", icon: <Icon path={mdiOpenInNew} /> },
     { primary: "Blockchain Innovation Group", secondary: "Network Partner", link: "https://big-swiss.com", icon: <Icon path={mdiOpenInNew} /> },
+    { primary: "CryptoChefs", secondary: "Advisor", link: "https://cryptochefs.io/", icon: <Icon path={mdiOpenInNew} /> },
   ];
 
   return (

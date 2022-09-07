@@ -29,7 +29,6 @@ import {
   mdiOpenInNew,
   mdiFacebook,
   mdiLinkedin,
-  mdiNumeric3Box,
   mdiTwitter,
   mdiWhatsapp,
 } from "@mdi/js";
@@ -80,7 +79,6 @@ function About() {
     { primary: "LinkedIn", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Icon path={mdiLinkedin} /> },
     { primary: "Facebook", secondary: "", link: "https://www.linkedin.com/in/simonbuechi", icon: <Icon path={mdiFacebook} /> },
     { primary: "Twitter", secondary: "", link: "https://twitter.com/simonbuechi", icon: <Icon path={mdiTwitter} /> },
-    { primary: "3Box", secondary: "", link: "https://3box.io/0x254b358a6047a03243971B4814b1AAfdF312EC56", icon: <Icon path={mdiNumeric3Box} /> },
     { primary: "Whatsapp", secondary: "", link: "https://wa.me/41787401627", icon: <Icon path={mdiWhatsapp} /> },
   ];
 
