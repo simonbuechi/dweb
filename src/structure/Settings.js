@@ -15,7 +15,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 //import { InformationOutline, AccountBox } from "@mdi/js";
 //import Brightness6 from 'mdi-material-ui/Brightness6';
 //custom
-const Web3 = lazy(() => import("../web3/Web3"));
+//const Web3 = lazy(() => import("../web3/Web3"));
 
 function Settings() {
   const { t } = useTranslation();
@@ -72,7 +72,7 @@ function Settings() {
             Connect Wallet
           </Typography>
           <Suspense fallback={<CircularProgress color="primary" />}>
-            <Web3 />
+            {/* <Web3 />  */} 
           </Suspense>
         </DialogContent>
         <DialogActions>

@@ -1,6 +1,6 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 //material-ui
 import Typography from "@mui/material/Typography";
@@ -50,28 +50,20 @@ function Arts() {
   const [seed, setSeed] = useState(null);
   const [customField, setCustomField] = useState("");
   const [filter, setFilter] = useState("starred");
+  let navigate = useNavigate();
 
-  /*
-  componentDidMount = () => {
-    if (window.localStorage.getItem("seed")) {
-      const currentSeed = window.localStorage.getItem("seed");
-      setSeed(currentSeed);
-    }
-    if (this.props.match.params.id && !this.state.dialog) {
-      let currentArtwork = artworkIndex.find((x) => x.id === this.props.match.params.id);
-      this.setState({ currentTitle: currentArtwork.primary, currentContent: currentArtwork.content });
-      this.handledialogOpen();
-    }
-  };
-*/
-  const componentDidUpdate = () => {
-    if (this.props.match.params.id && !dialog) {
-      let currentArtwork = artworkIndex.find((x) => x.id === this.props.match.params.id);
+  let param = useParams();
+  console.log(param);
+
+  useEffect(() => {
+    if (param["id"]) {
+      let currentArtwork = artworkIndex.find((x) => x.id === param.id);
       setCurrentTitle(currentArtwork.primary);
       setCurrentContent(currentArtwork.content);
       handledialogOpen();
     }
-  };
+  }, [param]);
+
   const handledialogOpen = () => {
     setDialog(true);
   };
@@ -79,7 +71,7 @@ function Arts() {
     setDialog(false);
     setCurrentTitle("");
     setCurrentContent(<></>);
-    this.props.history.push("/arts");
+    navigate("/arts", { replace: false });
   };
   const handleDialogWeb3Open = () => {
     setDialogWeb3(true);
@@ -95,11 +87,6 @@ function Arts() {
       setSignatureCollapsed(!signatureCollapsed);
       setCustomCollapsed(false);
     }
-  };
-  const openArtwork = (currentTitle, currentContent) => {
-    setCurrentTitle(currentTitle);
-    setCurrentContent(currentContent);
-    handledialogOpen();
   };
   const formatDate = (date) => {
     return Intl.DateTimeFormat("default", { year: "2-digit", month: "long", day: "numeric" }).format(date);
