@@ -17,7 +17,7 @@ import Box from "@mui/material/Box";
 import Icon from "../utils/Icon";
 import { mdiOpenInNew, mdiFaceMan, mdiCreativeCommons } from "@mdi/js";
 //images
-import portraitBig from "../assets/simonbuechi-landscape-medium.jpg";
+import portraitBig from "../assets/simonbuechi-hiking.webp";
 
 function Start() {
   const { t } = useTranslation();
