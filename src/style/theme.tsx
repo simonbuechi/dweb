@@ -123,7 +123,7 @@ const theme = createTheme({
         containedPrimary: {
           color: "#000",
           backgroundColor: "#fff",
-          backgroundImage: "linear-gradient(to right, " + brown[400] + " 0%, " + brown[200] + " 100%) ",
+          backgroundImage: "linear-gradient(to right, " + brown[200] + " 0%, " + brown[100] + " 100%) ",
         },
       },
     },
