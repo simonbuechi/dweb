@@ -36,7 +36,7 @@ function App() {
         <meta name="description" content="Website of Simon Buechi" />
       </Helmet>
       <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={0}>
-        <Header handleChange={setValue} />
+        <Header />
         <Grid item xs={12} sm={3} lg={3} xl={3}>
           <Hidden xsDown>
             <Box mt={0}>
@@ -62,12 +62,12 @@ function App() {
         <Grid item xs={12} sm={9} lg={9} xl={9}>
           <Suspense fallback={<CircularProgress color="primary" />}>
             <Routes>
-              <Route exact path="/" element={<Start />} />
-              <Route exact path="/about" element={<About />} />
-              <Route exact path="/services" element={<Offering />} />
-              <Route exact path="/projects" element={<Projects />} />
-              <Route exact path="/arts/:id" element={<Arts />} />
-              <Route exact path="/arts" element={<Arts />} />
+              <Route path="/" element={<Start />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Offering />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/arts/:id" element={<Arts />} />
+              <Route path="/arts" element={<Arts />} />
             </Routes>
             <Outlet />
           </Suspense>

@@ -9,7 +9,7 @@ const iconBrown = "#776A67";
 // A custom theme for this app
 const theme = createTheme({
   palette: {
-    type: "light",
+    mode: "light",
     common: {
       black: "rgba(40, 31, 31, 1)",
       white: "#fff",
@@ -28,7 +28,7 @@ const theme = createTheme({
       primary: "rgba(0, 0, 0, 1)",
       secondary: "rgba(0, 0, 0, 0.64)",
       disabled: "rgba(0, 0, 0, 0.5)",
-      hint: "rgba(0, 0, 0, 0.6)",
+      // hint: "rgba(0, 0, 0, 0.6)",
     },
     primary: {
       light: brown[400],
@@ -45,7 +45,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: ["Source Serif Pro", "serif"].join(","),
-    fontWeight: 400,
+
   },
   components: {
     MuiAppBar: {
@@ -155,7 +155,7 @@ const theme = createTheme({
         },
       },
     },
-    MuiExpansionPanelDetails: {
+    MuiAccordionDetails: {
       styleOverrides: {
         root: {
           display: "block",

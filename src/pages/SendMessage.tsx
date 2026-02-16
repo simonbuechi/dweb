@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-class SendMessage extends Component {
+class SendMessage extends Component<any, any> {
   render() {
     const { t } = this.props;
 

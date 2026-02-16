@@ -1,7 +1,7 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import transDe from "./de";
-import transEn from "./en";
+import transDe from "./de.json";
+import transEn from "./en.json";
 import { initReactI18next } from "react-i18next";
 
 
@@ -18,7 +18,8 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    whitelist: ["en", "de"],
+    supportedLngs: ["en", "de"],
+    lng: "en",
     fallbackLng: "en",
     cleanCode: true,
     lowerCaseLng: true,
@@ -27,9 +28,6 @@ i18n
       escapeValue: false // not needed for react as it escapes by default
     },
     keySeparator: ".",
-    react: {
-      wait: true
-    },
     resources: {
       en: { translation: transEn },
       de: { translation: transDe }
